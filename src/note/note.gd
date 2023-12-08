@@ -5,6 +5,9 @@ class_name Note
 var title: String = ""
 ## Texte descriptif plus étoffé que le titre
 var descripion: String = ""
+## Des données, comme un texte ou un nombre...utiles pour la note
+## [br] key: [String] value: [Variant]
+var other_data: Dictionary = {}
 
 
 func _init():
