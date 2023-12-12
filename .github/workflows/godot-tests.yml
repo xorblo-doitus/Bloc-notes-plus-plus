@@ -4,12 +4,13 @@ on: push
 jobs:
   execute-gut:
     name: Run GUT tests
-    runs-on: "ubuntu-20.04"
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+        
       - name: Docker test
-        uses: ceceppa/godot-gut-ci@main
+        uses: xorblo-doitus/godot-gut-ci@main
         with:
           godot_version: 4.2
+          gut_params: -gconfig=res://.gut_editor_config.json
