@@ -35,8 +35,14 @@ const JSONable = [
 	TYPE_BOOL,
 ]
 
+const JSONabilization: Dictionary = {
+	&"Note": {
+		
+	}
+}
+
 ## Turns [param target] into a JSONable object
-## ([Dictionary], [Array], [], [Dictionnary])
+## ([Dictionary], [Array], [int], [String]...)
 static func JSONablize(target: Variant) -> Variant:
 	match typeof(target):
 		TYPE_OBJECT:
