@@ -7,12 +7,13 @@ static func _static_init():
 
 
 static func create_defaults():
-	JSONablizationInfo.new(Note, &"Note", [
+	var _note := JSONablizationInfo.new(Note, &"Note", [
 		&"title",
 		&"description",
 		&"other_data",
-	])
-	JSONablizationInfo.new(Task, &"Task", [
+	]).build()
+	
+	var _task := JSONablizationInfo.new(Task, &"Task", [
 		&"time_limit",
 		&"done",
-	])
+	]).set_inherit(_note).build()

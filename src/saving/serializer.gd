@@ -8,9 +8,36 @@ class_name Serializer
 ## wich should append special data to the [Dictionary] passed as argument to it.
 
 
+
+## Turns anything into a loadable string
+static func serialize(target: Variant) -> String:
+	return JSON.stringify(JSONablize(target))
+
+
+const deserialize_errors: Dictionary = {
+	48: "How was the Easter-Egg Error fired ???"
+}
+
+
+## Loads a JSON string as anything
+static func deserialize(text: String) -> Variant:
+	var json: JSON = JSON.new()
+	var error := json.parse(text)
+	if error:
+		var formated_error: Error = Error.new()
+		formated_error.title = "Error %s while deserializing the following text:" % error
+		formated_error.title += text
+		formated_error.description = str(error) + ": " + deserialize_errors.get(error, "No specific error message")
+		return Error
+	
+	return json.data
+
+
+
 ## All types that can be handled automatically by Godot's JSON class.
 const JSONable = [
 	TYPE_STRING,
+	TYPE_STRING_NAME,
 	TYPE_INT,
 	TYPE_FLOAT,
 	TYPE_BOOL,
@@ -36,7 +63,7 @@ static func JSONablize(target: Variant) -> Variant:
 				new_dictionary[key] = JSONablize(target[key])
 			return new_dictionary
 			
-		var type when type in JSONable:
+		var _type when _type in JSONable:
 			return target
 	
 	assert(false, "Unable to JSONablize {target}.".format({
@@ -79,28 +106,32 @@ static func JSONablize(target: Variant) -> Variant:
 		## Match not found
 		#return false
 
-static func find_class(object: Object) -> String:
-	#var script_path = object.get_script().resource_path
-	#for class_info in ProjectSettings.get_global_class_list():
-		#if class_info.path == 
-	var matching: Array[Dictionary] = []
-	for class_info in JSONablization.values():
-		if is_instance_of(object, (class_info.type)):
-			matching.push_back(class_info)
-	
-	return ""
+#static func find_class(object: Object) -> String:
+	##var script_path = object.get_script().resource_path
+	##for class_info in ProjectSettings.get_global_class_list():
+		##if class_info.path == 
+	#var matching: Array[Dictionary] = []
+	#for class_info in JSONablizationInfo.all.values():
+		#if is_instance_of(object, (class_info.type)):
+			#matching.push_back(class_info)
+	#
+	#return ""
 
 
 ## Turns [param target] into a JSONable dictionary.
 static func JSONablize_object(target: Object) -> Dictionary:
 	var data: Dictionary = {}
+	var infos: Array[JSONablizationInfo] = JSONablizationInfo.get_most_precise(
+				target).get_consecutive_infos()
 	
-	if &"attributes_to_serialize" in target:
-		for attribute in target.attributes_to_serialize:
-			data[attribute] = Serializer.JSONablize(target)
+	data[&"type"] = infos[0].type_as_text
+	
+	for info in infos:
+		for attribute_to_save in info.attributes_to_save:
+			data[attribute_to_save] = target.get(attribute_to_save)
 		
-		if target.has_method(&"special_JSONablization"):
-			target.special_JSONablization(data)
+		if info.special_load != null:
+			info.special_load.call(target, data)
 	
 	if data.is_empty():
 		assert(false, "Unable to JSONablize {target}.".format({
