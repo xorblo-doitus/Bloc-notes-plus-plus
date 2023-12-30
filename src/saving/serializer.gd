@@ -9,7 +9,9 @@ class_name Serializer
 
 
 
-## Turns anything into a loadable string
+## Turns anything into a loadable string.
+## Note that [int]s are converted to [float]s.
+## Note that [Dictionary] must not contain a key named "_type".
 static func serialize(target: Variant) -> String:
 	return JSON.stringify(JSONablize(target))
 
@@ -30,8 +32,48 @@ static func deserialize(text: String) -> Variant:
 		formated_error.description = str(error) + ": " + deserialize_errors.get(error, "No specific error message")
 		return Error
 	
-	return json.data
+	var result: Variant = json.data
+	
+	objectify_recursively(result)
+	
+	if is_serialized_object(result):
+		result = objectify(result)
+	
+	return result
 
+
+static func objectify_recursively(data: Variant) -> void:
+	match typeof(data):
+		TYPE_ARRAY:
+			for i in len(data):
+				var element: Variant = data[i]
+				if is_serialized_object(element):
+					data[i] = objectify(data)
+			
+		TYPE_DICTIONARY:
+			for key in data:
+				var value: Variant = data[key]
+				if is_serialized_object(value):
+					data[key] = objectify(value)
+
+
+static func objectify(data: Dictionary) -> Object:
+	var most_specific_info: JSONablizationInfo = JSONablizationInfo.all[data[&"_type"]]
+	var new_object: Object = most_specific_info.type.new()
+	
+	#apply_JSONablizationInfo(new_object, info, data)
+	for info in most_specific_info.get_consecutive_infos():
+		for attribute in info.attributes_to_save:
+			new_object.set(attribute, data[attribute])
+		
+		info.special_deserialization.call(new_object, data)
+	
+	return new_object
+
+
+static func is_serialized_object(data: Variant) -> bool:
+	return data is Dictionary and data.has(&"_type")
+#static func convert_to_object()
 
 
 ## All types that can be handled automatically by Godot's JSON class.
@@ -58,7 +100,7 @@ static func JSONablize(target: Variant) -> Variant:
 			return new_array
 			
 		TYPE_DICTIONARY:
-			var new_dictionary := []
+			var new_dictionary := {}
 			for key in target:
 				new_dictionary[key] = JSONablize(target[key])
 			return new_dictionary
@@ -124,14 +166,14 @@ static func JSONablize_object(target: Object) -> Dictionary:
 	var infos: Array[JSONablizationInfo] = JSONablizationInfo.get_most_precise(
 				target).get_consecutive_infos()
 	
-	data[&"type"] = infos[0].type_as_text
+	data[&"_type"] = infos[0].type_as_text
 	
 	for info in infos:
 		for attribute_to_save in info.attributes_to_save:
 			data[attribute_to_save] = target.get(attribute_to_save)
 		
-		if info.special_load != null:
-			info.special_load.call(target, data)
+		if info.special_serialization != null:
+			info.special_serialization.call(target, data)
 	
 	if data.is_empty():
 		assert(false, "Unable to JSONablize {target}.".format({
