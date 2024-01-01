@@ -69,7 +69,8 @@ static func objectify(data: Dictionary) -> Object:
 		for attribute in info.attributes_to_save:
 			new_object.set(attribute, data[attribute])
 		
-		info.special_deserialization.call(new_object, data)
+		if info.special_deserialization:
+			info.special_deserialization.call(new_object, data)
 	
 	return new_object
 
@@ -175,7 +176,7 @@ static func JSONablize_object(target: Object) -> Dictionary:
 		for attribute_to_save in info.attributes_to_save:
 			data[attribute_to_save] = target.get(attribute_to_save)
 		
-		if info.special_serialization != null:
+		if info.special_serialization:
 			info.special_serialization.call(target, data)
 	
 	if data.is_empty():
