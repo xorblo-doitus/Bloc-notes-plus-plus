@@ -5,5 +5,9 @@ class_name Variable
 ## qui servira de référence pour d'autres calculs
 var name: String = ""
 
+## A unique name allowing to reference this variable from anywhere in the notes.
+var name: String = "x"
+
+
 func _init():
 	pass # Replace with function body.
