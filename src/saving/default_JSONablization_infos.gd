@@ -17,3 +17,10 @@ static func create_defaults():
 		&"time_limit",
 		&"done",
 	]).set_inherit(_note).build()
+	
+	var _calculus := JSONablizationInfo.new(Calculus, &"Calculus", [
+	]).set_inherit(_note).build()
+	
+	var _variable := JSONablizationInfo.new(Variable, &"Variable", [
+		&"name",
+	]).set_inherit(_calculus).build()
