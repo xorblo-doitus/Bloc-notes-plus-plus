@@ -105,6 +105,21 @@ func set_inherit_by_name(name: StringName) -> JSONablizationInfo:
 	return self
 
 
+func auto_inherit() -> JSONablizationInfo:
+	var temp: Object = type.new()
+	var best := JSONablizationInfo.get_most_precise(temp)
+	
+	if best:
+		set_inherit(best)
+	else:
+		assert(false, "Unable to auto find from wich JSONablizationInfo this one inherit. - type: " + type_as_text)
+	
+	if not temp is RefCounted:
+		temp.free()
+	
+	return self
+
+
 ## Build this JSONablizationInfo.
 ## [b]DO NOT MODIFY THIS INSTANCE AFTERWARD.[/b]
 func build() -> JSONablizationInfo:
