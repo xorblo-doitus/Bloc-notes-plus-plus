@@ -8,6 +8,9 @@ class_name Serializer
 ## wich should append special data to the [Dictionary] passed as argument to it.
 
 
+static func _static_init():
+	DefaultJSONablizationInfos.create_defaults()
+
 
 ## Turns anything into a loadable string.
 ## Note that [int]s are converted to [float]s.

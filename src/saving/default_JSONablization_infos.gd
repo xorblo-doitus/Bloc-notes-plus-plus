@@ -2,10 +2,6 @@ extends Object
 class_name DefaultJSONablizationInfos
 
 
-static func _static_init():
-	create_defaults()
-
-
 static func create_defaults():
 	var _note := JSONablizationInfo.new(Note, &"Note", [
 		&"title",
