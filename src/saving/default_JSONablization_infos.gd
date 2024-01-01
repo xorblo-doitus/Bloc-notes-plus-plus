@@ -12,11 +12,13 @@ static func create_defaults():
 	var _task := JSONablizationInfo.new(Task, &"Task", [
 		&"time_limit",
 		&"done",
-	]).set_inherit(_note).build()
+	]).auto_inherit().build()
 	
 	var _calculus := JSONablizationInfo.new(Calculus, &"Calculus", [
-	]).set_inherit(_note).build()
+	]).auto_inherit().build()
 	
 	var _variable := JSONablizationInfo.new(Variable, &"Variable", [
 		&"name",
-	]).set_inherit(_calculus).build()
+	]).auto_inherit().build()
+	
+	print_verbose("Loaded default JSONablizationInfos.")
