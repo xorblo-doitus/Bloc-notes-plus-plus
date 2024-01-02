@@ -21,4 +21,8 @@ static func create_defaults():
 		&"name",
 	]).auto_inherit().build()
 	
+	JSONablizationInfo.new(NoteList, &"NoteList", [
+		&"notes",
+	]).build()
+	
 	print_verbose("Loaded default JSONablizationInfos.")
