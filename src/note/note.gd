@@ -12,3 +12,7 @@ var other_data: Dictionary = {}
 
 func _init():
 	pass # Replace with function body
+
+
+func _to_string():
+	return "Note: \"" + title + "\""
