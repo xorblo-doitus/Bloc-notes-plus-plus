@@ -22,7 +22,9 @@ var notes: Array[Note] = []
 var _last_notes: Array[Note] = []
 
 
-func _init():
+func _init(_notes: Array[Note] = []):
+	if _notes:
+		notes = _notes
 	NoteList.all.push_back(self)
 
 
