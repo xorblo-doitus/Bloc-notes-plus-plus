@@ -2,7 +2,7 @@ extends Node
 
 
 const DEBUG_WINDOW_SIZE = Vector2i(640, 360)
-const DEBUG_WINDOW_POS = Vector2i(700, 350)
+var DEBUG_WINDOW_POS = DisplayServer.screen_get_size() - DEBUG_WINDOW_SIZE
 
 
 func _ready() -> void:
