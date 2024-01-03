@@ -282,15 +282,15 @@ func _send_event(event):
 		else:
 			if(r.has_method(&"_input")):
 				r._input(event)
-				
-			if(r.has_method(&"_gui_input")):
-				r._gui_input(event)
-				
-			if(r.has_method(&"_unhandled_input")):
-				r._unhandled_input(event)
-			
+
 			if(r.has_signal(&"gui_input")):
 				r.gui_input.emit(event)
+
+			if(r.has_method(&"_gui_input")):
+				r._gui_input(event)
+
+			if(r.has_method(&"_unhandled_input")):
+				r._unhandled_input(event)
 
 
 func _send_or_record_event(event):
