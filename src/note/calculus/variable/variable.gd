@@ -8,3 +8,11 @@ var name: String = ""
 
 func _init():
 	pass # Replace with function body.
+
+
+
+func _is_equal(other: Variant) -> bool:
+	return (
+		super(other)
+		and other.name == name
+	)

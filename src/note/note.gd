@@ -16,3 +16,12 @@ func _init():
 
 func _to_string():
 	return "Note: \"" + title + "\""
+
+
+func _is_equal(other: Variant) -> bool:
+	return (
+		other is Note
+		and other.get_script() == get_script()
+		and other.title == title
+		and other.description == description
+	)
