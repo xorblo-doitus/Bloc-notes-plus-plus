@@ -4,8 +4,8 @@ Un bloc-notes permettant à la fois de prendre des notes, de créer une liste de
 
 # Status
 
-In development
+En développement
 
-# Godot Version
+# Version de Godot
 
 4.2
