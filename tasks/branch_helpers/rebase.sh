@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git fetch
+
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 if [[ "$BRANCH" == "main" ]]; then
 	echo 'Cannot rebase main on main.';
