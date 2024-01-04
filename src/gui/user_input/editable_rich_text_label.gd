@@ -82,13 +82,9 @@ func _on_code_edit_text_set():
 	#text = %CodeEdit.text
 
 
-func _on_code_edit_gui_input(event):
+func _on_code_edit_gui_input(event: InputEvent):
 	if event is InputEventKey and event:
-		if (
-			(event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER)
-			and (event.shift_pressed and multiline)
-			and event.pressed
-		):
+		if multiline and event.is_action(&"validate_input", true):
 			%CodeEdit.hide()
 
 
