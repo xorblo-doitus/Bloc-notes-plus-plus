@@ -61,3 +61,5 @@ func test_editable_rich_text_label() -> void:
 		"hello\n",
 		"Validating create a \\n."
 	)
+	
+	editable_rich_text_label.free()
