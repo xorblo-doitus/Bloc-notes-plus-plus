@@ -55,3 +55,9 @@ func test_editable_rich_text_label() -> void:
 		"hello",
 		"get_text_stored() does not return the right text."
 	)
+	
+	assert_ne(
+		editable_rich_text_label.get_text_stored(),
+		"hello\n",
+		"Validating create a \\n."
+	)
