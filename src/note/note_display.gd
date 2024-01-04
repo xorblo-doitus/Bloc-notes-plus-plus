@@ -10,7 +10,6 @@ var title: String = "":
 	set(new):
 		title = new
 		%Title.text = new
-		print("setter called")
 
 ## Texte descriptif plus étoffé que le titre.
 var description: String = "":
@@ -18,7 +17,13 @@ var description: String = "":
 		description = new
 
 
+@warning_ignore("unused_private_class_variable")
 var _connections: Array[Connection]
+
+
+static func instantiate() -> NoteDisplay:
+	var new: NoteDisplay = preload("res://src/note/note_display.tscn").instantiate()
+	return new
 
 
 func _on_title_text_changed(new, _old):
