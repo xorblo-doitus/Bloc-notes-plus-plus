@@ -13,6 +13,9 @@
             "detail": "Basically, it updates the branch with the modifications from main.",
             "type": "shell",
             "command": "tasks/branch_helpers/rebase.sh",
+            "windows": {
+                "command": "tasks/branch_helpers/rebase.cmd"
+            },
         },
     ]
 }
