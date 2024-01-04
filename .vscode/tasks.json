@@ -7,6 +7,7 @@
             "label": "Update live branch",
             "type": "shell",
             "command": "tasks/publish/html/update_live.cmd",
+            "problemMatcher": []
         },
         {
             "label": "Rebase current branch on main",
@@ -16,6 +17,7 @@
             "windows": {
                 "command": "tasks/branch_helpers/rebase.cmd"
             },
-        },
+            "problemMatcher": []
+        }
     ]
 }
