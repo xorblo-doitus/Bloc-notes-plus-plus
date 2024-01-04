@@ -7,6 +7,12 @@
             "label": "Update live branch",
             "type": "shell",
             "command": "tasks/publish/html/update_live.cmd",
-        }
+        },
+        {
+            "label": "Rebase current branch on main",
+            "detail": "Basically, it updates the branch with the modifications from main.",
+            "type": "shell",
+            "command": "tasks/branch_helpers/rebase.sh",
+        },
     ]
 }
