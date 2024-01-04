@@ -10,6 +10,6 @@ git push origin
 git pull origin main
 git push origin main
 git checkout %branch%
-git rebase 
+git rebase main
 git push --force
 git stash pop
