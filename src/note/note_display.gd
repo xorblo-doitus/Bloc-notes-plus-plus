@@ -1,3 +1,4 @@
+class_name NoteDisplay
 extends Panel
 
 
@@ -15,6 +16,9 @@ var title: String = "":
 var description: String = "":
 	set(new):
 		description = new
+
+
+var _connections: Array[Connection]
 
 
 func _on_title_text_changed(new, _old):

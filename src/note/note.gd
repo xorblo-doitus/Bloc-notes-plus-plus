@@ -3,6 +3,9 @@ class_name Note
 
 ## Texte principal de la note et celui qui est affiché dans la liste de note
 var title: String = ""
+func set_title(new: String) -> Note:
+	title = new
+	return self
 ## Texte descriptif plus étoffé que le titre
 var description: String = ""
 ## Des données, comme un texte ou un nombre...utiles pour la note
@@ -12,6 +15,23 @@ var other_data: Dictionary = {}
 
 func _init():
 	pass # Replace with function body
+
+
+var _connected_displays: Array[NoteDisplay] = []
+func apply_to_display(display: NoteDisplay) -> void:
+	display.title = title
+	display.description = description
+	
+	_connected_displays.append(display)
+	
+	display._connections.append(Connection.new(display.title_changed, set_title, true))
+
+
+func unapply_to_display(display: NoteDisplay) -> void:
+	_connected_displays.erase(display)
+	
+	while display._connections:
+		display._connections.pop_back().destroy()
 
 
 func _to_string():
