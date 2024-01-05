@@ -23,7 +23,7 @@ var _connections: Array[Connection]
 
 
 static func instantiate() -> NoteDisplay:
-	var new: NoteDisplay = preload("res://src/note/note_display.tscn").instantiate()
+	var new: NoteDisplay = preload("res://src/gui/displaying_notes/note_display.tscn").instantiate()
 	return new
 
 
