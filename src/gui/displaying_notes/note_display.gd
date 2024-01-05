@@ -22,6 +22,7 @@ var description: String = "":
 var _connections: Array[Connection]
 
 
+## Create a new instance by loading default scene for this class.
 static func instantiate() -> NoteDisplay:
 	var new: NoteDisplay = preload("res://src/gui/displaying_notes/note_display.tscn").instantiate()
 	return new
