@@ -1,5 +1,5 @@
 class_name NoteDisplay
-extends Panel
+extends PanelContainer
 
 
 signal title_changed(new: String, old: String)
