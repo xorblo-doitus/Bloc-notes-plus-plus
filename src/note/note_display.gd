@@ -15,6 +15,7 @@ var title: String = "":
 var description: String = "":
 	set(new):
 		description = new
+		%Title.tooltip_text = new
 
 
 @warning_ignore("unused_private_class_variable")
