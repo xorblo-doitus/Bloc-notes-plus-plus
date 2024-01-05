@@ -80,8 +80,6 @@ func get_text_stored() -> String:
 
 
 func _on_code_edit_text_changed():
-	#text = code_edit.text
-	print(code_edit.get_caret_column())
 	if not multiline and "\n" in code_edit.text:
 		var caret_columns: Array[int] = []
 		var line_lengths: Array[int] = []
@@ -136,6 +134,5 @@ func _on_code_edit_focus_exited():
 
 
 func _on_code_edit_visibility_changed():
-	print(code_edit.visible)
 	if !code_edit.visible:
 		editing = false
