@@ -29,10 +29,14 @@ static func instantiate() -> NoteListDisplay:
 	return _default_scene.instantiate()
 
 
+func _init() -> void:
+	note_list.changed.connect(build_note_displays.unbind(2))
+
+
 func build_note_displays() -> void:
 	# Unlink displays wich displays a note that don't belong to self
 	for display in _note_displays:
-		if not display.connected_to in notes:
+		if display.connected_to and not display.connected_to in notes:
 			display.connected_to.unapply_from_display(display)
 	
 	## A Queue (fr: Une file)
@@ -67,4 +71,6 @@ func _pop_note_display_for(note: Note) -> NoteDisplay:
 			_note_displays.remove_at(display_i)
 			return display
 	
-	return NoteDisplay.instantiate()
+	var new: NoteDisplay = NoteDisplay.instantiate()
+	note.apply_to_display(new)
+	return new
