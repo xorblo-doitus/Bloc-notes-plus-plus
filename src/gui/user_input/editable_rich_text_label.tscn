@@ -7,18 +7,22 @@ offset_right = 778.0
 offset_bottom = 168.0
 focus_mode = 2
 bbcode_enabled = true
+text = " "
 selection_enabled = true
 script = ExtResource("1_lrrj1")
 
 [node name="CodeEdit" type="CodeEdit" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+text = " "
 line_folding = true
+gutters_draw_line_numbers = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
 
