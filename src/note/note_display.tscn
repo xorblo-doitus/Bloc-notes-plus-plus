@@ -29,3 +29,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 fit_content = true
 multiline = false
+
+[connection signal="text_changed" from="HBoxContainer/Title" to="." method="_on_title_text_changed"]
