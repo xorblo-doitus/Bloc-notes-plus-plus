@@ -23,10 +23,12 @@ var _connections: Array[Connection]
 var connected_to: Note
 
 
+## A reference to the default packed scene associated with this class
+static var _default_scene: PackedScene = load("res://src/gui/displaying_notes/note_display.tscn")
+
 ## Create a new instance by loading default scene for this class.
 static func instantiate() -> NoteDisplay:
-	var new: NoteDisplay = preload("res://src/gui/displaying_notes/note_display.tscn").instantiate()
-	return new
+	return _default_scene.instantiate()
 
 
 func _on_title_text_changed(new, _old):
