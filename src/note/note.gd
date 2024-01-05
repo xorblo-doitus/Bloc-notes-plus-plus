@@ -36,7 +36,7 @@ func apply_to_display(display: NoteDisplay) -> void:
 	display.connected_to = self
 
 
-func unapply_to_display(display: NoteDisplay) -> void:
+func unapply_from_display(display: NoteDisplay) -> void:
 	_connected_displays.erase(display)
 	
 	while display._connections:
