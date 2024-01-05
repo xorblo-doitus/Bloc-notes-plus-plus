@@ -1,28 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbj27u16816l5"]
+[gd_scene load_steps=4 format=3 uid="uid://dbj27u16816l5"]
 
 [ext_resource type="Script" path="res://src/note/note_display.gd" id="1_7u0ca"]
 [ext_resource type="PackedScene" uid="uid://dpoekypmevp47" path="res://src/gui/user_input/editable_rich_text_label.tscn" id="1_dbt0l"]
+[ext_resource type="Texture2D" uid="uid://cn1dolctmjaya" path="res://src/assets/images/icons/grab.png" id="2_vo56a"]
 
-[node name="NoteDisplay" type="Panel"]
-offset_right = 552.0
-offset_bottom = 124.0
-theme_type_variation = &"NoteDisplay"
+[node name="NoteDisplay" type="PanelContainer" groups=["shrink"]]
+offset_right = 84.0
+offset_bottom = 23.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_7u0ca")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="Grip" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
+texture_normal = ExtResource("2_vo56a")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="Title" parent="HBoxContainer" instance=ExtResource("1_dbt0l")]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[connection signal="text_changed" from="HBoxContainer/Title" to="." method="_on_title_text_changed"]
+size_flags_vertical = 4
+fit_content = true
+multiline = false
