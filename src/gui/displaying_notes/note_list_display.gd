@@ -1,6 +1,7 @@
 class_name NoteListDisplay
 extends PanelContainer
 
+@onready var notes_container: VBoxContainer = %NotesContainer
 
 ## The notes displayed.
 ## [br][br][b]READONLY[/b]: Trying to modifying this attribute will only set it's
@@ -27,3 +28,43 @@ static var _default_scene: PackedScene = load("res://src/gui/displaying_notes/no
 static func instantiate() -> NoteListDisplay:
 	return _default_scene.instantiate()
 
+
+func build_note_displays() -> void:
+	# Unlink displays wich displays a note that don't belong to self
+	for display in _note_displays:
+		if not display.connected_to in notes:
+			display.connected_to.unapply_from_display(display)
+	
+	## A Queue (fr: Une file)
+	var new_displays: Array[NoteDisplay] = []
+	
+	for note in notes:
+		new_displays.append(_pop_note_display_for(note))
+	
+	while _note_displays:
+		_note_displays.pop_back().queue_free()
+	
+	_note_displays.append_array(new_displays)
+	_reorder_note_displays()
+
+
+## Unparent all displays and reparent them in the right order
+func _reorder_note_displays() -> void:
+	for display in _note_displays:
+		var parent: Node = display.get_parent()
+		if parent:
+			parent.remove_child(display)
+		
+		notes_container.add_child(display)
+
+
+## Sees if there is already a display available for this note or
+## create a new one else.
+func _pop_note_display_for(note: Note) -> NoteDisplay:
+	for display_i in len(_note_displays):
+		var display: NoteDisplay = _note_displays[display_i]
+		if display.connected_to == note:
+			_note_displays.remove_at(display_i)
+			return display
+	
+	return NoteDisplay.instantiate()
