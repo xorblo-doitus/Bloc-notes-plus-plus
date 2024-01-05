@@ -21,6 +21,7 @@ Dev="res://src/singletons/dev.gd"
 Wait="*res://src/singletons/wait.gd"
 GlobalInputs="*res://src/singletons/global_inputs.gd"
 NoteListChangeDetector="*res://src/singletons/note_list_change_detector.gd"
+Shrinker="*res://src/singletons/shrinker.gd"
 
 [display]
 
