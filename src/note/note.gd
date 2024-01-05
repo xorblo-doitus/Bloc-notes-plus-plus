@@ -33,6 +33,7 @@ func apply_to_display(display: NoteDisplay) -> void:
 	_connected_displays.append(display)
 	
 	display._connections.append(Connection.new(display.title_changed, set_title.unbind(1), true))
+	display.connected_to = self
 
 
 func unapply_to_display(display: NoteDisplay) -> void:
@@ -40,6 +41,7 @@ func unapply_to_display(display: NoteDisplay) -> void:
 	
 	while display._connections:
 		display._connections.pop_back().destroy()
+	display.connected_to = null
 
 
 func _to_string():

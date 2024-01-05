@@ -20,6 +20,7 @@ var description: String = "":
 
 @warning_ignore("unused_private_class_variable")
 var _connections: Array[Connection]
+var connected_to: Note
 
 
 ## Create a new instance by loading default scene for this class.
