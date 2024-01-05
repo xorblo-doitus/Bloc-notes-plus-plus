@@ -5,6 +5,7 @@
 [node name="EditableRichTextLabel" type="RichTextLabel"]
 offset_right = 778.0
 offset_bottom = 168.0
+auto_translate = false
 focus_mode = 2
 bbcode_enabled = true
 text = " "
@@ -20,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+auto_translate = false
 text = " "
 line_folding = true
 gutters_draw_line_numbers = true
