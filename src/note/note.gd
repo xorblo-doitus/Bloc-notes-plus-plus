@@ -21,8 +21,9 @@ var description: String = "":
 var other_data: Dictionary = {}
 
 
-func _init():
-	pass # Replace with function body
+func _init(_title: String = "", _description: = ""):
+	title = _title
+	description = _description
 
 
 var _connected_displays: Array[NoteDisplay] = []
