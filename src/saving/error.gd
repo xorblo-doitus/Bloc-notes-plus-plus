@@ -1,5 +1,5 @@
 extends RefCounted
-class_name Error
+class_name ErrorHelper
 
 
 var title: String = ""
