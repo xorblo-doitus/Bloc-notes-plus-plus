@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dpoekypmevp47" path="res://src/gui/user_input/editable_rich_text_label.tscn" id="1_dbt0l"]
 [ext_resource type="Texture2D" uid="uid://cn1dolctmjaya" path="res://src/assets/images/icons/grab.png" id="2_vo56a"]
 
-[node name="NoteDisplay" type="PanelContainer" groups=["shrink"]]
+[node name="NoteDisplay" type="PanelContainer"]
 offset_right = 84.0
 offset_bottom = 23.0
 size_flags_vertical = 4
