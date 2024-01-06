@@ -1,7 +1,7 @@
 extends Node
 
 
-const DEBUG_WINDOW_SIZE = Vector2i(640, 360)
+const DEBUG_WINDOW_SIZE = Vector2i(256*2, 400)
 var DEBUG_WINDOW_POS = DisplayServer.screen_get_size() - DEBUG_WINDOW_SIZE
 
 
