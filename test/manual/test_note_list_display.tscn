@@ -15,11 +15,6 @@ script = ExtResource("1_81qbh")
 
 [node name="NoteListDisplay" parent="." instance=ExtResource("1_hug8m")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="NoteDisplay" parent="NoteListDisplay/NotesContainer" index="0" instance=ExtResource("3_wc0q5")]
 layout_mode = 2
