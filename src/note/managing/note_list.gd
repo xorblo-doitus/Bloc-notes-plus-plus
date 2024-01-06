@@ -38,3 +38,7 @@ func get_notes_to_display() -> Array[Note]:
 	return notes
 
 
+func mimic(other: NoteList) -> void:
+	notes = other.notes.duplicate()
+
+

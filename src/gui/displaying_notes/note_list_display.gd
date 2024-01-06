@@ -8,7 +8,7 @@ extends PanelContainer
 ## [member NoteList.notes] to a [i]copy[/i] of the new one's [member NoteList.notes]
 var note_list: NoteList = NoteList.new():
 	set(new):
-		note_list.notes = new.notes.duplicate()
+		note_list.mimic(new)
 
 ## Shortcut for [member note_list].notes, see [member NoteList.notes]
 var notes: Array[Note]:
