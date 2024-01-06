@@ -44,6 +44,9 @@ func mimic(other: NoteList) -> void:
 
 func _is_equal(other: Variant) -> bool:
 	if other is Array:
+		if len(other) != len(notes):
+			return false
+		
 		for i in len(other):
 			var element: Variant = other[i]
 			if element is Note:
@@ -54,8 +57,11 @@ func _is_equal(other: Variant) -> bool:
 		return true
 	
 	if other is NoteList:
+		if len(other.notes) != len(notes):
+			return false
+		
 		for i in len(other.notes):
-			var others_note: Variant = other[i]
+			var others_note: Variant = other.notes[i]
 			if not notes[i]._is_equal(others_note):
 				return false
 		return true
