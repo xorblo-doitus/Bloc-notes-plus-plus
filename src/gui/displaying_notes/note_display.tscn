@@ -7,7 +7,6 @@
 [node name="NoteDisplay" type="PanelContainer" groups=["shrink"]]
 offset_right = 84.0
 offset_bottom = 23.0
-size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_7u0ca")
 
