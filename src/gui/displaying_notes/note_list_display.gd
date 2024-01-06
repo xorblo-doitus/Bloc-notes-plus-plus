@@ -33,7 +33,13 @@ func _init() -> void:
 	note_list.changed.connect(build_note_displays.unbind(2))
 
 
+func _enter_tree() -> void:
+	build_note_displays()
+
+
 func build_note_displays() -> void:
+	if not is_inside_tree():
+		return
 	# Unlink displays wich displays a note that don't belong to self
 	for display in _note_displays:
 		if display.connected_to and not display.connected_to in notes:
