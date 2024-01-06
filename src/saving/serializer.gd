@@ -62,7 +62,7 @@ static func objectify_recursively(data: Variant) -> void:
 
 static func objectify(data: Dictionary) -> Object:
 	var most_specific_info: JSONablizationInfo = JSONablizationInfo.all[data[&"_type"]]
-	var new_object: Object = most_specific_info.type.new()
+	var new_object: Object = most_specific_info.instantiating_function.call()
 	
 	#apply_JSONablizationInfo(new_object, info, data)
 	for info in most_specific_info.get_consecutive_infos():

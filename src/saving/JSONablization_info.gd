@@ -50,6 +50,20 @@ var type: Object
 var type_as_text: String
 ## A list of attributes to save
 var attributes_to_save: Array[String] = []
+## If not specified, use [member type][code].new()[/code].
+## Else new instances will be created using this function. Exemple:
+## [codeblock]
+## static func instantiate() -> ThisObjectsClass:
+##     var new: ThisObjectsClass = preload("path/ti/scene").instantiate()
+##     new.some_attribute = "initial_value"
+##     return new
+## [/codeblock]
+var instantiating_function: Callable:
+	get:
+		if instantiating_function:
+			return instantiating_function
+		
+		return type.new
 ## A special function that will be called with a dictionary
 ## to wich it should add necessary informations.
 ## [codeblock]
@@ -77,6 +91,13 @@ func _init(_type: Object, _type_as_text: String, _attributes_to_save: Array[Stri
 	type = _type
 	type_as_text = _type_as_text
 	attributes_to_save.append_array(_attributes_to_save)
+
+
+## Set [member instantiating_function].
+## Chainable. 
+func set_instantiating_function(function: Callable) -> JSONablizationInfo:
+	instantiating_function = function
+	return self
 
 
 ## Optional special functions.
