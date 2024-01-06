@@ -36,6 +36,11 @@ func parse(text: String):
 	note_number += 1
 	if progression == 100:
 		progression = 0
+	data = {}
+    data["name"] = name
+	if type = Task:
+		data["time_limit"] = time_limit
+    
 
 var prefixes = ["/", "\\"]
 var finished_task = 0
