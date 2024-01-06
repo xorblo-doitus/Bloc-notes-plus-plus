@@ -10,6 +10,7 @@ focus_mode = 2
 bbcode_enabled = true
 text = " "
 selection_enabled = true
+visible_characters_behavior = 1
 script = ExtResource("1_lrrj1")
 
 [node name="CodeEdit" type="CodeEdit" parent="."]
@@ -23,6 +24,8 @@ grow_horizontal = 2
 grow_vertical = 2
 auto_translate = false
 text = " "
+wrap_mode = 1
+scroll_fit_content_height = true
 line_folding = true
 gutters_draw_line_numbers = true
 auto_brace_completion_enabled = true

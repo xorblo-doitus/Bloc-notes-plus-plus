@@ -13,8 +13,8 @@ signal text_changed(new: String, old: String)
 	set(new):
 		multiline = new
 		%CodeEdit.gutters_draw_line_numbers = new
-		fit_content = not new
-		%CodeEdit.scroll_fit_content_height = not new
+		#fit_content = not new
+		#%CodeEdit.scroll_fit_content_height = not new
 		#code_edit.fit
 ## If true, text will be submitted only when enter is pressed while shift too.
 ## This helps to edit multiline texts.
@@ -28,12 +28,15 @@ var editing: bool = false:
 			code_edit.grab_focus.call_deferred()
 			code_edit.text = text
 			_last_text = text
-			text = " "
+			visible_characters = 0
+			bbcode_enabled = false
 		else:
 			text = code_edit.text
 			code_edit.text = " "
 			if text != _last_text:
 				text_changed.emit(text, _last_text)
+			visible_characters = -1
+			bbcode_enabled = true
 		
 		# Do it at the end
 		code_edit.visible = new
@@ -106,7 +109,8 @@ func _on_code_edit_text_changed():
 		
 		for caret in len(caret_columns):
 			code_edit.set_caret_column(caret_columns[caret], true, caret)
-	#pass
+		
+	text = code_edit.text
 
 
 func _gui_input(event: InputEvent):
@@ -125,8 +129,14 @@ func _on_code_edit_text_set():
 
 func _on_code_edit_gui_input(event: InputEvent):
 	if event is InputEventKey and event:
-		if multiline and event.is_action(&"validate_input", true):
+		var starting_shift_state = event.shift_pressed
+		if not multiline:
+			event.shift_pressed = true
+		
+		if event.is_action(&"validate_input", true):
 			code_edit.hide()
+		
+		event.shift_pressed = starting_shift_state
 
 
 func _on_code_edit_focus_exited():
