@@ -11,6 +11,7 @@ var other_data: Dictionary = {}
 var data: Dictionary = {}
 var note_number = 0
 var type: Object = Note
+var time_limit: int = 0
 #func _init(text:="") -> void:
 	#if text == "1" :
 		#var json = JSON.new()
@@ -37,7 +38,7 @@ func parse(text: String):
 	if progression == 100:
 		progression = 0
 	data = {}
-    data["name"] = name
+    data["name"] = title
 	if type = Task:
 		data["time_limit"] = time_limit
     
