@@ -62,3 +62,28 @@ func test_is_equal() -> void:
 		note_list._is_equal(note_list4), 
 		"A note list should not be equal to one with more notes."
 	)
+	
+	
+	var note_list_display: NoteListDisplay = NoteListDisplay.instantiate()
+	note_list_display.note_list = note_list
+	
+	var note_list_display_too: NoteListDisplay = NoteListDisplay.instantiate()
+	note_list_display_too.note_list = note_list_too
+	
+	var note_list_display2: NoteListDisplay = NoteListDisplay.instantiate()
+	note_list_display2.note_list = note_list2
+	
+	assert_true(
+		note_list_display._is_equal(note_list_display),
+		"A NoteListDisplay should be equal to itself."
+	)
+	
+	assert_true(
+		note_list_display._is_equal(note_list_display_too),
+		"A NoteListDisplay should be equal to a similar one."
+	)
+	
+	assert_false(
+		note_list_display._is_equal(note_list_display2),
+		"A NoteListDisplay should not be equal to a different one."
+	)
