@@ -74,3 +74,10 @@ func _pop_note_display_for(note: Note) -> NoteDisplay:
 	var new: NoteDisplay = NoteDisplay.instantiate()
 	note.apply_to_display(new)
 	return new
+
+
+func _is_equal(other: Variant) -> bool:
+	if other is NoteListDisplay:
+		return note_list._is_equal(other.note_list)
+	
+	return false
