@@ -26,9 +26,8 @@ Shrinker="*res://src/singletons/shrinker.gd"
 
 [display]
 
-window/size/viewport_width=1366
-window/size/viewport_height=768
-window/stretch/mode="canvas_items"
+window/size/viewport_width=256
+window/size/viewport_height=1024
 
 [editor_plugins]
 
