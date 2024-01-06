@@ -25,4 +25,9 @@ static func create_defaults():
 		&"notes",
 	]).build()
 	
+	JSONablizationInfo.new(NoteListDisplay, &"NoteListDisplay", [
+		&"note_list",
+	]).set_instantiating_function(NoteListDisplay.instantiate).build()
+	
+	
 	print_verbose("Loaded default JSONablizationInfos.")
