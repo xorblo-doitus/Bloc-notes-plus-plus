@@ -34,3 +34,31 @@ func test_is_equal() -> void:
 	
 	assert_false(note._is_equal(variable), "A variable and a note should not be equal.")
 	assert_false(variable._is_equal(note), "A variable and a note should not be equal.")
+	
+	
+	var note_list: NoteList = NoteList.new([note, note2, variable, variable2])
+	var note_list_too: NoteList = NoteList.new([note, note2, variable, variable2])
+	var note_list2: NoteList = NoteList.new([variable, note2, note, variable2])
+	var note_list3: NoteList = NoteList.new([note, note2, variable])
+	var note_list4: NoteList = NoteList.new([note, note2, variable, variable2, note])
+	
+	assert_true(note_list._is_equal(note_list), "A note list should be equal to itself.")
+	assert_true(note_list._is_equal(note_list_too), "A note should be equal to one with the same notes.")
+	
+	assert_false(
+		note_list._is_equal(note_list2), 
+		"A note list should not be equal to one with notes in another order."
+	)
+	assert_false(
+		note_list2._is_equal(note_list), 
+		"A note list should not be equal to one with notes in another order."
+	)
+	
+	assert_false(
+		note_list._is_equal(note_list3), 
+		"A note list should not be equal to one with less notes."
+	)
+	assert_false(
+		note_list._is_equal(note_list4), 
+		"A note list should not be equal to one with more notes."
+	)
