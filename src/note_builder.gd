@@ -42,13 +42,13 @@ var finished_task = 0
 
 func commande(text: String):
 	if text[0] in prefixes:
-		if text[1] == "t" or text.substr(1, 2) == "ta" or text.substr(1, 3) == "tas" or text.substr(1, 4) == "task":
+		if text[1] == "t" and text.substr(2, 4) == "   " or text.substr(1, 2) == "ta" and text.substr(3, 4) == "  " or text.substr(1, 3) == "tas" and text[3] == " " or text.substr(1, 4) == "task":
 			type = Task
 			return text.substr(2)
-		elif text[1] == "c" or text.substr(1, 2) == "ca" or text.substr(1, 3) == "cal" or text.substr(1, 4) == "calc":
+		elif text[1] == "c" and text.substr(2, 4) == "   " or text.substr(1, 2) == "ca"  and text.substr(3, 4) == "  " or text.substr(1, 3) == "cal" and text[3] == " " or text.substr(1, 4) == "calc":
 			type = Calculus
 			return text.substr(2)
-		elif text[1] == "s" or text.substr(1, 2) == "st"  or text.substr(1, 3) == "sto"  or text.substr(1, 4) == "stor"  or text.substr(1, 5) == "store":
+		elif text[1] == "s" and text.substr(2, 5) == "    " or text.substr(1, 2) == "st" and text.substr(3, 5) == "   " or text.substr(1, 3) == "sto"  and text.substr(4, 5) == "  " or text.substr(1, 4) == "stor" text[4] == " " or text.substr(1, 5) == "store":
 			var res = Variable
 			return text.substr(2)
 
