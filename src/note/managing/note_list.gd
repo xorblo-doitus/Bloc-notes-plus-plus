@@ -42,3 +42,22 @@ func mimic(other: NoteList) -> void:
 	notes = other.notes.duplicate()
 
 
+func _is_equal(other: Variant) -> bool:
+	if other is Array:
+		for i in len(other):
+			var element: Variant = other[i]
+			if element is Note:
+				if not notes[i]._is_equal(element):
+					return false
+			else:
+				return false
+		return true
+	
+	if other is NoteList:
+		for i in len(other.notes):
+			var others_note: Variant = other[i]
+			if not notes[i]._is_equal(others_note):
+				return false
+		return true
+	
+	return false
