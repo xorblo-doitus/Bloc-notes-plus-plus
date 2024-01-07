@@ -5,6 +5,10 @@ extends RefCounted
 ## Stores informations about a workspace (Notes, sorting method...)
 
 
+## Emitted when this workspace changes in any mean.
+signal changed()
+
+
 ## The default value of [member note_list]
 static var DEFAULT_NOTES: NoteList = NoteList.new([
 	Note.new("Exemple de note.", "Ceci est une description."),
@@ -19,5 +23,10 @@ var note_list: NoteList = NoteList.new().mimic(DEFAULT_NOTES):
 		note_list.mimic(new)
 
 
+
 func _init() -> void:
-	pass
+	note_list.changed.connect(_on_note_list_changed)
+
+
+func _on_note_list_changed(_new: Array[Note], _old: Array[Note]) -> void:
+	changed.emit()
