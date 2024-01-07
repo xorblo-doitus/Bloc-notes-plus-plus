@@ -87,6 +87,7 @@ const JSONable = [
 	TYPE_INT,
 	TYPE_FLOAT,
 	TYPE_BOOL,
+	TYPE_NIL,
 ]
 
 
@@ -174,7 +175,7 @@ static func JSONablize_object(target: Object) -> Dictionary:
 	
 	for info in infos:
 		for attribute_to_save in info.attributes_to_save:
-			data[attribute_to_save] = target.get(attribute_to_save)
+			data[attribute_to_save] = JSONablize(target.get(attribute_to_save))
 		
 		if info.special_serialization:
 			info.special_serialization.call(target, data)
