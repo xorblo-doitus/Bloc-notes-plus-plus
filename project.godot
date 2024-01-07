@@ -52,3 +52,7 @@ validate_input={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+
+[save]
+
+path/workspace="user://save/workspace"
