@@ -38,8 +38,11 @@ func get_notes_to_display() -> Array[Note]:
 	return notes
 
 
-func mimic(other: NoteList) -> void:
+## Set importants attributes of this [NoteList] to the same value as [param other].
+## Returns itself for chainability.
+func mimic(other: NoteList) -> NoteList:
 	notes = other.notes.duplicate()
+	return self
 
 
 func _is_equal(other: Variant) -> bool:
