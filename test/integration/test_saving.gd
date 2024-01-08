@@ -27,6 +27,10 @@ func test_saving() -> void:
 		"Saving and loading alters information (on NoteListDisplay)."
 	)
 	
+	
+	note_list_display.free()
+	deserialized.free()
+	loaded.free()
 
 func after_all() -> void:
 	DirAccess.remove_absolute(TESTING_DIR)

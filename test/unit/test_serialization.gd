@@ -10,16 +10,22 @@ const builtins: Array = [
 	true,
 	false,
 	# Do NOT put int into arrays/dict, as float/int comparison in them result in an unequality
-	[1.0, "a"],
+	[1.2, "a"],
 	{"b": 2.0},
 ]
 
 func test_builtins():
 	for builtin in builtins:
 		var loaded = Serializer.deserialize(Serializer.serialize(builtin))
+		
+		# Prevent type warning due to JSON returning only floats.
+		if builtin is int:
+			assert_true(loaded == builtin, "Int serialization alters information.")
+			loaded = int(builtin)
+			
 		assert_eq(
-			builtin,
 			loaded,
+			builtin,
 			"Serializing then deserializing alters information."
 		)
 

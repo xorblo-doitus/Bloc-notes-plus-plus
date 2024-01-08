@@ -87,3 +87,10 @@ func test_is_equal() -> void:
 		note_list_display._is_equal(note_list_display2),
 		"A NoteListDisplay should not be equal to a different one."
 	)
+	
+	for to_free: Node in [
+		note_list_display,
+		note_list_display_too,
+		note_list_display2,
+	]:
+		to_free.free()
