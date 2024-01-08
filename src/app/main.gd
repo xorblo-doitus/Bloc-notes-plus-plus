@@ -11,6 +11,13 @@ var workspace: WorkspaceSave = WorkspaceSave.new():
 
 
 func _ready():
+	var loaded_workspace: WorkspaceSave = Saver.load_object_from_file(
+		EasySettings.get_setting("save/path/workspace")
+	)
+	
+	if loaded_workspace:
+		workspace = loaded_workspace
+	
 	_on_workspace_changed()
 
 

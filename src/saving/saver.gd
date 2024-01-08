@@ -17,9 +17,13 @@ static func save_object(target: Object, path: String) -> void:
 		)
 	
 	file.store_string(Serializer.serialize(target))
-	
 
+
+## If something goes wrong, returns [code]null[/code]
 static func load_object_from_file(path: String) -> Object:
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
+	
+	if file == null:
+		return null
 	
 	return Serializer.deserialize(file.get_as_text())
