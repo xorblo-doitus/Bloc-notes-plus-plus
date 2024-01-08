@@ -37,27 +37,31 @@ static func deserialize(text: String) -> Variant:
 	
 	var result: Variant = json.data
 	
-	objectify_recursively(result)
+	#objectify_recursively(result)
+	#
+	## We cant objectify it before with the previous sub function
+	#if is_serialized_object(result):
+		#result = objectify(result)
 	
-	if is_serialized_object(result):
-		result = objectify(result)
-	
-	return result
+	return objectify_recursively(result)
 
 
-static func objectify_recursively(data: Variant) -> void:
+static func objectify_recursively(data: Variant) -> Variant:
 	match typeof(data):
 		TYPE_ARRAY:
 			for i in len(data):
 				var element: Variant = data[i]
-				if is_serialized_object(element):
-					data[i] = objectify(data)
+				data[i] = objectify_recursively(element)
 			
 		TYPE_DICTIONARY:
 			for key in data:
 				var value: Variant = data[key]
-				if is_serialized_object(value):
-					data[key] = objectify(value)
+				data[key] = objectify_recursively(value)
+		
+			if is_serialized_object(data):
+				return objectify(data)
+	
+	return data
 
 
 static func objectify(data: Dictionary) -> Object:
@@ -67,7 +71,25 @@ static func objectify(data: Dictionary) -> Object:
 	#apply_JSONablizationInfo(new_object, info, data)
 	for info in most_specific_info.get_consecutive_infos():
 		for attribute in info.attributes_to_save:
-			new_object.set(attribute, data[attribute])
+			var value: Variant = data[attribute]
+			
+			assert(attribute in new_object, "Can't deserialize an attribute wich is not in an object.")
+			
+			if value is Array:
+				var base_value = new_object[attribute]
+				if base_value is Array:
+					value = Array(
+						value, 
+						base_value.get_typed_builtin(),
+						base_value.get_typed_class_name(),
+						base_value.get_typed_script()
+					)
+				else:
+					if base_value == null:
+						assert(false, "Can't deserialize an array if base value is null, initiate it with an empty array instead.")
+					else:
+						assert(false, "Trying to deserialize an array into a non Array attribute.")
+			new_object.set(attribute, value)
 		
 		if info.special_deserialization:
 			info.special_deserialization.call(new_object, data)
