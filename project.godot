@@ -55,4 +55,5 @@ renderer/rendering_method.mobile="gl_compatibility"
 
 [save]
 
-path/workspace="user://save/workspace"
+path/workspaces="user://save/workspaces"
+path/latest_workspace="user://save/workspace/main.json"
