@@ -2,8 +2,6 @@ class_name Saver
 extends Object
 
 
-
-
 static func save_object(target: Object, path: String) -> void:
 	DirAccess.make_dir_recursive_absolute(path.get_base_dir())
 	

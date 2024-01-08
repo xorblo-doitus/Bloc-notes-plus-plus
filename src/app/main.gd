@@ -11,12 +11,19 @@ var workspace: WorkspaceSave = WorkspaceSave.new():
 
 
 func _ready():
-	var loaded_workspace: WorkspaceSave = Saver.load_object_from_file(
-		EasySettings.get_setting("save/path/workspace").path_join("workspace.json")
+	load_workspace()
+
+
+func load_workspace() -> void:
+	var loaded_workspace: Object = Saver.load_object_from_file(
+		EasySettings.get_setting("save/path/latest_workspace")
 	)
 	
-	if loaded_workspace:
-		workspace = loaded_workspace
+	if loaded_workspace is ErrorHelper:
+		loaded_workspace.popup()
+		return
+	
+	workspace = loaded_workspace
 	
 	_on_workspace_changed()
 
