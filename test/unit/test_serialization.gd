@@ -20,7 +20,7 @@ func test_builtins():
 		assert_eq(
 			builtin,
 			loaded,
-			"Saving then loading alters information."
+			"Serializing then deserializing alters information."
 		)
 
 
