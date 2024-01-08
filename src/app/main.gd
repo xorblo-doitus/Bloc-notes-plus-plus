@@ -12,7 +12,7 @@ var workspace: WorkspaceSave = WorkspaceSave.new():
 
 func _ready():
 	var loaded_workspace: WorkspaceSave = Saver.load_object_from_file(
-		EasySettings.get_setting("save/path/workspace")
+		EasySettings.get_setting("save/path/workspace").path_join("workspace.json")
 	)
 	
 	if loaded_workspace:
