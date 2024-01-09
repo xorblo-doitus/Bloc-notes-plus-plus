@@ -48,8 +48,16 @@ var _last_text: String = text
 @onready var code_edit: CodeEdit = %CodeEdit
 
 
+## A reference to the default packed scene associated with this class
+static var _default_scene: PackedScene:
+	get:
+		if _default_scene == null:
+			_default_scene = load("res://src/gui/user_input/editable_rich_text_label.tscn")
+		return _default_scene
+
+## Create a new instance by loading default scene for this class.
 static func instantiate() -> EditableRichTextLabel:
-	return load("res://src/gui/user_input/editable_rich_text_label.tscn").instantiate()
+	return _default_scene.instantiate()
 
 
 func _ready():
