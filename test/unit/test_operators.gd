@@ -7,7 +7,7 @@ func test_is_equal() -> void:
 	note.description = "Une description"
 	
 	var note2 := Note.new()
-	note.title = "Titre 2"
+	note.title = "2"
 	note.description = "Une description"
 	
 	var variable := Variable.new()
