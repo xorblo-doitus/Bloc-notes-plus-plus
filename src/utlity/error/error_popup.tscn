@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c61ptdspoaehv"]
+
+[ext_resource type="Script" path="res://src/utlity/error/error_popup.gd" id="1_fy4eu"]
+
+[node name="AcceptDialog" type="AcceptDialog"]
+title = "ERROR_UNKNOWN"
+initial_position = 2
+size = Vector2i(384, 128)
+visible = true
+transient = false
+always_on_top = true
+popup_window = true
+dialog_autowrap = true
+script = ExtResource("1_fy4eu")
