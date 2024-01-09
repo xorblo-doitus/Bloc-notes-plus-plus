@@ -7,8 +7,8 @@ extends Calculus
 var name: String = ""
 
 
-## Stores a reference to all alive variables
-static var all: Array[Variable] = []
+## Stores a weak reference to all alive variables
+static var all: Array[WeakRef] = []
 
 
 static func get_all_var_for_calculus() -> Dictionary:
@@ -25,13 +25,16 @@ static func _static_init() -> void:
 
 
 func _init(_title: String = "", _description: = ""):
-	all.append(self)
+	all.append(weakref(self))
 
 
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_PREDELETE:
-			all.erase(self)
+			for i in len(all):
+				if all[i].get_ref() == self:
+					all.remove_at(i)
+					break
 
 
 func _is_equal(other: Variant) -> bool:
@@ -39,3 +42,13 @@ func _is_equal(other: Variant) -> bool:
 		super(other)
 		and other.name == name
 	)
+
+
+## Prevent stack overflow
+var _value_cache: float
+func get_value() -> float:
+	#_value_cache
+	
+	var result: float = super()
+	
+	return result
