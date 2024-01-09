@@ -29,6 +29,8 @@ static func _static_init() -> void:
 
 
 func _init(_title: String = "", _description: = ""):
+	super(_title, _description)
+	
 	all.append(weakref(self))
 
 
