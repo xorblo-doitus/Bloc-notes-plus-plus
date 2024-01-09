@@ -22,6 +22,12 @@ static func load_object_from_file(path: String) -> Object:
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 	
 	if file == null:
-		return null
+		var error: ErrorHelper = ErrorHelper.new(
+			&"FILE_READ_FAILED",
+			error_string(FileAccess.get_open_error()),
+			FileAccess.get_open_error()
+		)
+		
+		return error
 	
 	return Serializer.deserialize(file.get_as_text())
