@@ -39,5 +39,5 @@ func get_value() -> Variant:
 	var current_variables: Dictionary = get_all_variables()
 	var expression = Expression.new()
 	expression.parse(title, current_variables.keys())
-	var result = expression.execute(current_variables.keys())
+	var result = expression.execute(current_variables.keys(), CustomFunctions.singleton)
 	return result
