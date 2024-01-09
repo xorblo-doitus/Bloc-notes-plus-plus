@@ -17,6 +17,8 @@ var workspace: WorkspaceSave = WorkspaceSave.new():
 
 func _ready():
 	load_workspace()
+	
+	var truc = Variable.new()
 
 
 func load_workspace() -> void:

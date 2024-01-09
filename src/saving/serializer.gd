@@ -1,5 +1,5 @@
-extends Object
 class_name Serializer
+extends Object
 
 ## Let serialize Objects
 ## 

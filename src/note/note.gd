@@ -1,5 +1,6 @@
-extends RefCounted
 class_name Note
+extends RefCounted
+
 
 ## Texte principal de la note et celui qui est affiché dans la liste de note
 var title: String = "":

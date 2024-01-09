@@ -1,5 +1,5 @@
-extends Object
 class_name DefaultJSONablizationInfos
+extends Object
 
 
 static func create_defaults():

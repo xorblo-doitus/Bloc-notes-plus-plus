@@ -1,5 +1,5 @@
-extends RefCounted
 class_name JSONablizationInfo
+extends RefCounted
 
 
 ## Static variable storing inforamations about how to [method JSONablize]

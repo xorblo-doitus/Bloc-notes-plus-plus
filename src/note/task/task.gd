@@ -1,5 +1,5 @@
-extends Note
 class_name Task
+extends Note
 
 
 ## The date at wich the Task must be done.

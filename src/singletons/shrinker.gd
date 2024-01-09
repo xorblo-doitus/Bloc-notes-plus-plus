@@ -1,5 +1,5 @@
-extends Node
 #class_name Skrinker
+extends Node
 
 
 func _ready() -> void:

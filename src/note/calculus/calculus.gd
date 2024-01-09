@@ -1,5 +1,5 @@
-extends Note
 class_name Calculus
+extends Note
 
 
 ## A note able to do calculations.
