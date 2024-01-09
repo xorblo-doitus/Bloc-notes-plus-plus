@@ -35,7 +35,7 @@ func get_all_variables() -> Dictionary:
 	return result
 
 
-func get_value() -> float:
+func get_value() -> Variant:
 	var current_variables: Dictionary = get_all_variables()
 	var expression = Expression.new()
 	expression.parse(title, current_variables.keys())

@@ -10,12 +10,15 @@ var name: String = ""
 ## Stores a weak reference to all alive variables
 static var all: Array[WeakRef] = []
 
+static var _dont_include_in_variables: Array[Variable] = []
 
 static func get_all_var_for_calculus() -> Dictionary:
 	var result: Dictionary = {}
 	
 	for weak_ref in all:
 		var variable: Variable = weak_ref.get_ref()
+		if variable in _dont_include_in_variables:
+			continue
 		result[variable.name] = variable.get_value()
 	
 	return result
@@ -45,11 +48,11 @@ func _is_equal(other: Variant) -> bool:
 	)
 
 
-## Prevent stack overflow
-var _value_cache: float
-func get_value() -> float:
-	#_value_cache
+func get_value() -> Variant:
+	_dont_include_in_variables.push_back(self)
 	
-	var result: float = super()
+	var result: Variant = super()
+	
+	_dont_include_in_variables.erase(self)
 	
 	return result
