@@ -23,7 +23,6 @@ func test_varialble_freed() -> void:
 
 
 func test_calculus() -> void:
-	print(Variable.all)
 	var calculus: Calculus = Calculus.new("1+1", "Description bidon.")
 	
 	assert_eq(
@@ -37,4 +36,17 @@ func test_calculus() -> void:
 		calculus.get_value(),
 		Vector2(4.5 + PI, 6),
 		"Calculus calculation does not work."
+	)
+
+
+func test_variable() -> void:
+	var variable: Variable = Variable.new("10/2")
+	variable.name = "a"
+	
+	var calculus: Calculus = Calculus.new("a + 100")
+	
+	assert_eq(
+		calculus.get_value(),
+		105,
+		"Variables don't work."
 	)
