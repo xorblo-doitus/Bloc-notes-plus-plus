@@ -23,7 +23,7 @@ static var variable_getters: Array[Callable] = []
 ## [br] - [member variable_getters]
 ## [br] - [member other_variables]
 ## [br] - [member default_variables]
-func get_all_variables() -> Dictionary:
+static func get_all_variables() -> Dictionary:
 	var result: Dictionary = default_variables.duplicate()
 	
 	for variables in other_variables:
@@ -36,7 +36,7 @@ func get_all_variables() -> Dictionary:
 
 
 func get_value() -> Variant:
-	var current_variables: Dictionary = get_all_variables()
+	var current_variables: Dictionary = Calculus.get_all_variables()
 	var expression = Expression.new()
 	expression.parse(title, current_variables.keys())
 	var result = expression.execute(current_variables.keys(), CustomFunctions.singleton)
