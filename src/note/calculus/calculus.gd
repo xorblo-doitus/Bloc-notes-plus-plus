@@ -35,10 +35,6 @@ func get_all_variables() -> Dictionary:
 	return result
 
 
-func _init():
-	pass # Replace with function body.
-
-
 func get_value() -> float:
 	var current_variables: Dictionary = get_all_variables()
 	var expression = Expression.new()

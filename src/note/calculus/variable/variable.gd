@@ -24,7 +24,7 @@ static func _static_init() -> void:
 	Calculus.variable_getters.append(Variable.get_all_var_for_calculus)
 
 
-func _init():
+func _init(_title: String = "", _description: = ""):
 	all.append(self)
 
 
