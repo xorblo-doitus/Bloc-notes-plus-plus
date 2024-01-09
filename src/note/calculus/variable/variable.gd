@@ -14,7 +14,8 @@ static var all: Array[WeakRef] = []
 static func get_all_var_for_calculus() -> Dictionary:
 	var result: Dictionary = {}
 	
-	for variable in all:
+	for weak_ref in all:
+		var variable: Variable = weak_ref.get_ref()
 		result[variable.name] = variable.get_value()
 	
 	return result
