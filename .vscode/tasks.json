@@ -4,6 +4,12 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Export translations",
+            "type": "shell",
+            "command": "tasks/asset_exporting/translations/export_translations.cmd",
+            "problemMatcher": []
+        },
+        {
             "label": "Update live branch",
             "type": "shell",
             "command": "tasks/publish/html/update_live.cmd",
