@@ -13,7 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_71xkc")
 notes_display = NodePath("Notes/DefaultNotes")
 
-[node name="Notes" type="PanelContainer" parent="."]
+[node name="Notes" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
