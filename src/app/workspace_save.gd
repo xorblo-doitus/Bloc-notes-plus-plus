@@ -11,7 +11,7 @@ signal changed()
 
 ## The default value of [member note_list]
 static var DEFAULT_NOTES: NoteList = NoteList.new([
-	Note.new("EXEMPLE_NOTE_TITLE", "EXEMPLE_NOTE_DESCRIPTION"),
+	Note.new(TranslationServer.translate("EXEMPLE_NOTE_TITLE"), TranslationServer.translate("EXEMPLE_NOTE_DESCRIPTION")),
 ])
 
 
