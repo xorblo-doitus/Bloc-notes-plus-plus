@@ -81,9 +81,20 @@ func _pop_note_display_for(note: Note) -> NoteDisplay:
 			_note_displays.remove_at(display_i)
 			return display
 	
+	return create_note_display(note)
+
+
+func create_note_display(note: Note = null) -> NoteDisplay:
 	var new: NoteDisplay = NoteDisplay.instantiate()
-	note.apply_to_display(new)
+	new.request_remove.connect(remove.bind(new))
+	
+	if note:
+		note.apply_to_display(new)
 	return new
+
+
+func remove(note_display: NoteDisplay) -> void:
+	note_list.notes.erase(note_display.connected_to)
 
 
 func _is_equal(other: Variant) -> bool:

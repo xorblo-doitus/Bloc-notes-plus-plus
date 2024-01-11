@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://test/manual/test_note_list_display.gd" id="1_81qbh"]
 [ext_resource type="PackedScene" uid="uid://bbqidfrhlnl3x" path="res://src/gui/displaying_notes/note_list_display.tscn" id="1_hug8m"]
-[ext_resource type="PackedScene" uid="uid://dbj27u16816l5" path="res://src/gui/displaying_notes/note_display.tscn" id="3_wc0q5"]
+[ext_resource type="PackedScene" uid="uid://dbj27u16816l5" path="res://src/gui/displaying_notes/note_display/note_display.tscn" id="3_wc0q5"]
 
 [node name="TestNoteListDisplay" type="Control"]
 layout_mode = 3
