@@ -25,7 +25,11 @@ var connected_to: Note
 
 
 ## A reference to the default packed scene associated with this class
-static var _default_scene: PackedScene = load("res://src/gui/displaying_notes/note_display.tscn")
+static var _default_scene: PackedScene:
+	get:
+		if _default_scene == null:
+			_default_scene = load("res://src/gui/displaying_notes/note_display.tscn")
+		return _default_scene
 
 ## Create a new instance by loading default scene for this class.
 static func instantiate() -> NoteDisplay:
