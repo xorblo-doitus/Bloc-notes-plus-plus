@@ -11,7 +11,7 @@ signal changed()
 
 ## The default value of [member note_list]
 static var DEFAULT_NOTES: NoteList = NoteList.new([
-	Note.new("Exemple de note.", "Ceci est une description."),
+	Note.new("EXEMPLE_NOTE_TITLE", "EXEMPLE_NOTE_DESCRIPTION"),
 ])
 
 
