@@ -1,6 +1,7 @@
 extends Control
 
 
+## Please do not update this value after initialization
 @export var notes_display: NoteListDisplay
 
 
@@ -16,6 +17,7 @@ var workspace: WorkspaceSave = WorkspaceSave.new():
 
 
 func _ready():
+	notes_display.note_list.changed.connect(_on_note_list_changed)
 	load_workspace()
 
 
@@ -33,25 +35,52 @@ func load_workspace() -> void:
 	else:
 		workspace = loaded_workspace
 	
-	_on_workspace_changed()
+	_on_note_list_changed(workspace.note_list.notes, [])
 
 
 ## Chainable
 func _connect_to_workspace(target: WorkspaceSave) -> WorkspaceSave:
-	target.changed.connect(_on_workspace_changed)
+	target.note_list.changed.connect(_on_note_list_changed)
 	
 	return target
 
 
 ## Chainable
 func _disconnect_from_workspace(target: WorkspaceSave) -> WorkspaceSave:
-	if not target.changed.is_connected(_on_workspace_changed):
+	if not target.note_list.changed.is_connected(_on_note_list_changed):
 		return target
 	
-	target.changed.disconnect(_on_workspace_changed)
+	target.note_list.changed.disconnect(_on_note_list_changed)
 	
 	return target
 
 
-func _on_workspace_changed() -> void:
-	notes_display.note_list = workspace.note_list
+## Prevent infinite recursion of changed callbacks
+var _can_change_notes: bool = true
+
+func _on_note_list_changed(new: Array[Note], _old: Array[Note]) -> void:
+	if _can_change_notes:
+		_can_change_notes = false
+		
+	workspace.note_list.notes = new
+	notes_display.note_list.notes = new
+	
+	_can_change_notes = true
+	#_listening_to_notes_change = true
+
+#func _on_workspace_changed() -> void:
+	#if _listening_to_notes_change:
+		#_listening_to_notes_change = false
+		#
+	#notes_display.note_list = workspace.note_list
+	#
+	#_listening_to_notes_change = true
+#
+#
+#func _on_note_list_display_changed() -> void:
+	#if _listening_to_notes_change:
+		#_listening_to_notes_change = false
+		#
+	#notes_display.note_list = workspace.note_list
+	#
+	#_listening_to_notes_change = true

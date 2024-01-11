@@ -6,7 +6,7 @@ extends RefCounted
 
 
 ## Emitted when this workspace changes in any mean.
-signal changed()
+#signal changed()
 
 
 ## The default value of [member note_list]
@@ -24,9 +24,9 @@ var note_list: NoteList = NoteList.new().mimic(DEFAULT_NOTES):
 
 
 
-func _init() -> void:
-	note_list.changed.connect(_on_note_list_changed)
+#func _init() -> void:
+	#note_list.changed.connect(_on_note_list_changed)
 
 
-func _on_note_list_changed(_new: Array[Note], _old: Array[Note]) -> void:
-	changed.emit()
+#func _on_note_list_changed(_new: Array[Note], _old: Array[Note]) -> void:
+	#changed.emit()
