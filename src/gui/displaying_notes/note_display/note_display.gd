@@ -3,7 +3,8 @@ extends PanelContainer
 
 
 signal title_changed(new: String, old: String)
-
+## Emitted when delete button is pressed, etc...
+signal request_remove()
 
 ## Texte principal de la note et celui qui est affiché dans la liste de note.
 var title: String = "":
@@ -38,3 +39,7 @@ func _on_title_text_changed(new, _old):
 	title_changed.emit(new, old)
 
 
+
+
+func _on_delete_pressed() -> void:
+	request_remove.emit()
