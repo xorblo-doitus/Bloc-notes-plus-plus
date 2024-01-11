@@ -1,4 +1,6 @@
 keys,en,fr
+EXEMPLE_NOTE_TITLE,Exemple note's title.,Exemple d’un titre de note.
+EXEMPLE_NOTE_DESCRIPTION,Exemple note's description.,Exemple d’une description de note.
 en,English,Anglais
 fr,French,Français
 LOCALIZATION_PROGRESS,100%,100%
