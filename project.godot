@@ -49,6 +49,10 @@ validate_input={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://src/assets/translations/translations.en.translation", "res://src/assets/translations/translations.fr.translation")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
