@@ -1,6 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 
+# LireOffice
+*.~lock.*
+
 # GhostWriter
 *.md.backup
 
