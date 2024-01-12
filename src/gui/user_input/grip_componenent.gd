@@ -12,6 +12,10 @@ extends Control
 @export var auto_offset: bool = true
 @export var offset: Vector2 = Vector2.ZERO
 
+
+static var ghost_modulate: Color = Color(1, 1, 1, 0.4)
+
+
 var _dragging: bool = false
 #var _starting_mouse_global_position: Vector2 = Vector2(-1, -1)
 ## Automatically add the element to tree and free it when unreferenced.
@@ -21,6 +25,7 @@ var _ghost_element: Control:
 			get_tree().root.remove_child(_ghost_element)
 			_ghost_element.queue_free()
 		if new:
+			new.modulate = ghost_modulate
 			get_tree().root.add_child(new)
 		_ghost_element = new
 
