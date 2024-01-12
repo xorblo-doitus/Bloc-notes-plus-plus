@@ -1,7 +1,13 @@
 extends Node
 
+## A singleton detecting [NoteList] note changement.
+## 
+## As arrays don't have a changed signal, this is the easiest way to do it.
+## Moreover it prevent infinite callback call as this signal can be emitted
+## only one time per frame.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+## Check every frame each [NoteList] to detect if their content changed
 func _process(_delta):
 	for i in len(NoteList.all):
 		var note_list: NoteList = NoteList.all[i]
