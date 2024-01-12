@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5oyco6trga1y"]
+
+[ext_resource type="Script" path="res://src/gui/user_input/grip_componenent.gd" id="1_8n22u"]
+
+[node name="GripComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 6
+script = ExtResource("1_8n22u")
