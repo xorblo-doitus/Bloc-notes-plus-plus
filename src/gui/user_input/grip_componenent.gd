@@ -3,6 +3,9 @@ extends Control
 
 
 ## A componnent allowing to drag a GUI element.
+## 
+## [br][br][b]Note:[b] Changing in wich tree the grip is will cause errors.
+
 
 @export var element_to_move: Control
 @export var right_click_to_cancel: bool = true
@@ -16,17 +19,28 @@ extends Control
 static var ghost_modulate: Color = Color(1, 1, 1, 0.4)
 
 
+var _CANVAS: CanvasLayer:
+	get:
+		if not _CANVAS:
+			_CANVAS = get_node_or_null(^"/root/GripCanvas")
+			if not _CANVAS:
+				_CANVAS = CanvasLayer.new()
+				_CANVAS.layer = 512
+				get_tree().root.add_child(_CANVAS)
+		return _CANVAS
+
+
 var _dragging: bool = false
 #var _starting_mouse_global_position: Vector2 = Vector2(-1, -1)
 ## Automatically add the element to tree and free it when unreferenced.
 var _ghost_element: Control:
 	set(new):
 		if _ghost_element:
-			get_tree().root.remove_child(_ghost_element)
+			_CANVAS.remove_child(_ghost_element)
 			_ghost_element.queue_free()
 		if new:
 			new.modulate = ghost_modulate
-			get_tree().root.add_child(new)
+			_CANVAS.add_child(new)
 		_ghost_element = new
 
 
