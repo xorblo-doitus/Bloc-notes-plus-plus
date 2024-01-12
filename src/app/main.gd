@@ -59,8 +59,10 @@ func _disconnect_from_workspace(target: WorkspaceSave) -> WorkspaceSave:
 var _can_change_notes: bool = true
 
 func _on_note_list_changed(new: Array[Note], _old: Array[Note]) -> void:
-	if _can_change_notes:
-		_can_change_notes = false
+	if not _can_change_notes:
+		return
+	
+	_can_change_notes = false
 		
 	workspace.note_list.notes = new
 	notes_display.note_list.notes = new
