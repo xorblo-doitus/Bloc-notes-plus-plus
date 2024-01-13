@@ -1,7 +1,8 @@
 extends GutTest
 
 
-func compare_polygons(areas_got: Array[GripDropArea], pol_i: int, expected: PackedVector2Array, side = 2**(pol_i)) -> void:
+func compare_polygons(areas_got: Array[GripDropArea], pol_i: int, expected: PackedVector2Array) -> void:
+	var side: GripDropArea.Side = areas_got[pol_i].side
 	var polygon_name: String = "polygon n°%s (%s)" % [pol_i, GripDropArea.Side.find_key(side)]
 	var got = areas_got[pol_i].polygon
 	assert_eq(
@@ -17,6 +18,26 @@ func compare_polygons(areas_got: Array[GripDropArea], pol_i: int, expected: Pack
 		)
 
 
+func compare_areas(areas: Array[GripDropArea], expected_polygons: Array[PackedVector2Array]) -> void:
+	assert_eq(
+		len(areas),
+		len(expected_polygons),
+		"A wrong amount of grip areas where created."
+	)
+	
+	
+	for i in len(areas):
+		compare_polygons(
+			areas,
+			i,
+			expected_polygons[i],
+		)
+	
+	
+	for area in areas:
+		area.free()
+
+
 func test_drop_area_base() -> void:
 	var areas: Array[GripDropArea] = GripDropArea.get_areas(
 		Rect2(Vector2.ZERO, Vector2.ONE),
@@ -24,69 +45,36 @@ func test_drop_area_base() -> void:
 		0.5
 	)
 	
-	
-	assert_eq(
-		len(areas),
-		5,
-		"A wrong amount of grip areas where created."
-	)
-	
-	
-	compare_polygons(
-		areas,
-		0,
-		PackedVector2Array([
+	compare_areas(areas, [
+		[
 			Vector2(0.25, 0.25),
 			Vector2(0.75, 0.25),
 			Vector2(0.75, 0.75),
 			Vector2(0.25, 0.75)
-		]),
-	)
-	
-	
-	compare_polygons(
-		areas,
-		1,
-		PackedVector2Array([
+		],
+		[
 			Vector2.ZERO,
 			Vector2.RIGHT,
 			Vector2(0.75, 0.25),
 			Vector2(0.25, 0.25)
-		]),
-	)
-	
-	compare_polygons(
-		areas,
-		2,
-		PackedVector2Array([
+		],
+		[
 			Vector2(0.75, 0.25),
 			Vector2.RIGHT,
 			Vector2.ONE,
 			Vector2(0.75, 0.75)
-		]),
-	)
-	
-	compare_polygons(
-		areas,
-		3,
-		PackedVector2Array([
+		],
+		[
 			Vector2(0.25, 0.75),
 			Vector2(0.75, 0.75),
 			Vector2.ONE,
 			Vector2.DOWN
-		]),
-	)
-	
-	compare_polygons(
-		areas,
-		4,
-		PackedVector2Array([
+		],
+		[
 			Vector2.ZERO,
 			Vector2(0.25, 0.25),
 			Vector2(0.25, 0.75),
 			Vector2.DOWN
-		]),
-	)
+		],
+	])
 	
-	for area in areas:
-		area.free()
