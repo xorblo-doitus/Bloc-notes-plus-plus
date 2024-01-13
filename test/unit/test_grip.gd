@@ -41,7 +41,7 @@ func compare_areas(areas: Array[GripDropArea], expected_polygons: Array[PackedVe
 func test_drop_area_base() -> void:
 	var areas: Array[GripDropArea] = GripDropArea.get_areas(
 		Rect2(Vector2.ZERO, Vector2.ONE),
-		0b11111,
+		GripDropArea.ALL_SIDES,
 		0.5
 	)
 	
@@ -78,3 +78,31 @@ func test_drop_area_base() -> void:
 		],
 	])
 	
+
+func test_drop_area_column() -> void:
+	var areas: Array[GripDropArea] = GripDropArea.get_areas(
+		Rect2(Vector2.ZERO, Vector2.ONE),
+		GripDropArea.COLUMN,
+		0.5
+	)
+	
+	compare_areas(areas, [
+		[
+			Vector2(0, 0.25),
+			Vector2(1, 0.25),
+			Vector2(1, 0.75),
+			Vector2(0, 0.75)
+		],
+		[
+			Vector2.ZERO,
+			Vector2.RIGHT,
+			Vector2(1, 0.25),
+			Vector2(0, 0.25)
+		],
+		[
+			Vector2(0, 0.75),
+			Vector2(1, 0.75),
+			Vector2.ONE,
+			Vector2.DOWN
+		],
+	])
