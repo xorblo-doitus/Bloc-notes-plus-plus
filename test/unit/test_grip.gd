@@ -1,8 +1,9 @@
 extends GutTest
 
 
-func compare_polygons(got: PackedVector2Array, expected: PackedVector2Array, pol_i: int) -> void:
-	var polygon_name: String = "polygon n°%s (%s)" % [pol_i, GripDropArea.Side.find_key(2**(pol_i))]
+func compare_polygons(areas_got: Array[GripDropArea], pol_i: int, expected: PackedVector2Array, side = 2**(pol_i)) -> void:
+	var polygon_name: String = "polygon n°%s (%s)" % [pol_i, GripDropArea.Side.find_key(side)]
+	var got = areas_got[pol_i].polygon
 	assert_eq(
 		len(got),
 		len(expected),
@@ -16,7 +17,7 @@ func compare_polygons(got: PackedVector2Array, expected: PackedVector2Array, pol
 		)
 
 
-func test_drop_area() -> void:
+func test_drop_area_base() -> void:
 	var areas: Array[GripDropArea] = GripDropArea.get_areas(
 		Rect2(Vector2.ZERO, Vector2.ONE),
 		0b11111,
@@ -32,57 +33,57 @@ func test_drop_area() -> void:
 	
 	
 	compare_polygons(
-		areas[0].polygon,
+		areas,
+		0,
 		PackedVector2Array([
 			Vector2(0.25, 0.25),
 			Vector2(0.75, 0.25),
 			Vector2(0.75, 0.75),
 			Vector2(0.25, 0.75)
 		]),
-		0
 	)
 	
 	
 	compare_polygons(
-		areas[1].polygon,
+		areas,
+		1,
 		PackedVector2Array([
 			Vector2.ZERO,
 			Vector2.RIGHT,
 			Vector2(0.75, 0.25),
 			Vector2(0.25, 0.25)
 		]),
-		1
 	)
 	
 	compare_polygons(
-		areas[2].polygon,
+		areas,
+		2,
 		PackedVector2Array([
 			Vector2(0.75, 0.25),
 			Vector2.RIGHT,
 			Vector2.ONE,
 			Vector2(0.75, 0.75)
 		]),
-		2
 	)
 	
 	compare_polygons(
-		areas[3].polygon,
+		areas,
+		3,
 		PackedVector2Array([
 			Vector2(0.25, 0.75),
 			Vector2(0.75, 0.75),
 			Vector2.ONE,
 			Vector2.DOWN
 		]),
-		3
 	)
 	
 	compare_polygons(
-		areas[4].polygon,
+		areas,
+		4,
 		PackedVector2Array([
 			Vector2.ZERO,
 			Vector2(0.25, 0.25),
 			Vector2(0.25, 0.75),
 			Vector2.DOWN
 		]),
-		4
 	)
