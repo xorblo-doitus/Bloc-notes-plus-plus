@@ -9,12 +9,17 @@ extends Control
 
 @export var element_to_move: Control
 @export var right_click_to_cancel: bool = true
+@export var drag_group: StringName = &"default"
+## A Bitmask
+@export_flags("Center", "Up", "Right", "Down", "Left") var sides: int = 0b1111_1
 @export_group("offset")
 ## If true, [member offset] will be automatically defined so that starting dragging
 ## does not teleport the GUI to the mouse. Else [member offset] is left unchanged.
 @export var auto_offset: bool = true
 @export var offset: Vector2 = Vector2.ZERO
 
+
+static var all: Array[GripComponent] = []
 
 static var moved_element_modulate: Color = Color.TRANSPARENT
 static var ghost_modulate: Color = Color(1, 1, 1, 0.4)
@@ -48,8 +53,17 @@ var _ghost_element: Control:
 var _starting_element_modulate: Color
 
 
+func _init() -> void:
+	all.append(self)
+
+
 func _ready() -> void:
 	set_process_input(false)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		all.erase(self)
 
 
 #func _process(_delta) -> void:
@@ -61,6 +75,7 @@ func _input(event: InputEvent) -> void:
 		abort_dragging()
 	if _dragging and event is InputEventMouseMotion:
 		update_ghost_position()
+		update_grip_areas()
 
 
 func start_dragging() -> void:
@@ -91,12 +106,40 @@ func finish_dragging() -> void:
 
 
 func abort_dragging() -> void:
+	set_process_input(false)
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
 	element_to_move.modulate = _starting_element_modulate
 	_ghost_element = null
-	set_process_input(false)
+	remove_areas()
 	_dragging = false
 
 
 func update_ghost_position() -> void:
 	_ghost_element.global_position = get_global_mouse_position() + offset
+
+
+var _areas: Array[GripDropArea] = []
+func update_grip_areas() -> void:
+	var mouse_position: Vector2 = get_global_mouse_position()
+	var found: GripComponent
+	for grip in all:
+		if grip.element_to_move.get_global_rect().has_point(mouse_position):
+			found = grip
+			break
+	
+	remove_areas()
+	
+	if not found:
+		return
+	
+	for area in GripDropArea.get_areas(
+		found.element_to_move.get_global_rect(),
+		sides
+	):
+		_CANVAS.add_child(area)
+		_areas.append(area)
+
+
+func remove_areas() -> void:
+	while _areas:
+		_areas.pop_back().free()
