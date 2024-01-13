@@ -143,5 +143,6 @@ static func clean_polygon(to_clean: PackedVector2Array) -> PackedVector2Array:
 func _init(_side: GripDropArea.Side, _polygon: PackedVector2Array) -> void:
 	side = _side
 	polygon = _polygon
+	@warning_ignore("integer_division")
 	z_index = RenderingServer.CANVAS_ITEM_Z_MIN / 2
 	modulate = Color(1, 1, 1, 0.4)
