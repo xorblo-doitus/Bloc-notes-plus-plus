@@ -70,13 +70,13 @@ static func get_areas(global_rect: Rect2, enabled_sides: int = ALL_SIDES, center
 	var center_down_left_corner = global_rect.position + Vector2(0, global_rect.size.y)
 	if Side.DOWN & enabled_sides:
 		center_down_left_corner.y -= global_rect.size.y * sides_ratio
-	if Side.RIGHT & enabled_sides:
+	if Side.LEFT & enabled_sides:
 		center_down_left_corner.x += global_rect.size.x * sides_ratio
 	
 	var center_up_left_corner = global_rect.position
-	if Side.DOWN & enabled_sides:
+	if Side.UP & enabled_sides:
 		center_up_left_corner.y += global_rect.size.y * sides_ratio
-	if Side.RIGHT & enabled_sides:
+	if Side.LEFT & enabled_sides:
 		center_up_left_corner.x += global_rect.size.x * sides_ratio
 	#endregion
 	
