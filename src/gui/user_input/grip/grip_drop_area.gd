@@ -32,6 +32,8 @@ var side: GripDropArea.Side = Side.CENTER
 ## Defaults to 0.5, i.e. half of height is allowed to center, and up and down side have
 ## each a quarter, meaning that there is still a half allowed to insert an element
 ## between two others, because the up side of one is connected to the bottom one of the other.
+## [br][br][b]Note:[/b] Return order: Center, up, right, down, left
+## [br][br][b]Note:[/b] Polygons points are clockwise ordered, starting from their up left corner.
 static func get_areas(global_rect: Rect2, enabled_sides: int = ALL_SIDES, center_ratio: float = 1.0/2.0) -> Array[GripDropArea]:	
 	var sides_ratio: float = (1-center_ratio) / 2
 	
