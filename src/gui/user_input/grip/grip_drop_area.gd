@@ -23,7 +23,19 @@ enum Side {
 }
 
 
-var side: GripDropArea.Side = Side.CENTER
+static var side_color: Dictionary = {
+	GripDropArea.Side.CENTER: Color.BLUE,
+	GripDropArea.Side.UP: Color.RED,
+	GripDropArea.Side.RIGHT: Color.BLUE_VIOLET,
+	GripDropArea.Side.DOWN: Color.GREEN,
+	GripDropArea.Side.LEFT: Color.YELLOW,
+}
+
+
+var side: GripDropArea.Side = Side.CENTER:
+	set(new):
+		color = side_color[new]
+		side = new
 
 
 ## Creates all [GripDropArea] representing the allowed sides to wich an element can
@@ -128,3 +140,5 @@ static func clean_polygon(to_clean: PackedVector2Array) -> PackedVector2Array:
 func _init(_side: GripDropArea.Side, _polygon: PackedVector2Array) -> void:
 	side = _side
 	polygon = _polygon
+	z_index = RenderingServer.CANVAS_ITEM_Z_MIN / 2
+	modulate = Color(1, 1, 1, 0.4)
