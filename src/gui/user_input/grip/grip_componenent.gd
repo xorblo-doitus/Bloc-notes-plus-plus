@@ -10,7 +10,9 @@ extends Control
 @export var element_to_move: Control
 @export var right_click_to_cancel: bool = true
 @export var drag_group: StringName = &"default"
-## A Bitmask
+@export_group("dropping")
+@export_range(0, 1, 10**-9, "suffix:%") var center_ratio: float = 0.5
+## A Bitmask of enabled sides to drop dragged elements.
 @export_flags("Center", "Up", "Right", "Down", "Left") var sides: int = 0b1111_1
 @export_group("offset")
 ## If true, [member offset] will be automatically defined so that starting dragging
@@ -134,7 +136,8 @@ func update_grip_areas() -> void:
 	
 	for area in GripDropArea.get_areas(
 		found.element_to_move.get_global_rect(),
-		sides
+		sides,
+		center_ratio,
 	):
 		_CANVAS.add_child(area)
 		_areas.append(area)
