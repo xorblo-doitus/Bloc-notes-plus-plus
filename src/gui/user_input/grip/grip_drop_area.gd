@@ -53,24 +53,9 @@ static func get_areas(global_rect: Rect2, enabled_sides: GripDropArea.Side, cent
 		center_up_left_corner.x += global_rect.size.x * sides_ratio
 	#endregion
 	
-	#center.append_array([
-		#global_rect.position,
-		#global_rect.position + Vector2(global_rect.size.x, 0),
-		#global_rect.end,
-		#global_rect.position + Vector2(0, global_rect.size.y),
-	#])
-	#if Side.
-	
-	#if Side.UP & enabled_sides:
-		#up.append_array([
-			#global_rect.position,
-			#global_rect.position + Vector2(global_rect.size.x, 0),
-		#])
-		#if Side.CENTER & enabled_sides:
-			#center
-	
 	var result: Array[GripDropArea] = []
 	
+	#region Create areas
 	if Side.CENTER & enabled_sides:
 		result.append(GripDropArea.new(Side.CENTER, clean_polygon([
 			center_up_left_corner,
@@ -109,6 +94,7 @@ static func get_areas(global_rect: Rect2, enabled_sides: GripDropArea.Side, cent
 			center_up_left_corner,
 			center_down_left_corner,
 		])))
+	#endregion
 	
 	return result
 
