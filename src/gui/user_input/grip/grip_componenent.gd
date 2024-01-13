@@ -39,25 +39,28 @@ var _ghost_element: Control:
 		if _ghost_element:
 			_CANVAS.remove_child(_ghost_element)
 			_ghost_element.queue_free()
+		_ghost_element = new
 		if new:
 			new.modulate = ghost_modulate
 			new.size = element_to_move.size
+			update_ghost_position()
 			_CANVAS.add_child(new)
-		_ghost_element = new
 var _starting_element_modulate: Color
 
 
 func _ready() -> void:
-	set_process(false)
+	set_process_input(false)
 
 
-func _process(_delta) -> void:
-	update_ghost_position()
+#func _process(_delta) -> void:
+	#update_ghost_position()
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action(&"cancel_ongoing_behavior"):
 		abort_dragging()
+	if _dragging and event is InputEventMouseMotion:
+		update_ghost_position()
 
 
 func start_dragging() -> void:
@@ -68,7 +71,7 @@ func start_dragging() -> void:
 		push_warning("No element to drag.")
 		return
 	
-	_dragging = false
+	_dragging = true
 	
 	if auto_offset:
 		offset = element_to_move.global_position - get_global_mouse_position()
@@ -78,7 +81,7 @@ func start_dragging() -> void:
 	_ghost_element = element_to_move.duplicate(0)
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_DRAG)
 	
-	set_process(true)
+	set_process_input(true)
 	
 	#_starting_mouse_global_position = get_global_mouse_position()
 
@@ -91,7 +94,7 @@ func abort_dragging() -> void:
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
 	element_to_move.modulate = _starting_element_modulate
 	_ghost_element = null
-	set_process(false)
+	set_process_input(false)
 	_dragging = false
 
 
