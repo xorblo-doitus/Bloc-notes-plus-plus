@@ -8,6 +8,9 @@ extends Polygon2D
 ## you should add the dragged element.
 
 
+const ALL_SIDES = 0b11111
+
+
 ## Represents the side to wich a dragged element can be inserted.
 enum Side {
 	CENTER = 2**1,
@@ -23,9 +26,14 @@ var side: GripDropArea.Side = Side.CENTER
 
 ## Creates all [GripDropArea] representing the allowed sides to wich an element can
 ## be insterted.
-static func get_areas(global_rect: Rect2, enabled_sides: GripDropArea.Side, center_ratio: float = 1/2) -> Array[GripDropArea]:	
+## [br][br][param global_rest]: the global rect of the pointed element.
+## [br][br][param enabled_sides]: a mask of [enum GripDropArea.Side].
+## [br][br][param center_ratio]: The fraction of the space allowed to center.
+## Defaults to 0.5, i.e. half of height is allowed to center, and up and down side have
+## each a quarter, meaning that there is still a half allowed to insert an element
+## between two others, because the up side of one is connected to the bottom one of the other.
+static func get_areas(global_rect: Rect2, enabled_sides: int = ALL_SIDES, center_ratio: float = 1.0/2.0) -> Array[GripDropArea]:	
 	var sides_ratio: float = (1-center_ratio) / 2
-	var center: PackedVector2Array = PackedVector2Array()
 	
 	#region Find only coords for the center
 	var center_up_right_corner = global_rect.position + Vector2(global_rect.size.x, 0)
