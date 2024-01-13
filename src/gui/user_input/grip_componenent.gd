@@ -16,6 +16,7 @@ extends Control
 @export var offset: Vector2 = Vector2.ZERO
 
 
+static var moved_element_modulate: Color = Color.TRANSPARENT
 static var ghost_modulate: Color = Color(1, 1, 1, 0.4)
 
 
@@ -43,6 +44,7 @@ var _ghost_element: Control:
 			new.size = element_to_move.size
 			_CANVAS.add_child(new)
 		_ghost_element = new
+var _starting_element_modulate: Color
 
 
 func _ready() -> void:
@@ -71,6 +73,8 @@ func start_dragging() -> void:
 	if auto_offset:
 		offset = element_to_move.global_position - get_global_mouse_position()
 	
+	_starting_element_modulate = element_to_move.modulate
+	element_to_move.modulate = moved_element_modulate
 	_ghost_element = element_to_move.duplicate(0)
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_DRAG)
 	
@@ -85,6 +89,7 @@ func finish_dragging() -> void:
 
 func abort_dragging() -> void:
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
+	element_to_move.modulate = _starting_element_modulate
 	_ghost_element = null
 	set_process(false)
 	_dragging = false
