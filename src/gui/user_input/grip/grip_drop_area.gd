@@ -49,6 +49,9 @@ var side: GripDropArea.Side = Side.CENTER:
 ## [br][br][b]Note:[/b] Return order: Center, up, right, down, left
 ## [br][br][b]Note:[/b] Polygons points are clockwise ordered, starting from their up left corner.
 static func get_areas(global_rect: Rect2, enabled_sides: int = ALL_SIDES, center_ratio: float = 1.0/2.0) -> Array[GripDropArea]:	
+	if not Side.CENTER & enabled_sides:
+		center_ratio = 0
+	
 	var sides_ratio: float = (1-center_ratio) / 2
 	
 	#region Find only coords for the center
