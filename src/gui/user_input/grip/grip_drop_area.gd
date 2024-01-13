@@ -13,11 +13,11 @@ const ALL_SIDES = 0b11111
 
 ## Represents the side to wich a dragged element can be inserted.
 enum Side {
-	CENTER = 2**1,
-	UP = 2**2,
-	RIGHT = 2**3,
-	DOWN = 2**4,
-	LEFT = 2**5,
+	CENTER = 2**0,
+	UP = 2**1,
+	RIGHT = 2**2,
+	DOWN = 2**3,
+	LEFT = 2**4,
 }
 
 
