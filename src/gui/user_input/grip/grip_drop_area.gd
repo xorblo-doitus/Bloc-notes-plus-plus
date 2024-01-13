@@ -82,25 +82,25 @@ static func get_areas(global_rect: Rect2, enabled_sides: int = ALL_SIDES, center
 	
 	if Side.RIGHT & enabled_sides:
 		result.append(GripDropArea.new(Side.RIGHT, clean_polygon([
+			center_up_right_corner,
 			global_rect.position + Vector2(global_rect.size.x, 0),
 			global_rect.end,
 			center_down_right_corner,
-			center_up_right_corner,
 		])))
 	
 	if Side.DOWN & enabled_sides:
 		result.append(GripDropArea.new(Side.DOWN, clean_polygon([
-			global_rect.end,
-			global_rect.position + Vector2(0, global_rect.size.y),
 			center_down_left_corner,
 			center_down_right_corner,
+			global_rect.end,
+			global_rect.position + Vector2(0, global_rect.size.y),
 		])))
 	if Side.LEFT & enabled_sides:
 		result.append(GripDropArea.new(Side.LEFT, clean_polygon([
-			global_rect.position + Vector2(0, global_rect.size.y),
 			global_rect.position,
 			center_up_left_corner,
 			center_down_left_corner,
+			global_rect.position + Vector2(0, global_rect.size.y),
 		])))
 	#endregion
 	
