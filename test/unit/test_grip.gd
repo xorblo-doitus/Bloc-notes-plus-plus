@@ -106,3 +106,26 @@ func test_drop_area_column() -> void:
 			Vector2.DOWN
 		],
 	])
+
+
+func test_no_center() -> void:
+	var areas: Array[GripDropArea] = GripDropArea.get_areas(
+		Rect2(Vector2.ZERO, Vector2.ONE),
+		0b0101_0,
+		0.5
+	)
+	
+	compare_areas(areas, [
+		[
+			Vector2.ZERO,
+			Vector2.RIGHT,
+			Vector2(1, 0.5),
+			Vector2(0, 0.5)
+		],
+		[
+			Vector2(0, 0.5),
+			Vector2(1, 0.5),
+			Vector2.ONE,
+			Vector2.DOWN
+		],
+	])
