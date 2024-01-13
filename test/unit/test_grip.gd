@@ -87,3 +87,6 @@ func test_drop_area_base() -> void:
 			Vector2.DOWN
 		]),
 	)
+	
+	for area in areas:
+		area.free()
