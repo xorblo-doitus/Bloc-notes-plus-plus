@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5oyco6trga1y"]
 
-[ext_resource type="Script" path="res://src/gui/user_input/grip_componenent.gd" id="1_8n22u"]
+[ext_resource type="Script" path="res://src/gui/user_input/grip/grip_componenent.gd" id="1_8n22u"]
 
 [node name="GripComponent" type="Control"]
 layout_mode = 3

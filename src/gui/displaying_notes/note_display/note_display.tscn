@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7yar8fvf8ne2" path="res://src/gui/displaying_notes/note_display/note_display_button.tscn" id="2_od70a"]
 [ext_resource type="Texture2D" uid="uid://cn1dolctmjaya" path="res://src/assets/images/icons/grab.png" id="2_vo56a"]
 [ext_resource type="Texture2D" uid="uid://dljq5rng8ew0b" path="res://src/assets/images/icons/delete.png" id="4_btt4o"]
-[ext_resource type="PackedScene" uid="uid://b5oyco6trga1y" path="res://src/gui/user_input/grip_component.tscn" id="4_e0p82"]
+[ext_resource type="PackedScene" uid="uid://b5oyco6trga1y" path="res://src/gui/user_input/grip/grip_component.tscn" id="4_e0p82"]
 
 [node name="NoteDisplay" type="PanelContainer"]
 offset_right = 84.0
