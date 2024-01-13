@@ -40,6 +40,7 @@ var _ghost_element: Control:
 			_ghost_element.queue_free()
 		if new:
 			new.modulate = ghost_modulate
+			new.size = element_to_move.size
 			_CANVAS.add_child(new)
 		_ghost_element = new
 
