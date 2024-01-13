@@ -68,7 +68,7 @@ func start_dragging() -> void:
 	_dragging = false
 	
 	if auto_offset:
-		offset = get_global_mouse_position() - element_to_move.global_position
+		offset = element_to_move.global_position - get_global_mouse_position()
 	
 	_ghost_element = element_to_move.duplicate(0)
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_DRAG)
