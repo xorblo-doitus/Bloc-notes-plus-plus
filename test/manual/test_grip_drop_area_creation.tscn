@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4ewlhd2iyyg7"]
+
+[ext_resource type="Script" path="res://test/manual/test_grip_drop_area_creation.gd" id="1_u4rdb"]
+[ext_resource type="Script" path="res://src/gui/user_input/grip/grip_componenent.gd" id="2_w5dbx"]
+
+[node name="TestGripDropAreaCreation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4rdb")
+
+[node name="GripComponent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_w5dbx")
