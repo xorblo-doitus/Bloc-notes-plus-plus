@@ -8,7 +8,9 @@ extends Polygon2D
 ## you should add the dragged element.
 
 
-const ALL_SIDES = 0b11111
+const ALL_SIDES = 0b1111_1
+const COLUMN = 0b0101_1
+const LINE = 0b1010_1
 
 
 ## Represents the side to wich a dragged element can be inserted.
