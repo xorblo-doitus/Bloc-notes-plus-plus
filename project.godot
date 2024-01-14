@@ -25,6 +25,10 @@ NoteListChangeDetector="*res://src/singletons/note_list_change_detector.gd"
 Shrinker="*res://src/singletons/shrinker.gd"
 ErrorPopup="*res://src/utlity/error/error_popup.tscn"
 
+[debug]
+
+shapes/drop_area/draw=true
+
 [display]
 
 window/size/viewport_width=512

@@ -141,6 +141,8 @@ static func clean_polygon(to_clean: PackedVector2Array) -> PackedVector2Array:
 
 
 func _init(_side: GripDropArea.Side, _polygon: PackedVector2Array) -> void:
+	if not OS.is_debug_build() and EasySettings.get_setting("debug/shapes/drop_area/draw"):
+		hide()
 	side = _side
 	polygon = _polygon
 	@warning_ignore("integer_division")
