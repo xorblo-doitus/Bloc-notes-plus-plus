@@ -7,6 +7,7 @@ extends Control
 ## [br][br][b]Note:[b] Changing in wich tree the grip is will cause errors.
 
 
+## The element this grip let move.
 @export var element_to_move: Control
 @export var right_click_to_cancel: bool = true
 @export var drag_group: StringName = &"default"
