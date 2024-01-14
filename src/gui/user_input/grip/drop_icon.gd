@@ -55,7 +55,6 @@ static func instantiate() -> DropIcon:
 func _ready() -> void:
 	_on_resized()
 	
-	#icon.modulate = Color(0, 1, 0)
 	var tween = create_tween().set_loops().set_speed_scale(1.5)
 	tween.tween_property(icon, "modulate", Color(0, 1, 0), 0.2).from(Color(1, 1, 1))
 	tween.tween_property(icon, "modulate", Color(1, 1, 1), 0.2).from(Color(0, 1, 0))
