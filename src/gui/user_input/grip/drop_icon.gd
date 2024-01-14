@@ -27,6 +27,7 @@ const V_ALIGNS = {
 }
 
 
+## Defines where the arrow points.
 @export var side: GripDropArea.Side = GripDropArea.Side.RIGHT:
 	set(new):
 		side = new
