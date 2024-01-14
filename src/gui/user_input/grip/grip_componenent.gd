@@ -124,7 +124,7 @@ func update_ghost_position() -> void:
 var _areas: Array[GripDropArea] = []
 func update_grip_areas() -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
-	var found: GripComponent
+	var found_grip: GripComponent
 	for grip in all:
 		if not grip.drop_enabled:
 			continue
@@ -136,23 +136,23 @@ func update_grip_areas() -> void:
 			continue
 		
 		if grip.element_to_move.get_global_rect().has_point(mouse_position):
-			found = grip
+			found_grip = grip
 			break
 	
 	remove_areas()
 	
-	if not found:
+	if not found_grip:
 		_drop_icon = null
 		return
 	
 	for area in GripDropArea.get_areas(
-		found.element_to_move.get_global_rect(),
+		found_grip.element_to_move.get_global_rect(),
 		sides,
 		center_ratio,
 	):
 		_CANVAS.add_child(area)
 		_areas.append(area)
-		area.target = found.element_to_move
+		area.target = found_grip.element_to_move
 	
 	_update_drop_icon()
 
@@ -170,13 +170,13 @@ var _drop_icon: DropIcon:
 
 func _update_drop_icon() -> void:
 	var mouse_global_position: Vector2 = get_global_mouse_position()
-	var found: GripDropArea
+	var found_area: GripDropArea
 	for area in _areas:
 		if Geometry2D.is_point_in_polygon(mouse_global_position, area.polygon):
-			found = area
+			found_area = area
 			break
 	
-	if not found:
+	if not found_area:
 		_drop_icon = null
 		return
 	
@@ -184,8 +184,8 @@ func _update_drop_icon() -> void:
 		_drop_icon = DropIcon.instantiate()
 		_CANVAS.add_child(_drop_icon)
 	
-	_drop_icon.global_position = found.target.global_position
-	_drop_icon.size = found.target.size
-	prints(_drop_icon.size, found.target.size)
-	_drop_icon.side = found.side
+	_drop_icon.global_position = found_area.target.global_position
+	_drop_icon.size = found_area.target.size
+	prints(_drop_icon.size, found_area.target.size)
+	_drop_icon.side = found_area.side
 	
