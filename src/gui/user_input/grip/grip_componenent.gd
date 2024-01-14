@@ -9,6 +9,7 @@ extends Control
 
 ## The element this grip let move.
 @export var element_to_move: Control
+## If true, right-clicking while dragging will cancel the dragging
 @export var right_click_to_cancel: bool = true
 @export var drag_group: StringName = &"default"
 @export var drop_enabled: bool = true
