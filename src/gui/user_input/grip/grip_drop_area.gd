@@ -38,7 +38,7 @@ var side: GripDropArea.Side = Side.CENTER:
 		side = new
 
 
-var target: Control
+var target_grip: GripComponent
 
 
 ## Creates all [GripDropArea] representing the allowed sides to wich an element can
