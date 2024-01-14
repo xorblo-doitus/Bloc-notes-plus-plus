@@ -132,6 +132,7 @@ func update_grip_areas() -> void:
 	remove_areas()
 	
 	if not found:
+		_drop_icon = null
 		return
 	
 	for area in GripDropArea.get_areas(
@@ -151,7 +152,11 @@ func remove_areas() -> void:
 		_areas.pop_back().free()
 
 
-var _drop_icon: DropIcon
+var _drop_icon: DropIcon:
+	set(new):
+		if _drop_icon:
+			_drop_icon.queue_free()
+		_drop_icon = new
 
 func _update_drop_icon() -> void:
 	var mouse_global_position: Vector2 = get_global_mouse_position()
@@ -162,8 +167,6 @@ func _update_drop_icon() -> void:
 			break
 	
 	if not found:
-		if _drop_icon:
-			_drop_icon.queue_free()
 		_drop_icon = null
 		return
 	
