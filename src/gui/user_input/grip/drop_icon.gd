@@ -33,7 +33,6 @@ const V_ALIGNS = {
 		side = new
 		if icon:
 			icon.material.set_shader_parameter("rotation_clockwise", ROTATIONS[side])
-			print(icon.rotation)
 			alignment_horizontal = H_ALIGNS[side]
 			alignment_vertical = V_ALIGNS[side]
 			_on_resized()
