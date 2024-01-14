@@ -38,6 +38,9 @@ var side: GripDropArea.Side = Side.CENTER:
 		side = new
 
 
+var target: Control
+
+
 ## Creates all [GripDropArea] representing the allowed sides to wich an element can
 ## be insterted.
 ## [br][br][param global_rest]: the global rect of the pointed element.
