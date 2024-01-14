@@ -12,6 +12,15 @@ enum ParseError {
 func set_names(new_names: Array[String]) -> Command:
 	names = new_names
 	return self
-
-func is_text_me(text: String) -> bool:
-	return text in names
+	
+func check(L):
+		if Parser.tokens[0] == "t" or Parser.tokens[0] == "task":
+			names.append("t")
+			names.append("task")
+		elif Parser.tokens[0] == "c" or Parser.tokens[0] == "calc":
+			names.append("c")
+			names.append("calc")
+		elif Parser.tokens[0] == "s" or Parser.tokens[0] == "store":
+			names.append("s")
+			names.append("store")
+	
