@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cku2r0n1ds425"]
+
+[ext_resource type="Texture2D" uid="uid://puq17fd2yf2c" path="res://src/assets/images/icons/insert.png" id="1_v3r4i"]
+[ext_resource type="Script" path="res://src/gui/user_input/grip/drop_icon.gd" id="2_7gl0h"]
+[ext_resource type="Shader" path="res://src/utlity/shaders/rotater.gdshader" id="2_hpb27"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8nf3"]
+shader = ExtResource("2_hpb27")
+shader_parameter/rotation_clockwise = 0.0
+
+[sub_resource type="GDScript" id="GDScript_tpp6p"]
+script/source = "@tool
+extends TextureRect
+"
+
+[node name="DropIcon" type="AspectRatioContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment_vertical = 0
+script = ExtResource("2_7gl0h")
+side = 2
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_e8nf3")
+layout_mode = 2
+texture = ExtResource("1_v3r4i")
+expand_mode = 1
+stretch_mode = 5
+script = SubResource("GDScript_tpp6p")
+
+[connection signal="resized" from="Icon" to="Icon" method="_on_resized"]
