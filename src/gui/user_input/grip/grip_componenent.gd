@@ -141,8 +141,38 @@ func update_grip_areas() -> void:
 	):
 		_CANVAS.add_child(area)
 		_areas.append(area)
+		area.target = found.element_to_move
+	
+	_update_drop_icon()
 
 
 func remove_areas() -> void:
 	while _areas:
 		_areas.pop_back().free()
+
+
+var _drop_icon: DropIcon
+
+func _update_drop_icon() -> void:
+	var mouse_global_position: Vector2 = get_global_mouse_position()
+	var found: GripDropArea
+	for area in _areas:
+		if Geometry2D.is_point_in_polygon(mouse_global_position, area.polygon):
+			found = area
+			break
+	
+	if not found:
+		if _drop_icon:
+			_drop_icon.queue_free()
+		_drop_icon = null
+		return
+	
+	if not _drop_icon:
+		_drop_icon = DropIcon.instantiate()
+		_CANVAS.add_child(_drop_icon)
+	
+	_drop_icon.global_position = found.target.global_position
+	_drop_icon.size = found.target.size
+	prints(_drop_icon.size, found.target.size)
+	_drop_icon.side = found.side
+	
