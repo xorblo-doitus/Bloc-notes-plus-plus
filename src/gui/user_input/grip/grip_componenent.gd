@@ -7,6 +7,9 @@ extends Control
 ## [br][br][b]Note:[b] Changing in wich tree the grip is will cause errors.
 
 
+signal request_drop(element_to_drop: Control, on_side: GripDropArea.Side)
+
+
 ## The element this grip let move.
 @export var element_to_move: Control
 ## If true, right-clicking while dragging will cancel the dragging
@@ -29,7 +32,10 @@ static var all: Array[GripComponent] = []
 static var moved_element_modulate: Color = Color.TRANSPARENT
 static var ghost_modulate: Color = Color(1, 1, 1, 0.4)
 
+#region Dragging variables
 var _dragging: bool = false
+var _current_area: GripDropArea
+#endregion
 
 #region Drawing related variables
 var _CANVAS: CanvasLayer:
@@ -113,6 +119,8 @@ func start_dragging() -> void:
 
 
 func finish_dragging() -> void:
+	if _current_area != null and is_instance_valid(_current_area):
+		_current_area.target_grip.request_drop.emit(element_to_move, _current_area.side)
 	abort_dragging()
 
 
@@ -120,8 +128,7 @@ func abort_dragging() -> void:
 	set_process_input(false)
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
 	element_to_move.modulate = _starting_element_modulate
-	_ghost_element = null
-	_remove_areas()
+	_clean_visuals()
 	_dragging = false
 
 
@@ -151,6 +158,7 @@ func update_grip_areas() -> void:
 	
 	if not found_grip:
 		_drop_icon = null
+		_current_area = null
 		return
 	
 	for area in GripDropArea.get_areas(
@@ -160,14 +168,9 @@ func update_grip_areas() -> void:
 	):
 		_CANVAS.add_child(area)
 		_areas.append(area)
-		area.target = found_grip.element_to_move
+		area.target_grip = found_grip
 	
 	_update_drop_icon()
-
-
-func _remove_areas() -> void:
-	while _areas:
-		_areas.pop_back().free()
 
 
 func _update_drop_icon() -> void:
@@ -180,12 +183,25 @@ func _update_drop_icon() -> void:
 	
 	if not found_area:
 		_drop_icon = null
+		_current_area = null
 		return
+	
+	_current_area = found_area
 	
 	if not _drop_icon:
 		_drop_icon = DropIcon.instantiate()
 	
-	_drop_icon.global_position = found_area.target.global_position
-	_drop_icon.size = found_area.target.size
+	_drop_icon.global_position = found_area.target_grip.element_to_move.global_position
+	_drop_icon.size = found_area.target_grip.element_to_move.size
 	_drop_icon.side = found_area.side
-	
+
+
+func _clean_visuals() -> void:
+	_remove_areas()
+	_drop_icon = null
+	_ghost_element = null
+
+
+func _remove_areas() -> void:
+	while _areas:
+		_areas.pop_back().free()
