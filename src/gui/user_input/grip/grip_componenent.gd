@@ -12,7 +12,7 @@ extends Control
 @export var drag_group: StringName = &"default"
 @export var drop_enabled: bool = true
 @export_group("dropping")
-@export_range(0, 1, 10**-9, "suffix:%") var center_ratio: float = 0.5
+@export_range(0, 1, 10**-3, "suffix:%") var center_ratio: float = 0.5
 ## A Bitmask of enabled sides to drop dragged elements.
 @export_flags("Center", "Up", "Right", "Down", "Left") var sides: int = 0b1111_1
 @export_group("offset")
