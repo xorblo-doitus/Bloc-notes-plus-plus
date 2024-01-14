@@ -14,11 +14,6 @@ extends TextureRect
 "
 
 [node name="DropIcon" type="AspectRatioContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 alignment_vertical = 0
 script = ExtResource("2_7gl0h")
 side = 2
