@@ -29,7 +29,9 @@ static var all: Array[GripComponent] = []
 static var moved_element_modulate: Color = Color.TRANSPARENT
 static var ghost_modulate: Color = Color(1, 1, 1, 0.4)
 
+var _dragging: bool = false
 
+#region Drawing related variables
 var _CANVAS: CanvasLayer:
 	get:
 		if not _CANVAS:
@@ -40,9 +42,6 @@ var _CANVAS: CanvasLayer:
 				get_tree().root.add_child(_CANVAS)
 		return _CANVAS
 
-
-var _dragging: bool = false
-#var _starting_mouse_global_position: Vector2 = Vector2(-1, -1)
 ## Automatically add the element to tree and free it when unreferenced.
 var _ghost_element: Control:
 	set(new):
@@ -55,7 +54,20 @@ var _ghost_element: Control:
 			new.size = element_to_move.size
 			update_ghost_position()
 			_CANVAS.add_child(new)
+
+var _areas: Array[GripDropArea] = []
+
+var _drop_icon: DropIcon:
+	set(new):
+		if _drop_icon:
+			_CANVAS.remove_child(_drop_icon)
+			_drop_icon.queue_free()
+		_drop_icon = new
+		if _drop_icon:
+			_CANVAS.add_child(_drop_icon)
+
 var _starting_element_modulate: Color
+#endregion
 
 
 func _init() -> void:
@@ -69,10 +81,6 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		all.erase(self)
-
-
-#func _process(_delta) -> void:
-	#update_ghost_position()
 
 
 func _input(event: InputEvent) -> void:
@@ -102,8 +110,6 @@ func start_dragging() -> void:
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_DRAG)
 	
 	set_process_input(true)
-	
-	#_starting_mouse_global_position = get_global_mouse_position()
 
 
 func finish_dragging() -> void:
@@ -115,7 +121,7 @@ func abort_dragging() -> void:
 	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
 	element_to_move.modulate = _starting_element_modulate
 	_ghost_element = null
-	remove_areas()
+	_remove_areas()
 	_dragging = false
 
 
@@ -123,7 +129,7 @@ func update_ghost_position() -> void:
 	_ghost_element.global_position = get_global_mouse_position() + offset
 
 
-var _areas: Array[GripDropArea] = []
+
 func update_grip_areas() -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
 	var found_grip: GripComponent
@@ -141,7 +147,7 @@ func update_grip_areas() -> void:
 			found_grip = grip
 			break
 	
-	remove_areas()
+	_remove_areas()
 	
 	if not found_grip:
 		_drop_icon = null
@@ -159,16 +165,10 @@ func update_grip_areas() -> void:
 	_update_drop_icon()
 
 
-func remove_areas() -> void:
+func _remove_areas() -> void:
 	while _areas:
 		_areas.pop_back().free()
 
-
-var _drop_icon: DropIcon:
-	set(new):
-		if _drop_icon:
-			_drop_icon.queue_free()
-		_drop_icon = new
 
 func _update_drop_icon() -> void:
 	var mouse_global_position: Vector2 = get_global_mouse_position()
@@ -184,7 +184,6 @@ func _update_drop_icon() -> void:
 	
 	if not _drop_icon:
 		_drop_icon = DropIcon.instantiate()
-		_CANVAS.add_child(_drop_icon)
 	
 	_drop_icon.global_position = found_area.target.global_position
 	_drop_icon.size = found_area.target.size
