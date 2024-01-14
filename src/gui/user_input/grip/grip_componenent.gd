@@ -186,6 +186,5 @@ func _update_drop_icon() -> void:
 	
 	_drop_icon.global_position = found_area.target.global_position
 	_drop_icon.size = found_area.target.size
-	prints(_drop_icon.size, found_area.target.size)
 	_drop_icon.side = found_area.side
 	
