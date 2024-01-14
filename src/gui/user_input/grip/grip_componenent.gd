@@ -10,6 +10,7 @@ extends Control
 @export var element_to_move: Control
 @export var right_click_to_cancel: bool = true
 @export var drag_group: StringName = &"default"
+@export var drop_enabled: bool = true
 @export_group("dropping")
 @export_range(0, 1, 10**-9, "suffix:%") var center_ratio: float = 0.5
 ## A Bitmask of enabled sides to drop dragged elements.
@@ -125,6 +126,15 @@ func update_grip_areas() -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
 	var found: GripComponent
 	for grip in all:
+		if not grip.drop_enabled:
+			continue
+		
+		if grip.drag_group != drag_group:
+			continue
+		
+		if grip == self:
+			continue
+		
 		if grip.element_to_move.get_global_rect().has_point(mouse_position):
 			found = grip
 			break
