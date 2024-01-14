@@ -1,4 +1,5 @@
 @tool
+class_name DropIcon
 extends AspectRatioContainer
 
 
@@ -37,6 +38,18 @@ const V_ALIGNS = {
 			_on_resized()
 
 @onready var icon: TextureRect = %Icon
+
+
+## A reference to the default packed scene associated with this class
+static var _default_scene: PackedScene:
+	get:
+		if _default_scene == null:
+			_default_scene = load("res://src/gui/user_input/grip/drop_icon.tscn")
+		return _default_scene
+
+## Create a new instance by loading default scene for this class.
+static func instantiate() -> DropIcon:
+	return _default_scene.instantiate()
 
 
 func _ready() -> void:
