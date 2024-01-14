@@ -86,11 +86,32 @@ func _pop_note_display_for(note: Note) -> NoteDisplay:
 
 func create_note_display(note: Note = null) -> NoteDisplay:
 	var new: NoteDisplay = NoteDisplay.instantiate()
-	new.request_remove.connect(remove.bind(new))
+	_note_display_setup(new)
+	
 	
 	if note:
 		note.apply_to_display(new)
 	return new
+
+
+func _note_display_setup(note_display: NoteDisplay) -> void:
+	if not note_display.is_node_ready():
+		_note_display_setup.call_deferred(note_display)
+		return
+	note_display.request_remove.connect(remove.bind(note_display))
+	note_display.grip_component.element_dropped.connect(handle_drop.bind(note_display))
+	note_display.grip_component.left.connect(remove.bind(note_display))
+
+
+func handle_drop(element: Control, side: GripDropArea.Side, on: NoteDisplay) -> void:
+	if element is NoteDisplay:
+		var index: int = note_list.notes.find(on.connected_to)
+		if side == GripDropArea.Side.DOWN:
+			index += 1
+		note_list.notes.insert(index, element.connected_to)
+		return
+	
+	assert(false, "Unknown drop behavior for " + str(element))
 
 
 func remove(note_display: NoteDisplay) -> void:

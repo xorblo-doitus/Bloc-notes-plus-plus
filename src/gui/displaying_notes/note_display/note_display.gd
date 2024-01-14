@@ -24,6 +24,9 @@ var _connections: Array[Connection]
 var connected_to: Note
 
 
+@onready var grip_component: GripComponent = %GripComponent
+
+
 ## A reference to the default packed scene associated with this class
 static var _default_scene: PackedScene:
 	get:
