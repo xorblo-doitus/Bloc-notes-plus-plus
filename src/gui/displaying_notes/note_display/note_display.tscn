@@ -21,6 +21,7 @@ layout_mode = 2
 texture_normal = ExtResource("2_vo56a")
 
 [node name="GripComponent" parent="HBoxContainer/Grip" node_paths=PackedStringArray("element_to_move") instance=ExtResource("4_e0p82")]
+unique_name_in_owner = true
 layout_mode = 1
 element_to_move = NodePath("../../..")
 sides = 10

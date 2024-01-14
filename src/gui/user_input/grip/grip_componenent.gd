@@ -7,7 +7,10 @@ extends Control
 ## [br][br][b]Note:[b] Changing in wich tree the grip is will cause errors.
 
 
-signal request_drop(element_to_drop: Control, on_side: GripDropArea.Side)
+## Emitted when an element was dropped onto this one.
+signal element_dropped(element_to_drop: Control, on_side: GripDropArea.Side)
+## Emitted when the element to move was drag and dropped to somewhere else.
+signal left()
 
 
 ## The element this grip let move.
@@ -120,7 +123,8 @@ func start_dragging() -> void:
 
 func finish_dragging() -> void:
 	if _current_area != null and is_instance_valid(_current_area):
-		_current_area.target_grip.request_drop.emit(element_to_move, _current_area.side)
+		left.emit()
+		_current_area.target_grip.element_dropped.emit(element_to_move, _current_area.side)
 	abort_dragging()
 
 
