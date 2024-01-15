@@ -12,7 +12,8 @@ signal text_changed(new: String, old: String)
 @export var multiline: bool = true:
 	set(new):
 		multiline = new
-		%CodeEdit.gutters_draw_line_numbers = new
+		if code_edit:
+			code_edit.gutters_draw_line_numbers = new
 		#fit_content = not new
 		#%CodeEdit.scroll_fit_content_height = not new
 		#code_edit.fit
