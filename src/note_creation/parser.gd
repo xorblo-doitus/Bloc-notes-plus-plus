@@ -1,25 +1,29 @@
-class_name Parser
 ## Classe qui lit les commandes
-extends RefCounted
+static var tokens: Array[String] = []
+static var global_scope := {}
+static var prefixes = ["/", "\\"]
+static var quick_entry = NoteBuilder
 
-## Classe qui lit les commandes
-var tokens: Array[String] = []
-var global_scope = {}
-var prefixes = ["/", "\\"]
-var quick_entry = NoteBuilder
+static func parse():
+	global_scope.clear()
+	global_scope["_curent_note_builder"] = NoteBuilder.new()
+	
+	#if len(splited) == 2:
+		#NoteBuilder.title = splited[0]
+		#NoteBuilder.description = splited[1]
+	for token in tokens:
+		for prefix in prefixes:
+			if token.begins_with(prefix):
+				var command_name: String = token.trim_prefix(prefix)
+				for command in Command.all:
+					if command_name in command.names:
+						
+				break
+			
 
-func parse(text: String):
-	text = text.strip_edges()
-	var splited: Array[String] = text.split("\n", true, 1)
-	if len(splited) == 2:
-		NoteBuilder.title = splited[0]
-		NoteBuilder.description = splited[1]
-	global_scope[Variable.name] = Variable
-
-func tokenise(text):
+static func tokenise(text):
 	var tokens: Array[String] = []
 	var splited: Array[String] = text.split(" ", true, 1)
-	var Command.names: Array[String] = []
 	for elt in splited:
 		tokens.append(elt)
 		if tokens[0] in Command.names:
