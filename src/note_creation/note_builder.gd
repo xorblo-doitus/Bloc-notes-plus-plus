@@ -18,19 +18,7 @@ var time_limit: int = 0
 		#var json = JSON.new()
 		#text = json.parse()
 
-func _init(text):
-	if len(text) != 0:
-		Parser.parse(text)
-	Parser.tokenise(text)
-	if Command.names[0] == "t":
-		type = Task
-	elif Command.names[0] == "c":
-		type = Calculus
-	elif Command.names[0] == "s":
-		type = Variable
-
 func build():
 	var new_note: Note = type.new()
 	for key in data:
 		new_note.set(key, data[key])
-
