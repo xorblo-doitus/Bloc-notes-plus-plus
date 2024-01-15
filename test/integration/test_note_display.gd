@@ -11,19 +11,18 @@ func test_note_display():
 	display.display(note)
 	
 	assert_eq(
-		display.title,
+		display.title.text,
 		"Start",
 		"Title not synced between note and display at initialization."
 	)
 	assert_eq(
-		display.description,
+		display.title.tooltip_text,
 		"Une desc",
 		"Description not synced between note and display at initialization."
 	)
 	
-	var displays_title: EditableRichTextLabel = display.get_node("%Title")
-	displays_title.text = "Nouveau titre"
-	displays_title.text_changed.emit("Nouveau titre", "Start")
+	display.title.text = "Nouveau titre"
+	display.title.text_changed.emit("Nouveau titre", "Start")
 	
 	assert_eq(
 		note.title,
@@ -38,7 +37,7 @@ func test_note_display():
 	
 	note.title = "Encore un nouveau titre"
 	assert_eq(
-		display.title,
+		display.title.text,
 		"Encore un nouveau titre",
 		"Title not synced between note and display at note modification."
 	)
