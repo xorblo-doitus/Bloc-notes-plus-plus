@@ -2,26 +2,29 @@ class_name NoteDisplay
 extends PanelContainer
 
 
-signal title_changed(new: String, old: String)
 ## Emitted when delete button is pressed, etc...
 signal request_remove()
 
 ## Texte principal de la note et celui qui est affiché dans la liste de note.
 var title: String = "":
 	set(new):
+		if new == title:
+			return
 		title = new
 		%Title.text = new
 
 ## Texte descriptif plus étoffé que le titre.
 var description: String = "":
 	set(new):
+		if new == description:
+			return
 		description = new
 		%Title.tooltip_text = new
 
 
 @warning_ignore("unused_private_class_variable")
 var _connections: Array[Connection]
-var connected_to: Note
+var _displaying: Note
 
 
 @onready var grip_component: GripComponent = %GripComponent
@@ -39,13 +42,37 @@ static func instantiate() -> NoteDisplay:
 	return _default_scene.instantiate()
 
 
-func _on_title_text_changed(new, _old):
-	# We use the old text of this NoteDisplay just in case it was changed while edited by user.
-	var old: String = title
+func display(note: Note) -> void:
+	title = note.title
+	description = note.description
+	
+	_connections.append(Connection.new(note.title_changed, _on_note_title_changed, true))
+	_connections.append(Connection.new(note.description_changed, _on_note_description_changed, true))
+	
+	_displaying = note
+
+
+func undisplay() -> void:
+	if  _displaying == null:
+		return
+	
+	while _connections:
+		_connections.pop_back().destroy()
+	
+	_displaying = null
+
+
+func _on_note_title_changed(new: String, _old: String) -> void:
 	title = new
-	title_changed.emit(new, old)
 
 
+func _on_note_description_changed(new: String, _old: String) -> void:
+	description = new
+
+
+func _on_title_text_changed(new: String, _old: String):
+	#_displaying.title = new
+	pass
 
 
 func _on_delete_pressed() -> void:

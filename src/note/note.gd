@@ -2,22 +2,33 @@ class_name Note
 extends RefCounted
 
 
+signal title_changed(new: String, old: String)
+signal description_changed(new: String, old: String)
+
+
 ## Texte principal de la note et celui qui est affiché dans la liste de note
 var title: String = "":
 	set(new):
+		if new == title:
+			return
+		
+		var old: String = title
 		title = new
-		for display in _connected_displays:
-			display.title = title
+		title_changed.emit(title, old)
 func set_title(new: String) -> Note:
 	title = new
 	return self
+
 ## Texte descriptif plus étoffé que le titre
 var description: String = "":
 	set(new):
+		if new == description:
+			return
+		var old: String = description
 		description = new
-		for display in _connected_displays:
-			display.description = description
-## Des données, comme un texte ou un nombre...utiles pour la note
+		description_changed.emit(description, old)
+
+## Des données (comme un texte, un nombre etc...) utiles pour la note
 ## [br] key: [String] value: [Variant]
 var other_data: Dictionary = {}
 
@@ -27,23 +38,8 @@ func _init(_title: String = "", _description: = ""):
 	description = _description
 
 
-var _connected_displays: Array[NoteDisplay] = []
-func apply_to_display(display: NoteDisplay) -> void:
-	display.title = title
-	display.description = description
-	
-	_connected_displays.append(display)
-	
-	display._connections.append(Connection.new(display.title_changed, set_title.unbind(1), true))
-	display.connected_to = self
+#var _connected_displays: Array[NoteDisplay] = []
 
-
-func unapply_from_display(display: NoteDisplay) -> void:
-	_connected_displays.erase(display)
-	
-	while display._connections:
-		display._connections.pop_back().destroy()
-	display.connected_to = null
 
 
 func _to_string():

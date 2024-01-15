@@ -8,7 +8,7 @@ func test_note_display():
 	var display: NoteDisplay = NoteDisplay.instantiate()
 	get_tree().root.add_child(display)
 	
-	note.apply_to_display(display)
+	display.display(note)
 	
 	assert_eq(
 		display.title,
@@ -19,12 +19,6 @@ func test_note_display():
 		display.description,
 		"Une desc",
 		"Description not synced between note and display at initialization."
-	)
-	assert_connected(
-		display,
-		note,
-		&"title_changed",
-		&"set_title"
 	)
 	
 	var displays_title: EditableRichTextLabel = display.get_node("%Title")

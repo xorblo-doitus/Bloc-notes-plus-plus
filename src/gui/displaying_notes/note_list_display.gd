@@ -46,8 +46,8 @@ func build_note_displays() -> void:
 		return
 	# Unlink displays wich displays a note that don't belong to self
 	for display in _note_displays:
-		if display.connected_to and not display.connected_to in notes:
-			display.connected_to.unapply_from_display(display)
+		if display._displaying and not display._displaying in notes:
+			display.undisplay()
 	
 	## A Queue (fr: Une file)
 	var new_displays: Array[NoteDisplay] = []
@@ -77,7 +77,7 @@ func _reorder_note_displays() -> void:
 func _pop_note_display_for(note: Note) -> NoteDisplay:
 	for display_i in len(_note_displays):
 		var display: NoteDisplay = _note_displays[display_i]
-		if display.connected_to == note:
+		if display._displaying == note:
 			_note_displays.remove_at(display_i)
 			return display
 	
@@ -90,7 +90,7 @@ func create_note_display(note: Note = null) -> NoteDisplay:
 	
 	
 	if note:
-		note.apply_to_display(new)
+		new.display(note)
 	return new
 
 
@@ -105,17 +105,17 @@ func _note_display_setup(note_display: NoteDisplay) -> void:
 
 func handle_drop(element: Control, side: GripDropArea.Side, on: NoteDisplay) -> void:
 	if element is NoteDisplay:
-		var index: int = note_list.notes.find(on.connected_to)
+		var index: int = note_list.notes.find(on._displaying)
 		if side == GripDropArea.Side.DOWN:
 			index += 1
-		note_list.notes.insert(index, element.connected_to)
+		note_list.notes.insert(index, element._displaying)
 		return
 	
 	assert(false, "Unknown drop behavior for " + str(element))
 
 
 func remove(note_display: NoteDisplay) -> void:
-	note_list.notes.erase(note_display.connected_to)
+	note_list.notes.erase(note_display._displaying)
 
 
 func _is_equal(other: Variant) -> bool:
