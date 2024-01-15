@@ -92,6 +92,9 @@ func get_text_stored() -> String:
 
 
 func _on_code_edit_text_changed():
+	if not editing:
+		return
+	
 	if not multiline and "\n" in code_edit.text:
 		var caret_columns: Array[int] = []
 		var line_lengths: Array[int] = []
