@@ -29,10 +29,14 @@ static func deserialize(text: String) -> Variant:
 	var json: JSON = JSON.new()
 	var error := json.parse(text)
 	if error:
-		var formated_error: ErrorHelper = ErrorHelper.new()
-		formated_error.title = "Error %s while deserializing the following text:" % error
-		formated_error.title += text
-		formated_error.description = str(error) + ": " + deserialize_errors.get(error, "No specific error message")
+		var formated_error: ErrorHelper = ErrorHelper.new().set_title(
+			TranslationServer.tr(&"ERROR_PARSING_JSON")
+		).set_description(
+			TranslationServer.tr(&"PARSED_TEXT_WAS") + "\n" + text
+		)
+		#formated_error.title = "Error %s while deserializing the following text:" % error
+		#formated_error.title += text
+		#formated_error.description = str(error) + ": " + deserialize_errors.get(error, "No specific error message")
 		return formated_error
 	
 	var result: Variant = json.data

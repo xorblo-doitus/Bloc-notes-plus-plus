@@ -27,8 +27,11 @@ func load_workspace() -> void:
 	)
 	
 	if loaded_workspace is ErrorHelper:
+		
 		if not loaded_workspace.godot_builtin_error == ERR_FILE_NOT_FOUND:
-			loaded_workspace.popup()
+			loaded_workspace.set_description(
+				tr(&"ERROR_WORKSPACE_LOAD_FAILED")
+			).popup()
 		
 		# Triger setter
 		workspace = workspace

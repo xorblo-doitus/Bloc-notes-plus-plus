@@ -22,9 +22,9 @@ static func load_object_from_file(path: String) -> Object:
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 	
 	if file == null:
-		var error: ErrorHelper = ErrorHelper.new(
-			&"FILE_READ_FAILED",
-			error_string(FileAccess.get_open_error()),
+		var error: ErrorHelper = ErrorHelper.new().set_title(
+			TranslationServer.tr(&"LOAD_FAILED")
+		).set_godot_builtin_error(
 			FileAccess.get_open_error()
 		)
 		
