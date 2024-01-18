@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1ig6adtfok5w"]
+
+[ext_resource type="PackedScene" uid="uid://b1l63s0gxpyhv" path="res://src/gui/displaying_notes/note_display/widgets/widget.tscn" id="1_85op2"]
+[ext_resource type="Script" path="res://src/gui/displaying_notes/note_display/widgets/calculus_result.gd" id="2_dvcag"]
+
+[node name="CalcResultWidget" instance=ExtResource("1_85op2")]
+offset_right = 10.0
+offset_bottom = 23.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("2_dvcag")
+before = true
+
+[node name="Result" type="Label" parent="." index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "="
