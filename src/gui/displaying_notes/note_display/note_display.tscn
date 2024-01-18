@@ -13,20 +13,21 @@ offset_bottom = 23.0
 size_flags_vertical = 4
 script = ExtResource("1_7u0ca")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Widgets" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Grip" parent="HBoxContainer" instance=ExtResource("2_od70a")]
+[node name="Grip" parent="Widgets" instance=ExtResource("2_od70a")]
 layout_mode = 2
 texture_normal = ExtResource("2_vo56a")
 
-[node name="GripComponent" parent="HBoxContainer/Grip" node_paths=PackedStringArray("element_to_move") instance=ExtResource("4_e0p82")]
+[node name="GripComponent" parent="Widgets/Grip" node_paths=PackedStringArray("element_to_move") instance=ExtResource("4_e0p82")]
 unique_name_in_owner = true
 layout_mode = 1
 element_to_move = NodePath("../../..")
 sides = 10
 
-[node name="Title" parent="HBoxContainer" instance=ExtResource("1_dbt0l")]
+[node name="Title" parent="Widgets" instance=ExtResource("1_dbt0l")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
@@ -35,11 +36,11 @@ size_flags_vertical = 4
 fit_content = true
 multiline = false
 
-[node name="Delete" parent="HBoxContainer" instance=ExtResource("2_od70a")]
+[node name="Delete" parent="Widgets" instance=ExtResource("2_od70a")]
 layout_mode = 2
 texture_normal = ExtResource("4_btt4o")
 
-[connection signal="button_down" from="HBoxContainer/Grip" to="HBoxContainer/Grip/GripComponent" method="start_dragging"]
-[connection signal="button_up" from="HBoxContainer/Grip" to="HBoxContainer/Grip/GripComponent" method="finish_dragging"]
-[connection signal="text_changed" from="HBoxContainer/Title" to="." method="_on_title_text_changed"]
-[connection signal="pressed" from="HBoxContainer/Delete" to="." method="_on_delete_pressed"]
+[connection signal="button_down" from="Widgets/Grip" to="Widgets/Grip/GripComponent" method="start_dragging"]
+[connection signal="button_up" from="Widgets/Grip" to="Widgets/Grip/GripComponent" method="finish_dragging"]
+[connection signal="text_changed" from="Widgets/Title" to="." method="_on_title_text_changed"]
+[connection signal="pressed" from="Widgets/Delete" to="." method="_on_delete_pressed"]

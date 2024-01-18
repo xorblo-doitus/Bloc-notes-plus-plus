@@ -6,6 +6,14 @@ extends PanelContainer
 signal request_remove()
 
 
+## The child index at wich widget with [member Widget.before] = [code]true[/code]
+## will be inserted.
+const FRONT_WIDGET_INDEX = 1
+
+
+static var note_UIs: Dictionary = {}
+
+
 @warning_ignore("unused_private_class_variable")
 var _connections: Array[Connection]
 var _displaying: Note
@@ -13,6 +21,7 @@ var _displaying: Note
 
 @onready var title: EditableRichTextLabel = %Title
 @onready var grip_component: GripComponent = %GripComponent
+@onready var widgets: HBoxContainer = %Widgets
 
 
 ## A reference to the default packed scene associated with this class
@@ -27,6 +36,8 @@ static func instantiate() -> NoteDisplay:
 	return _default_scene.instantiate()
 
 
+var _widgets: Array[Widget] = []
+
 func display(note: Note) -> void:
 	if not is_node_ready():
 		ready.connect(display.bind(note), CONNECT_ONE_SHOT)
@@ -39,7 +50,17 @@ func display(note: Note) -> void:
 	
 	_connections.append(Connection.new(note.title_changed, _on_note_title_changed.unbind(2), true))
 	_connections.append(Connection.new(note.description_changed, _on_note_description_changed.unbind(2), true))
-
+	
+	if note_UIs.has(_displaying.get_script()):
+		for note_ui: NoteUI in note_UIs[_displaying.get_script()].get_heritage():
+			for widget_scene in note_ui.widgets:
+				var widget: Widget = widget_scene.instantiate()
+				widgets.add_child(widget)
+				if widget.before:
+					widgets.move_child(widget, 1)
+				
+				widget.note = _displaying
+	
 
 func undisplay() -> void:
 	if  _displaying == null:
@@ -47,6 +68,9 @@ func undisplay() -> void:
 	
 	while _connections:
 		_connections.pop_back().destroy()
+		
+	while _widgets:
+		_widgets.pop_back().queue_free()
 	
 	_displaying = null
 
