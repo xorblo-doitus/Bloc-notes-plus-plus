@@ -3,7 +3,8 @@ extends RefCounted
 
 static var all: Array[Command] = []
 var names: Array[String] = []
-var argument = []
+var parameters = []
+var callback: Callable
 
 enum ParseError {
 	OK,
