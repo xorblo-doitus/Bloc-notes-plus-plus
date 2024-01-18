@@ -2,9 +2,18 @@ class_name Variable
 extends Calculus
 
 
+signal name_changed()
+
+
 ## Permet à l'utilisateur d'entrer un nom de variable 
 ## qui servira de référence pour d'autres calculs.
-var name: String = ""
+var name: String = "":
+	set(new):
+		if new == name:
+			return
+		
+		name = new
+		name_changed.emit()
 
 
 ## Stores a weak reference to all alive variables
@@ -32,6 +41,11 @@ func _init(_title: String = "", _description: = ""):
 	super(_title, _description)
 	
 	all.append(weakref(self))
+
+
+func set_name(_name: String) -> Variable:
+	name = _name
+	return self
 
 
 func _notification(what: int) -> void:
