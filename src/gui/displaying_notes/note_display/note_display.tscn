@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dbj27u16816l5"]
 
 [ext_resource type="Script" path="res://src/gui/displaying_notes/note_display/note_display.gd" id="1_7u0ca"]
-[ext_resource type="PackedScene" uid="uid://dpoekypmevp47" path="res://src/gui/user_input/editable_rich_text_label.tscn" id="1_dbt0l"]
+[ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/editable_rich_text_label.tscn" id="1_dbt0l"]
 [ext_resource type="PackedScene" uid="uid://c7yar8fvf8ne2" path="res://src/gui/displaying_notes/note_display/note_display_button.tscn" id="2_od70a"]
 [ext_resource type="Texture2D" uid="uid://cn1dolctmjaya" path="res://src/assets/images/icons/grab.png" id="2_vo56a"]
 [ext_resource type="Texture2D" uid="uid://dljq5rng8ew0b" path="res://src/assets/images/icons/delete.png" id="4_btt4o"]
@@ -33,8 +33,6 @@ custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-fit_content = true
-multiline = false
 
 [node name="Delete" parent="Widgets" instance=ExtResource("2_od70a")]
 layout_mode = 2
