@@ -24,3 +24,8 @@ func create() -> void:
 ## Remove the signal connection
 func destroy() -> void:
 	connected_to.disconnect(callback)
+
+
+static func destroy_all(connections: Array[Connection]) -> void:
+	while connections:
+		connections.pop_back().destroy()
