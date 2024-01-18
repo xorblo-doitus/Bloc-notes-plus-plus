@@ -1,16 +1,15 @@
 #@tool
-class_name EditableRichTextLabel
-extends PanelContainer
+class_name EditableRichTextLabelOld
+extends RichTextLabel
 
 
 signal text_changed(new: String, old: String)
-signal text_set(new: String, old: String)
 
 
 ## If true, text will be submitted only when enter is pressed while shift too.
 ## This helps to edit multiline texts.
 ## This will also enable other features.
-@export var multiline: bool = false:
+@export var multiline: bool = true:
 	set(new):
 		multiline = new
 		if code_edit:
@@ -21,38 +20,33 @@ signal text_set(new: String, old: String)
 ## If true, text will be submitted only when enter is pressed while shift too.
 ## This helps to edit multiline texts.
 #@export var shift_to_validate: bool = true
-@export var auto_width: bool = false
-@export var max_width: float = -1
-@export var text: String:
-	set(new):
-		if new == text:
-			return
-		
-		var old: String = text
-		text = new
-		rich_text_label.text = text
-		
-		if code_edit.text != text:
-			code_edit.text = text
-			
-		text_changed.emit(new, old)
+
 
 var editing: bool = false:
 	set(new):
-		if new == editing:
-			return
 		editing = new
 		if new:
-			setup_editing()
+			code_edit.grab_focus.call_deferred()
+			code_edit.text = text
+			_last_text = text
+			visible_characters = 0
+			bbcode_enabled = false
 		else:
-			unsetup_editing()
+			text = code_edit.text
+			code_edit.text = " "
+			if text != _last_text:
+				text_changed.emit(text, _last_text)
+			visible_characters = -1
+			bbcode_enabled = true
+		
+		# Do it at the end
+		code_edit.visible = new
 
 
-#var _last_text: String = text
+var _last_text: String = text
 
 
 @onready var code_edit: CodeEdit = %CodeEdit
-@onready var rich_text_label: RichTextLabel = %RichTextLabel
 
 
 ## A reference to the default packed scene associated with this class
@@ -68,11 +62,11 @@ static func instantiate() -> EditableRichTextLabel:
 
 
 func _ready():
-	#if text == "":
-		#text = " "
+	if text == "":
+		text = " "
 	var starting_text: String = text
 	
-	unsetup_editing()
+	editing = false
 	
 	# Triger setters
 	multiline = multiline
@@ -89,11 +83,11 @@ func _set(property: StringName, value: Variant):
 			self.text = value.replace("\n", " ")
 
 
-#func get_text_stored() -> String:
-	#if editing:
-		#return _last_text
-	#else:
-		#return text
+func get_text_stored() -> String:
+	if editing:
+		return _last_text
+	else:
+		return text
 
 
 
@@ -127,29 +121,18 @@ func _on_code_edit_text_changed():
 		
 		for caret in len(caret_columns):
 			code_edit.set_caret_column(caret_columns[caret], true, caret)
-	
+		
 	text = code_edit.text
-	#print(rich_text_label.get_content_width())
-	#print(code_edit.get_line_width(0))
-	if auto_width:
-		# good character to test auto_width : 𒀱
-		line.clear()
-		var sizer = get_current_sizer()
-		line.add_string(text + "___", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
-		custom_minimum_size.x = min(line.get_line_width(), INF if max_width == -1 else max_width)
-		#print(line.get_line_width())
-		#print(line.get_size())
-
-var line := TextLine.new()
-
-#func _gui_input(event: InputEvent):
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT and event.double_click and event.pressed:
-			#editing = true
 
 
-#func _on_code_edit_text_set():
-	#pass
+func _gui_input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.double_click and event.pressed:
+			editing = true
+
+
+func _on_code_edit_text_set():
+	pass
 	#if not multiline and "\n" in code_edit.text:
 		#code_edit.text = code_edit.text.replace("\n", " ")
 	#editing = false
@@ -163,49 +146,15 @@ func _on_code_edit_gui_input(event: InputEvent):
 			event.shift_pressed = true
 		
 		if event.is_action(&"validate_input", true):
-			editing = false
-			get_viewport().set_input_as_handled()
+			code_edit.hide()
 		
 		event.shift_pressed = starting_shift_state
 
 
-
-func _on_code_edit_focus_entered() -> void:
-	editing = true
-
-
 func _on_code_edit_focus_exited():
-	editing = false
+	code_edit.hide()
 
 
-#var _text_at_edition: String =
-func setup_editing() -> void:
-	code_edit.grab_focus.call_deferred()
-	if multiline:
-		code_edit.gutters_draw_line_numbers = true
-	code_edit.modulate = Color.WHITE
-	rich_text_label.modulate = Color.TRANSPARENT
-	#code_edit.text = text
-	#visible_characters = 0
-
-func unsetup_editing() -> void:
-	text = code_edit.text
-	code_edit.gutters_draw_line_numbers = false
-	code_edit.modulate = Color.TRANSPARENT
-	rich_text_label.modulate = Color.WHITE
-	#code_edit.text = " "
-	#if text != _last_text:
-		#text_set.emit(text, _last_text)
-	#visible_characters = -1
-
-
-func get_current_sizer():
-	if editing:
-		return code_edit
-	
-	return rich_text_label
-
-
-#func _on_code_edit_visibility_changed():
-	#if !code_edit.visible:
-		#editing = false
+func _on_code_edit_visibility_changed():
+	if !code_edit.visible:
+		editing = false

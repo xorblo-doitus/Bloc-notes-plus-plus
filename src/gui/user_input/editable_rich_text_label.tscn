@@ -1,38 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpoekypmevp47"]
+[gd_scene load_steps=4 format=3 uid="uid://elxiakmjubkb"]
 
-[ext_resource type="Script" path="res://src/gui/user_input/editable_rich_text_label.gd" id="1_lrrj1"]
+[ext_resource type="Script" path="res://src/gui/user_input/editable_rich_text_label.gd" id="1_kuxby"]
 
-[node name="EditableRichTextLabel" type="RichTextLabel"]
-offset_right = 778.0
-offset_bottom = 168.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j670a"]
+bg_color = Color(0, 0.717647, 0.368627, 0.478431)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0sg3"]
+bg_color = Color(0.87451, 0, 0, 0.196078)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0, 0, 1)
+
+[node name="EditableRichTextLabel" type="PanelContainer"]
+offset_right = 257.0
+offset_bottom = 23.0
 auto_translate = false
 focus_mode = 2
+script = ExtResource("1_kuxby")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_j670a")
 bbcode_enabled = true
-text = " "
-selection_enabled = true
-visible_characters_behavior = 1
-script = ExtResource("1_lrrj1")
 
 [node name="CodeEdit" type="CodeEdit" parent="."]
 unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 auto_translate = false
-text = " "
+theme_override_constants/line_spacing = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_i0sg3")
 wrap_mode = 1
 scroll_fit_content_height = true
+highlight_all_occurrences = true
 line_folding = true
-gutters_draw_line_numbers = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
 
+[connection signal="focus_entered" from="CodeEdit" to="." method="_on_code_edit_focus_entered"]
 [connection signal="focus_exited" from="CodeEdit" to="." method="_on_code_edit_focus_exited"]
 [connection signal="gui_input" from="CodeEdit" to="." method="_on_code_edit_gui_input"]
 [connection signal="text_changed" from="CodeEdit" to="." method="_on_code_edit_text_changed"]
-[connection signal="text_set" from="CodeEdit" to="." method="_on_code_edit_text_set"]
-[connection signal="visibility_changed" from="CodeEdit" to="." method="_on_code_edit_visibility_changed"]

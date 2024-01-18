@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b1l63s0gxpyhv" path="res://src/gui/displaying_notes/note_display/widgets/widget.tscn" id="1_ydsjq"]
 [ext_resource type="Script" path="res://src/gui/displaying_notes/note_display/widgets/variable_name.gd" id="2_4vitd"]
-[ext_resource type="PackedScene" uid="uid://dpoekypmevp47" path="res://src/gui/user_input/editable_rich_text_label.tscn" id="3_f672b"]
+[ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/editable_rich_text_label.tscn" id="3_joqpw"]
 
 [node name="VariableName" instance=ExtResource("1_ydsjq")]
 script = ExtResource("2_4vitd")
@@ -11,11 +11,10 @@ before = true
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
 layout_mode = 2
 
-[node name="Name" parent="HBoxContainer" index="0" instance=ExtResource("3_f672b")]
+[node name="Name" parent="HBoxContainer" index="0" instance=ExtResource("3_joqpw")]
 unique_name_in_owner = true
 layout_mode = 2
-fit_content = true
-multiline = false
+auto_width = true
 
 [node name="Equal" type="Label" parent="HBoxContainer" index="1"]
 unique_name_in_owner = true
