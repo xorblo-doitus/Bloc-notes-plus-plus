@@ -24,17 +24,19 @@ static func parse():
 				for command in Command.all:
 					if command_name in command.names:
 						var arguments = []
-						arguments.append(token.pop_front())
+						arguments.append(tokens.pop_front())
 						command.callback.call(arguments, global_scope)
 				break
 			
 
-static func tokenise(text):
+static func tokenise(text) -> Array[String]:
 	var tokens: Array[String] = []
-	var splited: Array[String] = text.split(" ", true, 1)
-	for elt in splited:
-		tokens.append(elt)
-		if tokens[0] in Command.names:
-			return text in Command.names
-		else:
-			Command.check(tokens)
+	var splited: PackedStringArray = text.split(" ", true, 1)
+	
+	tokens.append_array(splited)
+	
+	return tokens
+
+
+static func reset_global_scope():
+	global_scope.clear()
