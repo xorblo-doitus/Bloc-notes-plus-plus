@@ -15,7 +15,7 @@ static var DEFAULT_NOTES: NoteList = NoteList.new([
 ]) if not OS.is_debug_build() else NoteList.new([
 	Note.new(TranslationServer.translate("EXEMPLE_NOTE_TITLE"), TranslationServer.translate("EXEMPLE_NOTE_DESCRIPTION")),
 	Task.new("Debuggin task."),
-	Calculus.new("1/2+3"),
+	Calculus.new("1.0/2+3"),
 ])
 
 
