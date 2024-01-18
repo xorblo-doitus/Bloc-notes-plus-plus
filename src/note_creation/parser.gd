@@ -1,3 +1,7 @@
+class_name Parser
+extends RefCounted
+## Classe qui lit les commandes
+
 ## Classe qui lit les commandes
 static var tokens: Array[String] = []
 static var global_scope := {}
@@ -11,13 +15,17 @@ static func parse():
 	#if len(splited) == 2:
 		#NoteBuilder.title = splited[0]
 		#NoteBuilder.description = splited[1]
-	for token in tokens:
+	#for token in tokens:
+	while not tokens.is_empty():
+		var token: String = tokens.pop_front()
 		for prefix in prefixes:
 			if token.begins_with(prefix):
 				var command_name: String = token.trim_prefix(prefix)
 				for command in Command.all:
 					if command_name in command.names:
-						
+						var arguments = []
+						arguments.append(token.pop_front())
+						command.callback.call(arguments, global_scope)
 				break
 			
 
