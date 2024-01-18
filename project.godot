@@ -64,6 +64,10 @@ cancel_ongoing_behavior={
 
 locale/translations=PackedStringArray("res://src/assets/translations/translations.en.translation", "res://src/assets/translations/translations.fr.translation")
 
+[notes]
+
+calculus/prevent_integer_division=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

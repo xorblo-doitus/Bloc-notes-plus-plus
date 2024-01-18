@@ -50,3 +50,22 @@ func test_variable() -> void:
 		105,
 		"Variables don't work."
 	)
+
+
+func test_float_to_int() -> void:
+	var expected := {
+		"1": "1.0",
+		"-1": "-1.0",
+		"1/3": "1.0/3.0",
+		"1/1-3": "1.0/1.0-3.0",
+		"Vector2(2, 6)": "Vector2(2.0, 6.0)",
+		"1.5/-6.+.9": "1.5/-6.+.9",
+	}
+	
+	for input in expected:
+		print(Calculus.ints_to_floats(input))
+		assert_eq(
+			Calculus.ints_to_floats(input),
+			expected[input],
+			"Convertion of ints to floats failed."
+		)

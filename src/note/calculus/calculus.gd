@@ -18,6 +18,13 @@ static var other_variables: Array[Dictionary] = []
 ## Callables returning dictionary of variables.
 static var variable_getters: Array[Callable] = []
 
+static var INT_REGEX: RegEx:
+	get:
+		if not INT_REGEX:
+			INT_REGEX = RegEx.new()
+			INT_REGEX.compile(r"(?<!\.|[a-zA-Z]|_)(-?\d+)(?!\.|[a-zA-Z]|_)")
+		return INT_REGEX
+
 ## Return all variables defined for expressions.
 ## [br]Priority :
 ## [br] - [member variable_getters]
@@ -35,9 +42,30 @@ static func get_all_variables() -> Dictionary:
 	return result
 
 
+static func ints_to_floats(expression: String) -> String:
+	var matches: Array[RegExMatch] = INT_REGEX.search_all(expression)
+	matches.reverse()
+	
+	for _match in matches:
+		expression = (
+			expression.substr(0, _match.get_end())
+			+ ".0"
+			+ expression.substr(_match.get_end())
+		)
+	
+	return expression
+
+
 func get_value() -> Variant:
-	var current_variables: Dictionary = Calculus.get_all_variables()
+	var string_expression: String = title
+	if EasySettings.get_setting("notes/calculus/prevent_integer_division"):
+		string_expression = Calculus.ints_to_floats(string_expression)
+	
 	var expression = Expression.new()
-	expression.parse(title, current_variables.keys())
+	
+	var current_variables: Dictionary = Calculus.get_all_variables()
+	expression.parse(string_expression, current_variables.keys())
+	
 	var result = expression.execute(current_variables.values(), CustomFunctions.singleton)
+	
 	return result
