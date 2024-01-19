@@ -2,6 +2,9 @@ class_name WidgetVariableName
 extends Widget
 
 
+static var equal_string: String = "= "
+
+
 @onready var name_label: RichTextEdit = %Name
 @onready var equal: Label = %Equal
 
@@ -17,7 +20,7 @@ func update_name() -> void:
 	name_label.text = str(note.name)
 	# Temporary fix
 	name_label.custom_minimum_size.x = 9 * len(name_label.text)
-	equal.text = WidgetCalculusResult.equal_string
+	equal.text = WidgetVariableName.equal_string
 
 
 func _on_name_text_changed(new: String, _old: String) -> void:
