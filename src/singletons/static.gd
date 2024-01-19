@@ -43,3 +43,7 @@ static func is_index_valid(array: Array, index: int) -> bool:
 ## Return the given [code]vector[/code] rotated to have the same direction as [code]target[/code].
 static func align(vector: Vector2, target: Vector2) -> Vector2:
 	return vector.rotated(vector.angle_to(target))
+
+
+static func is_ref_valid(ref: WeakRef) -> bool:
+	return ref.get_ref() != null
