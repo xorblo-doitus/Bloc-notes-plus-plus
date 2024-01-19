@@ -3,7 +3,7 @@ extends GutTest
 
 
 func test_editable_rich_text_label() -> void:
-	var editable_rich_text_label: EditableRichTextLabel = EditableRichTextLabel.instantiate()
+	var editable_rich_text_label: RichTextEdit = RichTextEdit.instantiate()
 	editable_rich_text_label.text = "Start"
 	editable_rich_text_label.custom_minimum_size = Vector2(500, 500)
 	get_tree().root.add_child(editable_rich_text_label)
