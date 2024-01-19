@@ -34,7 +34,9 @@ signal text_set(new: String, old: String)
 		
 		if code_edit.text != text:
 			code_edit.text = text
-			
+		
+		update_width()
+		
 		text_changed.emit(new, old)
 
 var editing: bool = false:
@@ -70,14 +72,19 @@ static func instantiate() -> EditableRichTextLabel:
 func _ready():
 	#if text == "":
 		#text = " "
-	var starting_text: String = text
+	#var starting_text: String = text
 	
 	unsetup_editing()
 	
 	# Triger setters
 	multiline = multiline
 	
-	self.text = starting_text
+	# code_edit.get_h_scroll_bar().size.x = 0
+	# code_edit.get_v_scroll_bar().size.x = 0
+	
+	#update_width()
+	
+	#self.text = starting_text
 
 
 func _set(property: StringName, value: Variant):
@@ -129,18 +136,23 @@ func _on_code_edit_text_changed():
 			code_edit.set_caret_column(caret_columns[caret], true, caret)
 	
 	text = code_edit.text
-	#print(rich_text_label.get_content_width())
-	#print(code_edit.get_line_width(0))
+
+
+var _line := TextLine.new()
+
+func update_width() -> void:
 	if auto_width:
 		# good character to test auto_width : 𒀱
-		line.clear()
+		_line.clear()
 		var sizer = get_current_sizer()
-		line.add_string(text + "___", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
-		custom_minimum_size.x = min(line.get_line_width(), INF if max_width == -1 else max_width)
+		_line.add_string(sizer.text + "___", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
+		
+		custom_minimum_size.x = min(_line.get_line_width(), INF if max_width == -1 else max_width)
+		set_deferred("custom_minimum_size", custom_minimum_size)
 		#print(line.get_line_width())
+		#print(custom_minimum_size.x)
+		#print(size.x)
 		#print(line.get_size())
-
-var line := TextLine.new()
 
 #func _gui_input(event: InputEvent):
 	#if event is InputEventMouseButton:

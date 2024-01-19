@@ -40,7 +40,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_i0sg3")
 wrap_mode = 1
 scroll_fit_content_height = true
 highlight_all_occurrences = true
-line_folding = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
 
