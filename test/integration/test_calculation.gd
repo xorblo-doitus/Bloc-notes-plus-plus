@@ -63,7 +63,6 @@ func test_float_to_int() -> void:
 	}
 	
 	for input in expected:
-		print(Calculus.ints_to_floats(input))
 		assert_eq(
 			Calculus.ints_to_floats(input),
 			expected[input],
