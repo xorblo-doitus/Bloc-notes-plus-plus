@@ -34,7 +34,7 @@ signal text_set(new: String, old: String)
 		
 		var old: String = text
 		text = new
-		rich_text_label.text = text
+		rich_text_label.text = " " + text
 		
 		if code_edit.text != text:
 			code_edit.text = text
