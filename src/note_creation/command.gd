@@ -18,3 +18,7 @@ func set_names(new_names: Array[String]) -> Command:
 func build():
 	Command.all.append(self)
 	return self
+
+func set_callback(function: Callable):
+	callback = function
+	return self
