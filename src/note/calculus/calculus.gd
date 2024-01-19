@@ -106,8 +106,15 @@ func calculate(string_expression: String = title) -> Variant:
 	var expression = Expression.new()
 	
 	var current_variables: Dictionary = Calculus.get_all_variables()
-	expression.parse(string_expression, current_variables.keys())
+	var error: Error = expression.parse(string_expression, current_variables.keys())
 	
+	if error:
+		print("catched ", error)
+		return expression.get_error_text()
+	print(error)
 	var result = expression.execute(current_variables.values(), CustomFunctions.singleton)
+	
+	if expression.has_execute_failed():
+		return expression.get_error_text()
 	
 	return result
