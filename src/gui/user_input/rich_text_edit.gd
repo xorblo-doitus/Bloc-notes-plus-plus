@@ -1,6 +1,6 @@
 #@tool
 class_name RichTextEdit
-extends PanelContainer
+extends MarginContainer
 
 
 signal text_changed(new: String, old: String)
@@ -141,10 +141,19 @@ func update_width() -> void:
 		# good character to test auto_width : 𒀱
 		_line.clear()
 		var sizer = get_current_sizer()
+		_line.add_string(sizer.text + "_", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
+		
+		var true_length: float = ceil(_line.get_line_width())
+		_line.clear()
 		_line.add_string(sizer.text + "___", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
 		
-		custom_minimum_size.x = min(_line.get_line_width(), INF if max_width == -1 else max_width)
+		custom_minimum_size.x = min(true_length, INF if max_width == -1 else max_width)
 		set_deferred("custom_minimum_size", custom_minimum_size)
+		#print(custom_minimum_size.x)
+		#print(true_length)
+		#print(_line.get_line_width())
+		#print(-_line.get_line_width() + true_length)
+		add_theme_constant_override("margin_right", true_length - ceil(_line.get_line_width()))
 		#print(line.get_line_width())
 		#print(custom_minimum_size.x)
 		#print(size.x)
