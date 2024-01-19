@@ -28,6 +28,10 @@ signal text_set(new: String, old: String)
 		if new == text:
 			return
 		
+		if not is_node_ready():
+			ready.connect(set.bind(&"text", new), CONNECT_ONE_SHOT)
+			return
+		
 		var old: String = text
 		text = new
 		rich_text_label.text = text
@@ -94,14 +98,6 @@ func _set(property: StringName, value: Variant):
 			return true
 		if not multiline and "\n" in value:
 			self.text = value.replace("\n", " ")
-
-
-#func get_text_stored() -> String:
-	#if editing:
-		#return _last_text
-	#else:
-		#return text
-
 
 
 func _on_code_edit_text_changed():
