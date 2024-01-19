@@ -2,7 +2,7 @@ class_name WidgetVariableName
 extends Widget
 
 
-@onready var name_label: EditableRichTextLabel = %Name
+@onready var name_label: RichTextEdit = %Name
 @onready var equal: Label = %Equal
 
 

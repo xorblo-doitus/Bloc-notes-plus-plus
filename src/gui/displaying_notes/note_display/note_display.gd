@@ -19,7 +19,7 @@ var _connections: Array[Connection]
 var _displaying: Note
 
 
-@onready var title: EditableRichTextLabel = %Title
+@onready var title: RichTextEdit = %Title
 @onready var grip_component: GripComponent = %GripComponent
 @onready var widgets: HBoxContainer = %Widgets
 

@@ -1,5 +1,5 @@
 #@tool
-class_name EditableRichTextLabel
+class_name RichTextEdit
 extends PanelContainer
 
 
@@ -65,11 +65,11 @@ var editing: bool = false:
 static var _default_scene: PackedScene:
 	get:
 		if _default_scene == null:
-			_default_scene = load("res://src/gui/user_input/editable_rich_text_label.tscn")
+			_default_scene = FilePathes.get_resource(&"rich_text_edit")
 		return _default_scene
 
 ## Create a new instance by loading default scene for this class.
-static func instantiate() -> EditableRichTextLabel:
+static func instantiate() -> RichTextEdit:
 	return _default_scene.instantiate()
 
 
