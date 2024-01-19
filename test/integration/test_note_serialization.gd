@@ -5,7 +5,7 @@ func test_object():
 	var success: bool = true
 	var variable: Variable = Variable.new()
 	
-	variable.title = "machin à calculer"
+	variable.title = "1+1"
 	variable.description = "Ben en fait euh j'ai pas d'idée de description."
 	variable.name = "my_var"
 	
