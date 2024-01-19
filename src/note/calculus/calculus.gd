@@ -8,6 +8,13 @@ extends Note
 ## names as keys and their values as values
 
 
+## Emited when [member value] is changed.
+signal value_changed(new: Variant, old: Variant)
+
+
+## An array storing references to all alive Calculus
+static var all: Array[WeakRef] = []
+
 ## Store script defined variables for expressions.
 ## If you want to get all variables for expressions, use [method get_all_variables]
 static var default_variables: Dictionary = {}
@@ -56,8 +63,43 @@ static func ints_to_floats(expression: String) -> String:
 	return expression
 
 
+## [b]READONLY[/b]: The value of the current
+var value: Variant:
+	set(_new):
+		var calculated: Variant = calculate()
+		if typeof(calculated) == typeof(value) and calculated == value:
+			return
+		var old: Variant = value
+		value = calculated
+		value_changed.emit(calculated, old)
+
+
+func _init(_title: String = "", _description: = "") -> void:
+	title_changed.connect(update_value.unbind(2))
+	Calculus.all.append(weakref(self))
+	super(_title, _description)
+
+
+func _notification(what: int) -> void:
+	match what:
+		NOTIFICATION_PREDELETE:
+			for i in len(Calculus.all):
+				if Calculus.all[i].get_ref() == self:
+					Calculus.all.remove_at(i)
+					break
+
+
+func update_value() -> void:
+	# Trigger setter
+	value = null
+
+
+## @deprecated Returns [member value]
 func get_value() -> Variant:
-	var string_expression: String = title
+	return value
+
+
+func calculate(string_expression: String = title) -> Variant:
 	if EasySettings.get_setting("notes/calculus/prevent_integer_division"):
 		string_expression = Calculus.ints_to_floats(string_expression)
 	
