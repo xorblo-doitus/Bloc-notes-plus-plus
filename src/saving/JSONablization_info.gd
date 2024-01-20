@@ -2,9 +2,13 @@ class_name JSONablizationInfo
 extends RefCounted
 
 
-## Static variable storing inforamations about how to [method JSONablize]
-## and read JSONabled [Object]s
-static var all: Dictionary = {}
+## Static variable storing inforamations about how to read JSONabled [Object]s.
+## Keys are the type as [String]. See also [member all_from_type].
+static var all_from_string: Dictionary = {}
+## Static variable storing inforamations about how to
+## [method Serializer.JSONablize] [Object]s.
+## Keys are the type as [Script]. See also [member all_from_string].
+static var all_from_type: Dictionary = {}
 
 
 static func compare_precision(a: JSONablizationInfo, b: JSONablizationInfo) -> bool:
@@ -12,15 +16,25 @@ static func compare_precision(a: JSONablizationInfo, b: JSONablizationInfo) -> b
 
 
 static func get_most_precise(object: Object) -> JSONablizationInfo:
-	var matching: Array[JSONablizationInfo] = []
+	var script_target: Script = object.get_script()
+	var result: JSONablizationInfo = JSONablizationInfo.all_from_type.get(script_target)
+	while result == null and script_target.get_base_script():
+		script_target = script_target.get_base_script()
+		result = JSONablizationInfo.all_from_type.get(script_target)
 	
-	for info in JSONablizationInfo.all.values():
-		if is_instance_of(object, info.type):
-			matching.push_back(info)
+	if result == null:
+		assert(false, "No JSONablizationInfo for " + str(object))
 	
-	assert(not matching.is_empty(), "No informations for " + str(object))
-	
-	matching.sort_custom(JSONablizationInfo.compare_precision)
+	return result
+	#var matching: Array[JSONablizationInfo] = []
+	#
+	#for info in JSONablizationInfo.all.values():
+		#if is_instance_of(object, info.type):
+			#matching.push_back(info)
+	#
+	#assert(not matching.is_empty(), "No informations for " + str(object))
+	#
+	#matching.sort_custom(JSONablizationInfo.compare_precision)
 	
 	#var result: JSONablizationInfo = matching.pop_back()
 	#
@@ -39,7 +53,7 @@ static func get_most_precise(object: Object) -> JSONablizationInfo:
 		#
 		#assert(found, "Multiple matching JSONablizationInfo (%s) found for %s, did you forgot an inheritance?" % [str(matching), str(object)])
 	
-	return matching[0]
+	#return matching[0]
 
 
 
@@ -47,6 +61,8 @@ static func get_most_precise(object: Object) -> JSONablizationInfo:
 var type: Object
 ## The class name of the object to store.
 ## ([code]"Note"[/code], [code]"Variable"[/code]...)
+## Need to be entered manually because we wait for Godot 4.3
+## [url=https://github.com/godotengine/godot/pull/80487]#80487[/url]
 var type_as_text: String
 ## A list of attributes to save
 var attributes_to_save: Array[String] = []
@@ -118,9 +134,9 @@ func set_inherit(new_inherit: JSONablizationInfo) -> JSONablizationInfo:
 ## Calls [method set_inherit] with the [i]already built[/i] JSONablizationInfo
 ## wich has [param name] as [member type_as_text].
 func set_inherit_by_name(name: StringName) -> JSONablizationInfo:
-	for other_name in JSONablizationInfo.all:
+	for other_name in JSONablizationInfo.all_from_string:
 		if other_name == name:
-			set_inherit(JSONablizationInfo.all[other_name])
+			set_inherit(JSONablizationInfo.all_from_string[other_name])
 			return self
 	assert(false, "No JSONablizationInfo for " + name)
 	return self
@@ -144,7 +160,8 @@ func auto_inherit() -> JSONablizationInfo:
 ## Build this JSONablizationInfo.
 ## [b]DO NOT MODIFY THIS INSTANCE AFTERWARD.[/b]
 func build() -> JSONablizationInfo:
-	JSONablizationInfo.all[type_as_text] = self
+	JSONablizationInfo.all_from_string[type_as_text] = self
+	JSONablizationInfo.all_from_type[type] = self
 	return self
 
 
