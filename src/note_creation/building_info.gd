@@ -2,7 +2,7 @@ class_name BuildingInfo
 extends RefCounted
 
 
-## All NoteBuilder need to know about the type of note it is creating.
+## All informations a [Builder] need to know about the type of note it is creating.
 
 
 ## Static variable storing informations about how to create notes.
@@ -10,14 +10,14 @@ extends RefCounted
 static var all: Dictionary = {}
 
 
-static func get_most_precise(object: Object) -> BuildingInfo:
+static func get_most_precise(for_type: Object) -> BuildingInfo:
 	var result: BuildingInfo = ST.dic_get_from_type(
 		BuildingInfo.all,
-		object
+		for_type
 	)
 	
 	if result == null:
-		assert(false, "No BuildingInfo for " + str(object))
+		assert(false, "No BuildingInfo for " + str(for_type))
 	
 	return result
 
@@ -73,6 +73,8 @@ func auto_setup_from_JSONablization_info() -> BuildingInfo:
 	var fetched: JSONablizationInfo = JSONablizationInfo.get_most_precise(instantiating_function.call())
 	
 	attributes_to_edit = fetched.attributes_to_save
+	if fetched.instantiating_function != instantiating_function:
+		instantiating_function = fetched.instantiating_function
 	
 	return self
 

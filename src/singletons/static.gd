@@ -52,15 +52,21 @@ static func is_ref_valid(ref: WeakRef) -> bool:
 static var NOT_FOUND = Object.new():
 	set(new): pass
 
+
 ## Returns the value associated to the type of the passed object,
 ## or the value associated with the closest ancestor.
-static func dic_get_from_type(dictionary: Dictionary, object: Object, default = null) -> Object:
-	var script_target: Script = object.get_script()
-	var result = dictionary.get(script_target, NOT_FOUND)
+static func dic_get_from_objects_type(dictionary: Dictionary, object: Object, default = null) -> Object:
+	return ST.dic_get_from_type(dictionary, object.get_script(), default)
 	
-	while result == NOT_FOUND and script_target.get_base_script():
-		script_target = script_target.get_base_script()
-		result = dictionary.get(script_target, NOT_FOUND)
+
+## Returns the value associated to the type passed,
+## or the value associated with the closest ancestor.
+static func dic_get_from_type(dictionary: Dictionary, type: Object, default = null) -> Object:
+	var result = dictionary.get(type, NOT_FOUND)
+	
+	while result == NOT_FOUND and type.get_base_script():
+		type = type.get_base_script()
+		result = dictionary.get(type, NOT_FOUND)
 	
 	if result == NOT_FOUND:
 		return default
