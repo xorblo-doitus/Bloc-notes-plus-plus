@@ -16,12 +16,17 @@ static func compare_precision(a: JSONablizationInfo, b: JSONablizationInfo) -> b
 
 
 static func get_most_precise(object: Object) -> JSONablizationInfo:
-	var script_target: Script = object.get_script()
-	var result: JSONablizationInfo = JSONablizationInfo.all_from_type.get(script_target)
-	while result == null and script_target.get_base_script():
-		script_target = script_target.get_base_script()
-		result = JSONablizationInfo.all_from_type.get(script_target)
+	var result: JSONablizationInfo = ST.dic_get_from_type(
+		JSONablizationInfo.all_from_type,
+		object
+	)
 	
+	#var script_target: Script = object.get_script()
+	#var result: JSONablizationInfo = JSONablizationInfo.all_from_type.get(script_target)
+	#while result == null and script_target.get_base_script():
+		#script_target = script_target.get_base_script()
+		#result = JSONablizationInfo.all_from_type.get(script_target)
+	#
 	if result == null:
 		assert(false, "No JSONablizationInfo for " + str(object))
 	
