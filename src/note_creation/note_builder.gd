@@ -1,8 +1,14 @@
 class_name NoteBuilder
-##Classe qui crée les notes
 extends RefCounted
 
-## Texte principal de la note et celui qui est affiché dans la liste de note
+
+## Un object s'interfaçant entre les entrées utilisateur et les notes.
+##
+## Permet de créer une [Note] au fur et à mesure, attribut par attribut,
+## tout en laissant la possibilité de changer le type final de la [Note].
+
+
+## Texte principal de la [Note] et celui qui est affiché dans la liste de note
 var title: String = ""
 ## Texte descriptif plus étoffé que le titre
 var description: String = ""
