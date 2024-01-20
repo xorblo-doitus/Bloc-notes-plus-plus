@@ -16,7 +16,7 @@ static func compare_precision(a: JSONablizationInfo, b: JSONablizationInfo) -> b
 
 
 static func get_most_precise(object: Object) -> JSONablizationInfo:
-	var result: JSONablizationInfo = ST.dic_get_from_type(
+	var result: JSONablizationInfo = ST.dic_get_from_objects_type(
 		JSONablizationInfo.all_from_type,
 		object
 	)
