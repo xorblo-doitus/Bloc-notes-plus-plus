@@ -6,15 +6,15 @@ extends RefCounted
 static var tokens: Array[String] = []
 static var global_scope := {}
 static var prefixes = ["/", "\\"]
-static var quick_entry = NoteBuilder
+static var quick_entry = Builder
 
 static func parse():
 	global_scope.clear()
-	global_scope["_curent_note_builder"] = NoteBuilder.new()
+	global_scope["_curent_builder"] = Builder.new()
 	
 	#if len(splited) == 2:
-		#NoteBuilder.title = splited[0]
-		#NoteBuilder.description = splited[1]
+		#Builder.title = splited[0]
+		#Builder.description = splited[1]
 	#for token in tokens:
 	while not tokens.is_empty():
 		var token: String = tokens.pop_front()
