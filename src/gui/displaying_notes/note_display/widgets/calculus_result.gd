@@ -1,5 +1,5 @@
 class_name WidgetCalculusResult
-extends Widget
+extends DisplayWidget
 
 
 static var equal_string = " ="

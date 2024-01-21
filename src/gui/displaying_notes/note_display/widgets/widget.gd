@@ -2,10 +2,6 @@ class_name Widget
 extends PanelContainer
 
 
-## If true, this widget is placed before the title
-@export var before: bool = false
-
-
 var _connections: Array[Connection] = []
 var note: Note:
 	set(new):

@@ -5,7 +5,8 @@ extends RefCounted
 ## the type of note to wich this UI applies.
 var type: Object
 ## A list of Widget PackedScenes
-var widgets: Array[PackedScene] = []
+var display_widgets: Array[PackedScene] = []
+var edition_widgets: Array[PackedScene] = []
 ## From wich NoteUI this one inherit it's informations
 var inherit: NoteUI
 
@@ -15,8 +16,13 @@ func set_type(_type: Object) -> NoteUI:
 	return self
 
 
-func set_widgets(_widgets: Array[PackedScene]) -> NoteUI:
-	widgets = _widgets
+func set_display_widgets(_display_widgets: Array[PackedScene]) -> NoteUI:
+	display_widgets = _display_widgets
+	return self
+
+
+func set_edition_widgets(_display_widgets: Array[PackedScene]) -> NoteUI:
+	display_widgets = _display_widgets
 	return self
 
 
