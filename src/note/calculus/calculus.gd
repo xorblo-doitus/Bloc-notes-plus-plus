@@ -63,10 +63,16 @@ static func ints_to_floats(expression: String) -> String:
 	return expression
 
 
+var error: ErrorHelper
 ## [b]READONLY[/b]: The value of the current
 var value: Variant:
 	set(_new):
 		var calculated: Variant = calculate()
+		if calculated is ErrorHelper:
+			error = calculated
+			return
+		error = null
+		
 		if typeof(calculated) == typeof(value) and calculated == value:
 			return
 		var old: Variant = value
