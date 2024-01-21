@@ -1,12 +1,13 @@
 keys,en,fr
 EXEMPLE_NOTE_TITLE,Exemple note's title.,Exemple d’un titre de note.
 EXEMPLE_NOTE_DESCRIPTION,Exemple note's description.,Exemple d’une description de note.
+ERROR_PREFIX,Error: ,Erreur : 
 ERROR_LOAD_FAILED,Loading failed,Le chargement a échoué
 ERROR_WORKSPACE_LOAD_FAILED,Workspace loading failed,Le chargement de l’espace de travail a échoué
-ERROR_PARSING_JSON,,
-PARSED_TEXT_WAS,,
-ERROR_WITHOUT_DESCRIPTION,,
+ERROR_PARSING_JSON,Failed to parse JSON,JSON malformé
+PARSED_TEXT_WAS,Parsed text was:,Le texte analyser était :
+ERROR_WITHOUT_DESCRIPTION,Error without description.,L’erreur n’a pas de description.
 ERROR_STRING,Error n°{godot_builtin_error} ({error_as_text}),Erreur n°{godot_builtin_error} ({error_as_text})
 en,English,Anglais
 fr,French,Français
-LOCALIZATION_PROGRESS,70%,70%
+LOCALIZATION_PROGRESS,100%,100%
