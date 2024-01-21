@@ -12,4 +12,4 @@ static var singleton: CustomFunctions = CustomFunctions.new()
 
 ## Easter egg
 func soleil() -> float:
-	return 713705
+	return 713705.0
