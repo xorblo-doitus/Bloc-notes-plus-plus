@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://cpb3qocd5avyd"]
+
+[resource]
+Button/constants/icon_max_width = 16
+ButtonMargin/base_type = &"MarginContainer"
+ButtonMargin/constants/margin_bottom = 4
+ButtonMargin/constants/margin_left = 4
+ButtonMargin/constants/margin_right = 4
+ButtonMargin/constants/margin_top = 4
