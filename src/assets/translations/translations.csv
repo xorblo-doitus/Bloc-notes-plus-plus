@@ -1,6 +1,7 @@
 keys,en,fr
 EXEMPLE_NOTE_TITLE,Exemple note's title.,Exemple d’un titre de note.
 EXEMPLE_NOTE_DESCRIPTION,Exemple note's description.,Exemple d’une description de note.
+NO_DESCRIPTION,No description.,Pas de description.
 ERROR_PREFIX,Error: ,Erreur : 
 ERROR_LOAD_FAILED,Loading failed,Le chargement a échoué
 ERROR_WORKSPACE_LOAD_FAILED,Workspace loading failed,Le chargement de l’espace de travail a échoué

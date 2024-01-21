@@ -80,7 +80,7 @@ func _on_note_title_changed() -> void:
 
 
 func _on_note_description_changed() -> void:
-	title.tooltip_text = _displaying.description
+	title.tooltip_text = _displaying.description if _displaying.description else tr("NO_DESCRIPTION")
 
 
 func _on_title_text_changed(new: String, _old: String):
