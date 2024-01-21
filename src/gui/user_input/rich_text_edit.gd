@@ -92,12 +92,15 @@ func _ready():
 
 
 func _set(property: StringName, value: Variant):
-	if property == &"text":
-		if value == "":
-			self.text = " "
-			return true
-		if not multiline and "\n" in value:
-			self.text = value.replace("\n", " ")
+	match property:
+		&"text":
+			#if value == "":
+				#self.text = " "
+				#return true
+			if not multiline and "\n" in value:
+				self.text = value.replace("\n", " ")
+		&"tooltip_text":
+			code_edit.tooltip_text = value
 
 
 func _on_code_edit_text_changed():
