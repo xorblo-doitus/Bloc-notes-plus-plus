@@ -16,16 +16,16 @@ func _connect_to(_note: Note) -> void:
 
 
 func update_value() -> void:
-	if note.value is ErrorHelper:
-		error_button.tooltip_text = str(note.value)
-		result.hide()
+	if note.error:
+		error_button.tooltip_text = str(note.error)
+		result.add_theme_color_override(&"font_color", get_theme_color(&"font_placeholder_color", &"LineEdit"))
 		error_button.show()
 	else:
 		result.text = str(note.value) + WidgetCalculusResult.equal_string
-		result.show()
+		result.remove_theme_color_override(&"font_color")
 		error_button.hide()
 
 
 func _on_error_button_pressed() -> void:
-	if note.value is ErrorHelper:
-		note.value.popup()
+	if note.error:
+		note.error.popup()

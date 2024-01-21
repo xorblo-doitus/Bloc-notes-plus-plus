@@ -112,11 +112,11 @@ func calculate(string_expression: String = title) -> Variant:
 	var expression = Expression.new()
 	
 	var current_variables: Dictionary = Calculus.get_all_variables()
-	var error: Error = expression.parse(string_expression, current_variables.keys())
+	var builtin_error: Error = expression.parse(string_expression, current_variables.keys())
 	
-	if error:
+	if builtin_error:
 		var error_helper: ErrorHelper = ErrorHelper.new()
-		error_helper.godot_builtin_error = error
+		error_helper.godot_builtin_error = builtin_error
 		error_helper.description = expression.get_error_text()
 		return error_helper
 	
