@@ -117,14 +117,33 @@ func calculate(string_expression: String = title) -> Variant:
 	if builtin_error:
 		var error_helper: ErrorHelper = ErrorHelper.new()
 		error_helper.godot_builtin_error = builtin_error
-		error_helper.description = expression.get_error_text()
+		error_helper.description = translate_error_text(expression.get_error_text())
 		return error_helper
 	
 	var result = expression.execute(current_variables.values(), CustomFunctions.singleton, false)
 	
 	if expression.has_execute_failed():
 		var error_helper: ErrorHelper = ErrorHelper.new()
-		error_helper.description = expression.get_error_text()
+		error_helper.description = translate_error_text(expression.get_error_text())
 		return error_helper
 	
 	return result
+
+
+class ErrorRegexes:
+	static func create_regex(from_string: String) -> RegEx:
+		var new_regex := RegEx.new()
+		new_regex.compile(from_string)
+		return new_regex
+	
+	static var undefined_variable := create_regex(r"Invalid named index '(?<variable_name>.*)'")
+
+
+func translate_error_text(error_text: String) -> String:
+	var regex_match: RegExMatch = ErrorRegexes.undefined_variable.search(error_text)
+	if regex_match != null:
+		return tr("ERROR_UNDEFINED_VARIABLE").format({
+			&"variable_name": regex_match.get_string("variable_name")
+		})
+	
+	return error_text

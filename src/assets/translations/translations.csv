@@ -4,6 +4,7 @@ EXEMPLE_NOTE_DESCRIPTION,Exemple note's description.,Exemple d’une description
 ERROR_PREFIX,Error: ,Erreur : 
 ERROR_LOAD_FAILED,Loading failed,Le chargement a échoué
 ERROR_WORKSPACE_LOAD_FAILED,Workspace loading failed,Le chargement de l’espace de travail a échoué
+ERROR_UNDEFINED_VARIABLE,"The variable ""{variable_name}"" does not exist.",La variable « {variable_name} » n’existe pas.
 ERROR_PARSING_JSON,Failed to parse JSON,JSON malformé
 PARSED_TEXT_WAS,Parsed text was:,Le texte analyser était :
 ERROR_WITHOUT_DESCRIPTION,Error without description.,L’erreur n’a pas de description.
