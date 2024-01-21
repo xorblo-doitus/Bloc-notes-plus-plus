@@ -11,5 +11,5 @@ static var singleton: CustomFunctions = CustomFunctions.new()
 
 
 ## Easter egg
-func soleil() -> void:
+func soleil() -> float:
 	return 713705
