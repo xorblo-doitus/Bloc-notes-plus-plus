@@ -109,11 +109,16 @@ func calculate(string_expression: String = title) -> Variant:
 	var error: Error = expression.parse(string_expression, current_variables.keys())
 	
 	if error:
-		return expression.get_error_text()
+		var error_helper: ErrorHelper = ErrorHelper.new()
+		error_helper.godot_builtin_error = error
+		error_helper.description = expression.get_error_text()
+		return error_helper
 	
-	var result = expression.execute(current_variables.values(), CustomFunctions.singleton)
+	var result = expression.execute(current_variables.values(), CustomFunctions.singleton, false)
 	
 	if expression.has_execute_failed():
-		return expression.get_error_text()
+		var error_helper: ErrorHelper = ErrorHelper.new()
+		error_helper.description = expression.get_error_text()
+		return error_helper
 	
 	return result
