@@ -8,3 +8,8 @@ extends RefCounted
 
 
 static var singleton: CustomFunctions = CustomFunctions.new()
+
+
+## Easter egg
+func soleil() -> void:
+	return 713705
