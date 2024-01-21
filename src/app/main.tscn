@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ciceafugib0p4"]
+[gd_scene load_steps=5 format=3 uid="uid://ciceafugib0p4"]
 
 [ext_resource type="Script" path="res://src/app/main.gd" id="1_71xkc"]
 [ext_resource type="PackedScene" uid="uid://bbqidfrhlnl3x" path="res://src/gui/displaying_notes/note_list_display.tscn" id="2_670oq"]
+[ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/rich_text_edit.tscn" id="3_3xdaj"]
+[ext_resource type="Texture2D" uid="uid://crs2ptgltvwm5" path="res://src/assets/images/icons/add.png" id="4_o3tyg"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("notes_display")]
 layout_mode = 3
@@ -11,9 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_71xkc")
-notes_display = NodePath("Notes/DefaultNotes")
+notes_display = NodePath("VBoxContainer/Notes/DefaultNotes")
 
-[node name="Notes" type="ScrollContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,5 +23,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DefaultNotes" parent="Notes" instance=ExtResource("2_670oq")]
+[node name="Notes" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DefaultNotes" parent="VBoxContainer/Notes" instance=ExtResource("2_670oq")]
+layout_mode = 2
+
+[node name="Adding" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FastInput" parent="VBoxContainer/Adding" instance=ExtResource("3_3xdaj")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/Adding"]
+layout_mode = 2
+icon = ExtResource("4_o3tyg")
