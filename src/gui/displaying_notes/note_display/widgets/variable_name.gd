@@ -1,5 +1,5 @@
 class_name WidgetVariableName
-extends Widget
+extends DisplayWidget
 
 
 static var equal_string: String = "= "

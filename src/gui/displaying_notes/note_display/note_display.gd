@@ -21,7 +21,7 @@ var _displaying: Note
 
 @onready var title: RichTextEdit = %Title
 @onready var grip_component: GripComponent = %GripComponent
-@onready var widgets: HBoxContainer = %Widgets
+@onready var display_widgets: HBoxContainer = %Widgets
 
 
 ## A reference to the default packed scene associated with this class
@@ -36,7 +36,7 @@ static func instantiate() -> NoteDisplay:
 	return _default_scene.instantiate()
 
 
-var _widgets: Array[Widget] = []
+var _display_widgets: Array[DisplayWidget] = []
 
 func display(note: Note) -> void:
 	if not is_node_ready():
@@ -53,11 +53,11 @@ func display(note: Note) -> void:
 	
 	if note_UIs.has(_displaying.get_script()):
 		for note_ui: NoteUI in note_UIs[_displaying.get_script()].get_heritage():
-			for widget_scene in note_ui.widgets:
-				var widget: Widget = widget_scene.instantiate()
-				widgets.add_child(widget)
+			for widget_scene in note_ui.display_widgets:
+				var widget: DisplayWidget = widget_scene.instantiate()
+				display_widgets.add_child(widget)
 				if widget.before:
-					widgets.move_child(widget, 1)
+					display_widgets.move_child(widget, 1)
 				
 				widget.note = _displaying
 	
@@ -69,8 +69,8 @@ func undisplay() -> void:
 	while _connections:
 		_connections.pop_back().destroy()
 		
-	while _widgets:
-		_widgets.pop_back().queue_free()
+	while _display_widgets:
+		_display_widgets.pop_back().queue_free()
 	
 	_displaying = null
 

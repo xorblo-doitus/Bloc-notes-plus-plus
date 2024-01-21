@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://egpu0f2w06qp"]
+
+[ext_resource type="PackedScene" uid="uid://b1l63s0gxpyhv" path="res://src/gui/displaying_notes/note_display/widgets/widget.tscn" id="1_htrkj"]
+
+[node name="EditionWidget" instance=ExtResource("1_htrkj")]
