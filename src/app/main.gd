@@ -1,7 +1,7 @@
 extends Control
 
 
-## Please do not update this value after initialization
+## Please do NOT update this value after initialization.
 @export var notes_display: NoteListDisplay
 
 
