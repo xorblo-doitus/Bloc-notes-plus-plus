@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1ig6adtfok5w"]
+[gd_scene load_steps=4 format=3 uid="uid://b1ig6adtfok5w"]
 
 [ext_resource type="PackedScene" uid="uid://b1l63s0gxpyhv" path="res://src/gui/displaying_notes/note_display/widgets/widget.tscn" id="1_85op2"]
 [ext_resource type="Script" path="res://src/gui/displaying_notes/note_display/widgets/calculus_result.gd" id="2_dvcag"]
+[ext_resource type="Texture2D" uid="uid://bxqqwrohqshop" path="res://src/assets/images/icons/error.png" id="3_uockl"]
 
 [node name="CalcResultWidget" instance=ExtResource("1_85op2")]
 offset_right = 10.0
@@ -15,3 +16,15 @@ before = true
 unique_name_in_owner = true
 layout_mode = 2
 text = "="
+
+[node name="ErrorButton" type="TextureButton" parent="." index="1"]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_uockl")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="ErrorButton" to="." method="_on_error_button_pressed"]

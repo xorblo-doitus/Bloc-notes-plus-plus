@@ -4,8 +4,8 @@ extends Widget
 
 static var equal_string = " ="
 
-
 @onready var result: Label = %Result
+@onready var error_button: TextureButton = %ErrorButton
 
 
 func _connect_to(_note: Note) -> void:
@@ -16,4 +16,16 @@ func _connect_to(_note: Note) -> void:
 
 
 func update_value() -> void:
-	result.text = str(note.get_value()) + WidgetCalculusResult.equal_string
+	if note.value is ErrorHelper:
+		error_button.tooltip_text = str(note.value)
+		result.hide()
+		error_button.show()
+	else:
+		result.text = str(note.value) + WidgetCalculusResult.equal_string
+		result.show()
+		error_button.hide()
+
+
+func _on_error_button_pressed() -> void:
+	if note.value is ErrorHelper:
+		note.value.popup()
