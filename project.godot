@@ -41,6 +41,10 @@ window/size/viewport_height=768
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
+[gui]
+
+theme/custom="res://src/gui/themes/default.tres"
+
 [input]
 
 fullscreen={
