@@ -6,6 +6,7 @@
 
 [node name="TitleWidgetEdit" instance=ExtResource("1_8usav")]
 script = ExtResource("2_4xe1m")
+attribute = ""
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
 layout_mode = 2
