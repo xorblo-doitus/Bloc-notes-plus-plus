@@ -1,14 +1,21 @@
-class_name EditionWidget
+class_name WidgetEdit
 extends Widget
 
 
-@export var attribute: String
+var builder: Builder:
+	set(new):
+		Connection.destroy_all(_connections)
+		builder = new
+		_connect_to(builder)
 
 
-## @virtual Returns the value for this attribute
-func get_value() -> Variant:
-	return
+## Virtual method. Remember to call super() somewhere.
+## Called automatically when [member builder] is set.
+func _connect_to(_builder: Builder) -> void:
+	pass
 
 
-func set_value(_new: Variant) -> void:
-	return
+## Virtual method. Remember to call super() somewhere.
+## Keys are attributes' names and values are their values.
+func get_attributes_and_values() -> Dictionary:
+	return {}
