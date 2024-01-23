@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://egpu0f2w06qp"]
 
 [ext_resource type="PackedScene" uid="uid://b1l63s0gxpyhv" path="res://src/gui/displaying_notes/note_display/widgets/widget.tscn" id="1_htrkj"]
-[ext_resource type="Script" path="res://src/gui/user_input/note_edition/edition_widgets/widget_edit.gd" id="2_tj1ib"]
+[ext_resource type="Script" path="res://src/gui/user_input/note_edition/edition_widgets/widget_edit.gd" id="2_4ygr8"]
 
 [node name="WidgetEdit" instance=ExtResource("1_htrkj")]
-script = ExtResource("2_tj1ib")
+script = ExtResource("2_4ygr8")
