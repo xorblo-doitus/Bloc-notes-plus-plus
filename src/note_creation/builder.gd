@@ -8,6 +8,9 @@ extends RefCounted
 ## tout en laissant la possibilité de changer le type final de la [Note].
 
 
+
+signal attribute_changed(attribute: String, new_value: Variant)
+
 ### Texte principal de la [Note] et celui qui est affiché dans la liste de note
 #var title: String = ""
 ### Texte descriptif plus étoffé que le titre
@@ -20,8 +23,17 @@ extends RefCounted
 ## The type of object to be created.
 var type: Object = Note
 ## The attributes values of the future new object.
+## Please do not edit this dictionary directly, but instead use
+## [method set_attribute] to trigger [signal attribute_changed]
 var attributes: Dictionary = {}
 
+
+func set_attribute(attribute: String, new_value: Variant) -> void:
+	if attributes[attribute] == new_value:
+		return
+	
+	attributes[attribute] = new_value
+	attribute_changed.emit(attribute, new_value)
 
 
 func build() -> Object:
