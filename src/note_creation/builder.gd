@@ -11,6 +11,10 @@ extends RefCounted
 
 signal attribute_changed(attribute: String, new_value: Variant)
 
+
+class NO_VALUE_FOR_ATTRIBUTE: pass
+
+
 ### Texte principal de la [Note] et celui qui est affiché dans la liste de note
 #var title: String = ""
 ### Texte descriptif plus étoffé que le titre
@@ -29,7 +33,8 @@ var attributes: Dictionary = {}
 
 
 func set_attribute(attribute: String, new_value: Variant) -> void:
-	if attributes[attribute] == new_value:
+	var already_existing = attributes.get(attribute, NO_VALUE_FOR_ATTRIBUTE)
+	if typeof(already_existing) == typeof(new_value) and already_existing == new_value:
 		return
 	
 	attributes[attribute] = new_value
