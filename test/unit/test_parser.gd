@@ -2,8 +2,8 @@ extends GutTest
 
 func test_tokenise():
 	assert_eq(
-		Parser.tokenise("/task 23/06/2024"), 
-		["/task", "23/06/2024"], 
+		Parser.tokenise("/task 23/06/2024 Do something"), 
+		["/task", "23/06/2024", "Do", "something", "/flush_unused_tokens"], 
 		"Tokenise Don't Work"
 	)
 
@@ -22,7 +22,11 @@ func test_command():
 		builder.attributes.get("name") , "NOMVAR"
 	)
 	
+	var builded = builder.build()
+	
 	assert_true(
-		Variable.new("1+1").set_name("NOMVAR")._is_equal(
-		builder.build()
-	))
+		ST.is_equal(
+			Variable.new("1+1").set_name("NOMVAR"),
+			builded
+		)
+	)
