@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://rlfmcccv762a"]
+
+[ext_resource type="Script" path="res://src/gui/user_input/note_edition/builder_gui/builder_gui.gd" id="1_3f32s"]
+
+[node name="BuilderGui" type="PopupPanel"]
+visible = true
+script = ExtResource("1_3f32s")
