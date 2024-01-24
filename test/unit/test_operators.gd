@@ -2,6 +2,20 @@ extends GutTest
 
 
 func test_is_equal() -> void:
+	assert_true(ST.is_equal(1, 1))
+	assert_true(ST.is_equal("b", "b"))
+	assert_true(ST.is_equal(1.0, 1))
+	assert_true(ST.is_equal(&"b", "b"))
+	
+	assert_false(ST.is_equal(1, 2))
+	assert_false(ST.is_equal("b", "a"))
+	assert_false(ST.is_equal(1.0, 2))
+	assert_false(ST.is_equal(&"b", "a"))
+	
+	assert_false(ST.is_equal(1, "1"))
+	assert_false(ST.is_equal(Object.new(), Object.new()))
+	assert_false(ST.is_equal(Object.new(), 8978941))
+	
 	var note := Note.new()
 	note.title = "Titre"
 	note.description = "Une description"
@@ -22,18 +36,28 @@ func test_is_equal() -> void:
 	
 	assert_true(note._is_equal(note), "A note should be equal to itself.")
 	assert_true(note2._is_equal(note2), "A note should be equal to itself.")
+	assert_true(ST.is_equal(note, note), "ST.is_equal() don't work.")
+	assert_true(ST.is_equal(note2, note2), "ST.is_equal() don't work.")
 	
 	assert_false(note._is_equal(note2), "A note should not be equal to one with a different title.")
 	assert_false(note2._is_equal(note), "A note should not be equal to one with a different title.")
+	assert_false(ST.is_equal(note, note2), "ST.is_equal() don't work.")
+	assert_false(ST.is_equal(note2, note), "ST.is_equal() don't work.")
 	
 	assert_true(variable._is_equal(variable))
 	assert_true(variable2._is_equal(variable2))
+	assert_true(ST.is_equal(variable, variable), "ST.is_equal() don't work.")
+	assert_true(ST.is_equal(variable2, variable2), "ST.is_equal() don't work.")
 	
 	assert_false(variable._is_equal(variable2), "A variable should not be equal to one with a different name.")
 	assert_false(variable2._is_equal(variable), "A variable should not be equal to one with a different name.")
+	assert_false(ST.is_equal(variable, variable2), "ST.is_equal() don't work.")
+	assert_false(ST.is_equal(variable2, variable), "ST.is_equal() don't work.")
 	
 	assert_false(note._is_equal(variable), "A variable and a note should not be equal.")
 	assert_false(variable._is_equal(note), "A variable and a note should not be equal.")
+	assert_false(ST.is_equal(note, variable), "ST.is_equal() don't work.")
+	assert_false(ST.is_equal(variable, note), "ST.is_equal() don't work.")
 	
 	
 	var note_list: NoteList = NoteList.new([note, note2, variable, variable2])
