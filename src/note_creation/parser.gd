@@ -23,7 +23,8 @@ static func parse():
 				for command in Command.all:
 					if command_name in command.names:
 						var arguments: Array[String] = []
-						arguments.append(tokens.pop_front())
+						for __ in len(command.parameters):
+							arguments.append(tokens.pop_front())
 						command.callback.call(arguments, global_scope)
 				break
 			

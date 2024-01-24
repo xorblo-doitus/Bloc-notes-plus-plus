@@ -9,9 +9,12 @@ static func _static_init():
 static func create_defaults():
 	Command.new().set_names(
 		["store", "s"]
+	).set_parameters(
+		["variable_name"]
 	).set_callback(
 		DefaultCommands.store_callback
 	).build()
+
 
 static func store_callback(argument: Array[String], context: Dictionary):
 	context["_current_builder"].type = Variable
