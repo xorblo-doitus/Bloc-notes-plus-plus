@@ -9,8 +9,7 @@ static var prefixes = ["/", "\\"]
 static var quick_entry = Builder
 
 static func parse():
-	global_scope.clear()
-	global_scope["_curent_builder"] = Builder.new()
+	reset_global_scope()
 	
 	#if len(splited) == 2:
 		#Builder.title = splited[0]
@@ -23,14 +22,14 @@ static func parse():
 				var command_name: String = token.trim_prefix(prefix)
 				for command in Command.all:
 					if command_name in command.names:
-						var arguments = []
+						var arguments: Array[String] = []
 						arguments.append(tokens.pop_front())
 						command.callback.call(arguments, global_scope)
 				break
 			
 
 static func tokenise(text) -> Array[String]:
-	var tokens: Array[String] = []
+	tokens = []
 	var splited: PackedStringArray = text.split(" ", true, 1)
 	
 	tokens.append_array(splited)
@@ -40,3 +39,10 @@ static func tokenise(text) -> Array[String]:
 
 static func reset_global_scope():
 	global_scope.clear()
+	
+	global_scope["_current_builder"] = Builder.new()
+
+static func execute(text: String):
+	tokenise(text)
+	parse()
+	return global_scope.duplicate()
