@@ -72,3 +72,31 @@ static func dic_get_from_type(dictionary: Dictionary, type: Object, default = nu
 		return default
 	
 	return result
+
+
+const compatible_types_for_comparison = [
+	[
+		TYPE_FLOAT,
+		TYPE_INT,
+	],
+	[
+		TYPE_STRING,
+		TYPE_STRING_NAME,
+	],
+]
+
+static func is_equal(a: Variant, b: Variant) -> bool:
+	var type_a: int = typeof(a)
+	var type_b: int = typeof(b)
+	
+	if type_a != type_b:
+		for compatibility_list in compatible_types_for_comparison:
+			if type_a in compatibility_list and type_b in compatibility_list:
+				return a == b
+		return false
+	
+	if type_a == TYPE_OBJECT:
+		if a.has_method(&"_is_equal") and b.has_method(&"_is_equal"):
+			return a._is_equal(b)
+	
+	return a == b
