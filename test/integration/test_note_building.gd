@@ -38,7 +38,7 @@ func test_build() -> void:
 
 
 func test_type_switching() -> void:
-	var variable: Variable = Variable.new("1+1", "Description inutile").set_name("ma_variable")
+	var variable: Variable = Variable.new("1+1", "Description inutile").set_name("klsdncflkzeq")
 	
 	var builder = Builder.new(variable)
 	builder.type = Note
