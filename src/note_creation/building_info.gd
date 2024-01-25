@@ -76,6 +76,13 @@ func auto_setup_from_JSONablization_info() -> BuildingInfo:
 	if fetched.instantiating_function != instantiating_function:
 		instantiating_function = fetched.instantiating_function
 	
+	var ancestor = fetched
+	while ancestor.inherit:
+		if BuildingInfo.all.has(ancestor.inherit.type):
+			inherit = BuildingInfo.all.get(ancestor.inherit.type)
+			break
+		ancestor = ancestor.inherit
+	
 	return self
 
 
