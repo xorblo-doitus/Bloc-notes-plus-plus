@@ -32,6 +32,11 @@ var type: Object = Note
 var attributes: Dictionary = {}
 
 
+func _init(object: Object = null) -> void:
+	if object != null:
+		edit_object(object)
+
+
 func set_attribute(attribute: String, new_value: Variant) -> void:
 	var already_existing = attributes.get(attribute, NO_VALUE_FOR_ATTRIBUTE)
 	if typeof(already_existing) == typeof(new_value) and already_existing == new_value:
