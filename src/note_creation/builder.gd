@@ -59,13 +59,14 @@ func edit_object(object: Object, use_object_current_config: bool = true) -> void
 	type = object.get_script()
 	
 	if use_object_current_config:
-		var infos: BuildingInfo = BuildingInfo.get_most_precise(type)
+		var best_infos: BuildingInfo = BuildingInfo.get_most_precise(type)
 		
 		attributes.clear()
 		attributes.merge(object.get_meta(&"_builder_unused_attributes", {}))
 		
-		for attribute in infos.attributes_to_edit:
-			attributes[attribute] = object.get(attribute)
+		for infos in best_infos.get_consecutive_infos():
+			for attribute in infos.attributes_to_edit:
+				attributes[attribute] = object.get(attribute)
 
 
 func apply_to_existing(object: Object) -> void:
