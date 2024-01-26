@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3u5h7tjecu0a"]
 
-[ext_resource type="PackedScene" path="res://src/gui/user_input/note_edition/edition_widgets/edittion_widget.tscn" id="1_8usav"]
+[ext_resource type="PackedScene" uid="uid://egpu0f2w06qp" path="res://src/gui/user_input/note_edition/edition_widgets/widget_edit.tscn" id="1_8usav"]
 [ext_resource type="Script" path="res://src/gui/user_input/note_edition/edition_widgets/title_widget_edit.gd" id="2_4xe1m"]
-[ext_resource type="Script" path="res://src/gui/user_input/rich_text_edit.gd" id="3_ulu4c"]
+[ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/rich_text_edit.tscn" id="4_5j13u"]
 
 [node name="TitleWidgetEdit" instance=ExtResource("1_8usav")]
 script = ExtResource("2_4xe1m")
@@ -15,10 +15,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "EDIT_TITLE"
 
-[node name="TitleInput" type="MarginContainer" parent="HBoxContainer" index="1"]
+[node name="TitleInput" parent="HBoxContainer" index="1" instance=ExtResource("4_5j13u")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
-script = ExtResource("3_ulu4c")
 
 [connection signal="text_changed" from="HBoxContainer/TitleInput" to="." method="_on_title_input_text_changed"]
