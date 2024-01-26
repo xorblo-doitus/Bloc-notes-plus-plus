@@ -5,6 +5,12 @@ extends ConfirmationDialog
 signal finished()
 
 
+static var _TYPE_IDS = [
+	Note,
+	Calculus,
+]
+
+
 ## A reference to the default packed scene associated with this class
 static var _default_scene: PackedScene:
 	get:
@@ -47,6 +53,9 @@ var builder: Builder:
 		update()
 
 
+@onready var type_selector: OptionButton = %TypeSelector
+
+
 #func _init() -> void:
 	#transient = true
 	#exclusive = true
@@ -65,8 +74,16 @@ func _ready() -> void:
 
 
 func update() -> void:
-	pass
+	if not is_node_ready():
+		ready.connect(update, CONNECT_ONE_SHOT)
+		return
+	
+	type_selector.selected = _TYPE_IDS.find(builder.type)
 
 
 func _finish() -> void:
 	finished.emit()
+
+
+func _on_type_selector_item_selected(index: int) -> void:
+	builder.type = _TYPE_IDS[index]
