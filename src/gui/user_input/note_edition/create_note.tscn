@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2vufis0m7yg5"]
+
+[ext_resource type="Texture2D" uid="uid://crs2ptgltvwm5" path="res://src/assets/images/icons/add.png" id="1_tp1n5"]
+[ext_resource type="Script" path="res://src/gui/user_input/note_edition/create_note.gd" id="2_plcjp"]
+
+[node name="CreateNote" type="Button"]
+icon = ExtResource("1_tp1n5")
+script = ExtResource("2_plcjp")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
