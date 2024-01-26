@@ -120,7 +120,11 @@ func calculate(string_expression: String = title) -> Variant:
 		error_helper.description = translate_error_text(expression.get_error_text())
 		return error_helper
 	
-	var result = expression.execute(current_variables.values(), CustomFunctions.singleton, false)
+	var result = expression.execute(
+		current_variables.values(),
+		CustomFunctions.singleton,
+		OS.is_debug_build() and EasySettings.get_setting("debug/gdscript/show_expression_errors")
+	)
 	
 	if expression.has_execute_failed():
 		var error_helper: ErrorHelper = ErrorHelper.new()

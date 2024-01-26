@@ -30,6 +30,7 @@ Init="res://src/singletons/init.gd"
 [debug]
 
 shapes/drop_area/draw=true
+gdscript/show_expression_errors=true
 
 [display]
 
