@@ -37,6 +37,7 @@ gdscript/show_expression_errors=true
 
 window/size/viewport_width=512
 window/size/viewport_height=768
+window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
