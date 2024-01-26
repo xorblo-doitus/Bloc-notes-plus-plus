@@ -28,6 +28,11 @@ var description: String = "":
 		description = new
 		description_changed.emit(description, old)
 
+## A date to wich this note is related (ex: time limit for a task, day it was created, etc...).
+## 0 meaning there is no date associated.
+var date: int = 0
+
+
 ## Des données (comme un texte, un nombre etc...) utiles pour la note
 ## [br] key: [String] value: [Variant]
 var other_data: Dictionary = {}
