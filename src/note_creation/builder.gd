@@ -48,7 +48,7 @@ func set_attribute(attribute: String, new_value: Variant) -> void:
 
 func build() -> Object:
 	var infos: BuildingInfo = BuildingInfo.get_most_precise(type)
-	var new: Object = infos.instantiating_function.call()
+	var new: Object = infos.instantiating_function.call() if infos.type == type else type.new()
 	
 	apply_to_existing(new)
 	
