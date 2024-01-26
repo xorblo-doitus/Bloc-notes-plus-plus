@@ -12,3 +12,5 @@ func _ready():
 		DefaultCommands,
 	]):
 		pass
+	
+	BuilderGUI._fetch_types()
