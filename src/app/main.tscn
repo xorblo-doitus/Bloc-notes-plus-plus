@@ -40,4 +40,5 @@ size_flags_horizontal = 3
 [node name="CreateNote" parent="VBoxContainer/Adding" instance=ExtResource("4_5y3he")]
 layout_mode = 2
 
+[connection signal="text_set" from="VBoxContainer/Adding/FastInput" to="." method="_on_fast_input_text_set"]
 [connection signal="note_created" from="VBoxContainer/Adding/CreateNote" to="." method="_on_note_created"]
