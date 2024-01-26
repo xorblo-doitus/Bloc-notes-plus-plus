@@ -8,6 +8,8 @@ signal finished()
 static var _TYPE_IDS = [
 	Note,
 	Calculus,
+	Variable,
+	Task,
 ]
 
 

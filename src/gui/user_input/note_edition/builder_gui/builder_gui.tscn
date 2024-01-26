@@ -19,11 +19,15 @@ offset_bottom = 51.0
 [node name="TypeSelector" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-item_count = 2
+item_count = 4
 popup/item_0/text = "TYPE_NOTE"
 popup/item_0/id = 0
 popup/item_1/text = "TYPE_CALCULUS"
 popup/item_1/id = 1
+popup/item_2/text = "TYPE_VARIABLE"
+popup/item_2/id = 2
+popup/item_3/text = "TYPE_TASK"
+popup/item_3/id = 3
 
 [connection signal="canceled" from="." to="." method="_finish"]
 [connection signal="confirmed" from="." to="." method="_finish"]
