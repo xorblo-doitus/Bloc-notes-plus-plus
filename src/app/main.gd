@@ -92,3 +92,9 @@ func _on_note_list_changed(new: Array[Note], _old: Array[Note]) -> void:
 
 func _on_note_created(note: Note) -> void:
 	workspace.note_list.notes.append(note)
+
+
+func _on_fast_input_text_set(new: String) -> void:
+	if new:
+		_on_note_created(Parser.new().execute(new)["_current_builder"].build())
+		$VBoxContainer/Adding/FastInput.text = ""
