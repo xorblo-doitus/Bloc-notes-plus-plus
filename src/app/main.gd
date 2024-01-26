@@ -27,7 +27,6 @@ func load_workspace() -> void:
 	)
 	
 	if loaded_workspace is ErrorHelper:
-		
 		if not loaded_workspace.godot_builtin_error == ERR_FILE_NOT_FOUND:
 			loaded_workspace.set_description(
 				tr(&"ERROR_WORKSPACE_LOAD_FAILED")
@@ -89,3 +88,7 @@ func _on_note_list_changed(new: Array[Note], _old: Array[Note]) -> void:
 	#notes_display.note_list = workspace.note_list
 	#
 	#_listening_to_notes_change = true
+
+
+func _on_note_created(note: Note) -> void:
+	workspace.note_list.notes.append(note)

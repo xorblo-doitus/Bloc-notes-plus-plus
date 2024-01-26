@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/app/main.gd" id="1_71xkc"]
 [ext_resource type="PackedScene" uid="uid://bbqidfrhlnl3x" path="res://src/gui/displaying_notes/note_list_display.tscn" id="2_670oq"]
 [ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/rich_text_edit.tscn" id="3_3xdaj"]
-[ext_resource type="Texture2D" uid="uid://crs2ptgltvwm5" path="res://src/assets/images/icons/add.png" id="4_o3tyg"]
+[ext_resource type="PackedScene" uid="uid://d2vufis0m7yg5" path="res://src/gui/user_input/note_edition/create_note.tscn" id="4_5y3he"]
 
 [node name="Main" type="Control" node_paths=PackedStringArray("notes_display")]
 layout_mode = 3
@@ -37,6 +37,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/Adding"]
+[node name="CreateNote" parent="VBoxContainer/Adding" instance=ExtResource("4_5y3he")]
 layout_mode = 2
-icon = ExtResource("4_o3tyg")
+
+[connection signal="note_created" from="VBoxContainer/Adding/CreateNote" to="." method="_on_note_created"]
