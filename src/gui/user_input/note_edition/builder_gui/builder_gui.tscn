@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" path="res://src/gui/user_input/note_edition/builder_gui/builder_gui.gd" id="1_3f32s"]
 
-[node name="BuilderGui" type="PopupPanel"]
+[node name="ConfirmationDialog" type="ConfirmationDialog"]
+title = "EDIT"
+initial_position = 2
 visible = true
+transient = false
+cancel_button_text = "CANCEL"
 script = ExtResource("1_3f32s")
+
+[connection signal="canceled" from="." to="." method="_finish"]
+[connection signal="confirmed" from="." to="." method="_finish"]
+[connection signal="custom_action" from="." to="." method="_finish" unbinds=1]
