@@ -6,9 +6,12 @@ extends RefCounted
 var connected_to: Signal
 ## The callable that is called by the signal emission.
 var callback: Callable
+@warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")
+var flags: ConnectFlags = 0
 
 
-func _init(_connected_to: Signal, _callback: Callable, auto_connect: bool = false) -> void:
+@warning_ignore("int_as_enum_without_cast", "int_as_enum_without_match")
+func _init(_connected_to: Signal, _callback: Callable, auto_connect: bool = false, _flags: ConnectFlags = 0) -> void:
 	connected_to = _connected_to
 	callback = _callback
 	
@@ -18,7 +21,7 @@ func _init(_connected_to: Signal, _callback: Callable, auto_connect: bool = fals
 
 ## Create the signal connection
 func create() -> void:
-	connected_to.connect(callback)
+	connected_to.connect(callback, flags)
 
 
 ## Remove the signal connection
