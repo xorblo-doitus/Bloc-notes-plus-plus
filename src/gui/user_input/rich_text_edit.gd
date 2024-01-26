@@ -4,7 +4,7 @@ extends MarginContainer
 
 
 signal text_changed(new: String, old: String)
-signal text_set(new: String, old: String)
+signal text_set(new: String)
 
 
 ## If true, text will be submitted only when enter is pressed while shift too.
@@ -210,6 +210,7 @@ func unsetup_editing() -> void:
 	code_edit.gutters_draw_line_numbers = false
 	code_edit.modulate = Color.TRANSPARENT
 	rich_text_label.modulate = Color.WHITE
+	text_set.emit(code_edit.text)
 	#code_edit.text = " "
 	#if text != _last_text:
 		#text_set.emit(text, _last_text)
@@ -226,3 +227,7 @@ func get_current_sizer():
 #func _on_code_edit_visibility_changed():
 	#if !code_edit.visible:
 		#editing = false
+
+
+#func _on_code_edit_text_set() -> void:
+	#text_set.emit(code_edit.text)
