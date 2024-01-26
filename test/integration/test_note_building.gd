@@ -35,6 +35,15 @@ func test_build() -> void:
 		),
 		"Builder.apply_to_existing(object) don't work."
 	)
+	
+	
+	var calculus_builder: Builder = Builder.new()
+	calculus_builder.type = Calculus
+	assert_eq(
+		calculus_builder.build().get_script(),
+		Calculus,
+		"Wrong type for types without special creation infos."
+	)
 
 
 func test_type_switching() -> void:
