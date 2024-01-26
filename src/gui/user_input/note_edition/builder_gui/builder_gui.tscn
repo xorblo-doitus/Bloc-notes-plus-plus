@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://src/gui/user_input/note_edition/builder_gui/builder_gui.gd" id="1_3f32s"]
 
-[node name="ConfirmationDialog" type="ConfirmationDialog"]
+[node name="BuilderGUI" type="ConfirmationDialog"]
 title = "EDIT"
 initial_position = 2
+size = Vector2i(359, 146)
 visible = true
 transient = false
 cancel_button_text = "CANCEL"
@@ -13,23 +14,18 @@ script = ExtResource("1_3f32s")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 192.0
-offset_bottom = 51.0
+offset_right = 351.0
+offset_bottom = 97.0
 
 [node name="TypeSelector" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-item_count = 4
-popup/item_0/text = "TYPE_NOTE"
-popup/item_0/id = 0
-popup/item_1/text = "TYPE_CALCULUS"
-popup/item_1/id = 1
-popup/item_2/text = "TYPE_VARIABLE"
-popup/item_2/id = 2
-popup/item_3/text = "TYPE_TASK"
-popup/item_3/id = 3
+
+[node name="Tabs" type="TabContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+use_hidden_tabs_for_min_size = true
 
 [connection signal="canceled" from="." to="." method="_finish"]
 [connection signal="confirmed" from="." to="." method="_finish"]
-[connection signal="custom_action" from="." to="." method="_finish" unbinds=1]
 [connection signal="item_selected" from="VBoxContainer/TypeSelector" to="." method="_on_type_selector_item_selected"]

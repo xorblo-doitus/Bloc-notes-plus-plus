@@ -5,12 +5,12 @@ extends ConfirmationDialog
 signal finished()
 
 
-static var _TYPE_IDS = [
-	Note,
-	Calculus,
-	Variable,
-	Task,
-]
+static var _TYPE_IDS = []
+	#Note,
+	#Calculus,
+	#Variable,
+	#Task,
+#]
 
 
 ## A reference to the default packed scene associated with this class
@@ -27,6 +27,11 @@ static func instantiate() -> BuilderGUI:
 
 
 static var editing: bool = false
+
+
+static func _fetch_types() -> void:
+	for building_info_type in BuildingInfo.all:
+		_TYPE_IDS.append(building_info_type)
 
 
 static func request_edition(allow_simultaneous: bool = false) -> BuilderGUI:
@@ -56,6 +61,7 @@ var builder: Builder:
 
 
 @onready var type_selector: OptionButton = %TypeSelector
+@onready var tabs: TabContainer = %Tabs
 
 
 #func _init() -> void:
@@ -67,6 +73,9 @@ func _ready() -> void:
 	var HBox: HBoxContainer = get_ok_button().get_parent()
 	HBox.move_child(get_ok_button(), 2)
 	HBox.move_child(get_cancel_button(), 1)
+	
+	for building_info: BuildingInfo in BuildingInfo.all.values():
+		type_selector.add_item(building_info.type_translation_key)
 
 
 #func _on_visibility_changed() -> void:
@@ -81,7 +90,22 @@ func update() -> void:
 		return
 	
 	type_selector.selected = _TYPE_IDS.find(builder.type)
-
+	
+	for tab in tabs.get_children():
+		tabs.remove_child(tab)
+	
+	
+	for info in BuildingInfo.get_most_precise(builder.type).get_consecutive_infos():
+		var new_tab: BoxContainer = preload("res://src/gui/user_input/note_edition/builder_gui/builder_gui_tab.tscn").instantiate()
+		
+		for widget_edit_scene in info.widget_edits:
+			var new_widget: WidgetEdit = widget_edit_scene.instantiate()
+			new_widget.builder = builder
+			new_tab.add_child(new_widget)
+		
+		new_tab.name = info.type_translation_key
+		
+		tabs.add_child(new_tab)
 
 func _finish() -> void:
 	finished.emit()
