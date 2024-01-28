@@ -251,3 +251,17 @@ func get_current_sizer():
 
 #func _on_code_edit_text_set() -> void:
 	#text_set.emit(code_edit.text)
+
+
+## See [method grab_focus] (Can't override native method.)
+func _grab_focus() -> void:
+	var had_focus: int = 0
+	
+	# Focus is sometime a little bit random, so brute force grabbing focus is necessary
+	while not code_edit.has_focus() or had_focus < 5:
+		if code_edit.has_focus():
+			had_focus += 1
+		else:
+			had_focus = 0
+		code_edit.grab_focus.call_deferred()
+		await Wait.process_frames(2)
