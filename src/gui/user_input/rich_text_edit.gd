@@ -23,7 +23,7 @@ signal text_set(new: String)
 #@export var shift_to_validate: bool = true
 @export var auto_width: bool = false
 @export var max_width: float = -1
-@export var text: String:
+@export_multiline var text: String:
 	set(new):
 		if new == text:
 			return
@@ -41,7 +41,23 @@ signal text_set(new: String)
 		
 		update_width()
 		
+		if not editing:
+			if text:
+				code_edit.modulate = Color.TRANSPARENT
+			else:
+				code_edit.modulate = Color.WHITE
+		
 		text_changed.emit(new, old)
+
+@export_multiline var place_holder: String:
+	set(new):
+		if not is_node_ready():
+			ready.connect(set.bind(&"place_holder", new), CONNECT_ONE_SHOT)
+			return
+		
+		place_holder = new
+		code_edit.placeholder_text = place_holder
+
 
 var editing: bool = false:
 	set(new):
@@ -211,7 +227,8 @@ func setup_editing() -> void:
 func unsetup_editing() -> void:
 	text = code_edit.text
 	code_edit.gutters_draw_line_numbers = false
-	code_edit.modulate = Color.TRANSPARENT
+	if text:
+		code_edit.modulate = Color.TRANSPARENT
 	rich_text_label.modulate = Color.WHITE
 	text_set.emit(code_edit.text)
 	#code_edit.text = " "
