@@ -30,8 +30,8 @@ static var editing: bool = false
 
 
 static func _fetch_types() -> void:
-	for building_info_type in BuildingInfo.all:
-		_TYPE_IDS.append(building_info_type)
+	for type in NoteUI.all:
+		_TYPE_IDS.append(type)
 
 
 static func request_edition(allow_simultaneous: bool = false) -> BuilderGUI:
@@ -74,8 +74,8 @@ func _ready() -> void:
 	HBox.move_child(get_ok_button(), 2)
 	HBox.move_child(get_cancel_button(), 1)
 	
-	for building_info: BuildingInfo in BuildingInfo.all.values():
-		type_selector.add_item(building_info.type_translation_key)
+	for ui: NoteUI in NoteUI.all.values():
+		type_selector.add_item(ui.type_translation_key)
 
 
 #func _on_visibility_changed() -> void:
@@ -95,15 +95,16 @@ func update() -> void:
 		tabs.remove_child(tab)
 	
 	
-	for info in BuildingInfo.get_most_precise(builder.type).get_consecutive_infos():
+	for ui in NoteUI.get_most_precise(builder.type).get_heritage():
+	#for info in BuildingInfo.get_most_precise(builder.type).get_consecutive_infos():
 		var new_tab: BoxContainer = preload("res://src/gui/user_input/note_edition/builder_gui/builder_gui_tab.tscn").instantiate()
 		
-		for widget_edit_scene in info.widget_edits:
+		for widget_edit_scene in ui.widget_edits:
 			var new_widget: WidgetEdit = widget_edit_scene.instantiate()
 			new_widget.builder = builder
 			new_tab.add_child(new_widget)
 		
-		new_tab.name = info.type_translation_key
+		new_tab.name = ui.type_translation_key
 		
 		tabs.add_child(new_tab)
 

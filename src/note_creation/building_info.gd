@@ -26,14 +26,11 @@ static func get_most_precise(for_type: Object) -> BuildingInfo:
 ## The class of the object to store. ([Note], [Variable]...)
 var type: Object
 
-## The class of the object to store. ([Note], [Variable]...)
-var type_translation_key: String
-
 ## A list of attributes to save
 var attributes_to_edit: Array[String] = []
 
-## A list of [WidgetEdit] as [PackedScene]
-var widget_edits: Array[PackedScene] = []
+### A list of [WidgetEdit] as [PackedScene]
+#var widget_edits: Array[PackedScene] = []
 
 ## If not specified, use [member type][code].new()[/code].
 ## Else new instances will be created using this function. Exemple:
@@ -91,15 +88,10 @@ func auto_setup_from_JSONablization_info() -> BuildingInfo:
 	
 	return self
 
-
-func set_type_translation_key(_type_translation_key: String) -> BuildingInfo:
-	type_translation_key = _type_translation_key
-	return self
-
-
-func set_widget_edits(_widget_edits: Array[PackedScene]) -> BuildingInfo:
-	widget_edits = _widget_edits
-	return self
+#
+#func set_widget_edits(_widget_edits: Array[PackedScene]) -> BuildingInfo:
+	#widget_edits = _widget_edits
+	#return self
 
 
 ## Build this BuildingInfo.

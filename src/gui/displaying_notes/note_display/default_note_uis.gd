@@ -7,9 +7,20 @@ static func _static_init() -> void:
 
 
 static func create_defaults() -> void:
-	var _calculus := NoteUI.new().set_type(Calculus).set_display_widgets([
+	NoteUI.new().set_type(Note).set_type_translation_key(
+		"NOTE"
+	).auto_inherit().build()
+	
+	NoteUI.new().set_type(Calculus).set_type_translation_key(
+		"CALCULUS"
+	).set_display_widgets([
 		preload("res://src/gui/displaying_notes/note_display/widgets/calculus_result.tscn"),
+	]).set_widget_edits([
+		preload("res://src/gui/user_input/note_edition/widget_edits/title_widget_edit.tscn")
 	]).build()
-	NoteUI.new().set_type(Variable).set_display_widgets([
+	
+	NoteUI.new().set_type(Variable).auto_inherit().set_type_translation_key(
+		"VARIABLE"
+	).set_display_widgets([
 		preload("res://src/gui/displaying_notes/note_display/widgets/variable_name.tscn"),
-	]).set_inherit(_calculus).build()
+	]).build()

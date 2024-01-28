@@ -11,7 +11,7 @@ signal request_remove()
 const FRONT_WIDGET_INDEX = 1
 
 
-static var note_UIs: Dictionary = {}
+#static var note_UIs: Dictionary = {}
 
 
 @warning_ignore("unused_private_class_variable")
@@ -51,8 +51,9 @@ func display(note: Note) -> void:
 	_connections.append(Connection.new(note.title_changed, _on_note_title_changed.unbind(2), true))
 	_connections.append(Connection.new(note.description_changed, _on_note_description_changed.unbind(2), true))
 	
-	if note_UIs.has(_displaying.get_script()):
-		for note_ui: NoteUI in note_UIs[_displaying.get_script()].get_heritage():
+	
+	if NoteUI.all.has(_displaying.get_script()):
+		for note_ui: NoteUI in NoteUI.all[_displaying.get_script()].get_heritage():
 			for widget_scene in note_ui.display_widgets:
 				var widget: DisplayWidget = widget_scene.instantiate()
 				display_widgets.add_child(widget)

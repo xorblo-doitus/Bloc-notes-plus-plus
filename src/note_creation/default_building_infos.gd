@@ -7,12 +7,6 @@ static func _static_init():
 
 
 static func create_defaults():
-	BuildingInfo.new(Note).set_type_translation_key(
-		"NOTE"
-	).set_widget_edits([
-		preload("res://src/gui/user_input/note_edition/widget_edits/title_widget_edit.tscn")
-	]).auto_setup_from_JSONablization_info().build()
+	BuildingInfo.new(Note).auto_setup_from_JSONablization_info().build()
 	
-	BuildingInfo.new(Variable).set_type_translation_key(
-		"VARIABLE"
-	).auto_setup_from_JSONablization_info().build()
+	BuildingInfo.new(Variable).auto_setup_from_JSONablization_info().build()
