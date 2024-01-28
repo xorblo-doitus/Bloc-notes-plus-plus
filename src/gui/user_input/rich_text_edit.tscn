@@ -30,6 +30,7 @@ auto_translate = false
 theme_override_constants/line_spacing = 0
 wrap_mode = 1
 scroll_fit_content_height = true
+caret_blink = true
 highlight_all_occurrences = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
