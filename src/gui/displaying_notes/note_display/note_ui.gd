@@ -6,7 +6,7 @@ extends RefCounted
 var type: Object
 ## A list of Widget PackedScenes
 var display_widgets: Array[PackedScene] = []
-var edition_widgets: Array[PackedScene] = []
+var widget_edits: Array[PackedScene] = []
 ## From wich NoteUI this one inherit it's informations
 var inherit: NoteUI
 
@@ -21,7 +21,7 @@ func set_display_widgets(_display_widgets: Array[PackedScene]) -> NoteUI:
 	return self
 
 
-func set_edition_widgets(_display_widgets: Array[PackedScene]) -> NoteUI:
+func set_widget_edits(_display_widgets: Array[PackedScene]) -> NoteUI:
 	display_widgets = _display_widgets
 	return self
 
