@@ -19,5 +19,6 @@ text = "EDIT_TITLE"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
+place_holder = "TITLE_PLACE_HOLDER"
 
 [connection signal="text_changed" from="HBoxContainer/TitleInput" to="." method="_on_title_input_text_changed"]

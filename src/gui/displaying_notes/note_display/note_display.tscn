@@ -33,6 +33,7 @@ custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+place_holder = "TITLE_PLACE_HOLDER"
 
 [node name="Delete" parent="Widgets" instance=ExtResource("2_od70a")]
 layout_mode = 2
