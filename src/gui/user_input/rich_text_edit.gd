@@ -23,6 +23,7 @@ signal text_set(new: String)
 #@export var shift_to_validate: bool = true
 @export var auto_width: bool = false
 @export var max_width: float = -1
+@export var loose_focus_on_validation: bool = true
 @export_multiline var text: String:
 	set(new):
 		if new == text:
@@ -231,6 +232,10 @@ func unsetup_editing() -> void:
 		code_edit.modulate = Color.TRANSPARENT
 	rich_text_label.modulate = Color.WHITE
 	text_set.emit(code_edit.text)
+	if loose_focus_on_validation:
+		code_edit.hide()
+		code_edit.show()
+	
 	#code_edit.text = " "
 	#if text != _last_text:
 		#text_set.emit(text, _last_text)
