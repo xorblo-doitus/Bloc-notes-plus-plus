@@ -17,7 +17,7 @@ static func create_defaults() -> void:
 		"CALCULUS"
 	).set_display_widgets([
 		preload("res://src/gui/displaying_notes/note_display/widgets/calculus_result.tscn"),
-	]).build()
+	]).auto_inherit().build()
 	
 	NoteUI.new().set_type(Variable).auto_inherit().set_type_translation_key(
 		"VARIABLE"
