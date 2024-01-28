@@ -15,6 +15,8 @@ var workspace: WorkspaceSave = WorkspaceSave.new():
 		workspace = new
 
 
+@onready var fast_input: RichTextEdit = %FastInput
+
 
 func _ready():
 	notes_display.note_list.changed.connect(_on_note_list_changed)
@@ -97,4 +99,5 @@ func _on_note_created(note: Note) -> void:
 func _on_fast_input_text_set(new: String) -> void:
 	if new:
 		_on_note_created(Parser.new().execute(new)["_current_builder"].build())
-		$VBoxContainer/Adding/FastInput.text = ""
+		fast_input.text = ""
+		#fast_input._grab_focus.call_deferred()

@@ -34,8 +34,11 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="FastInput" parent="VBoxContainer/Adding" instance=ExtResource("3_3xdaj")]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+loose_focus_on_validation = false
+place_holder = "FAST_INPUT_PLACE_HOLDER"
 
 [node name="CreateNote" parent="VBoxContainer/Adding" instance=ExtResource("4_5y3he")]
 layout_mode = 2
