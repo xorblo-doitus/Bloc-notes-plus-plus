@@ -95,7 +95,7 @@ func update() -> void:
 		tabs.remove_child(tab)
 	
 	
-	for ui in NoteUI.get_most_precise(builder.type).get_heritage():
+	for ui in NoteUI.get_most_precise(builder.type).get_heritage(true):
 	#for info in BuildingInfo.get_most_precise(builder.type).get_consecutive_infos():
 		var new_tab: BoxContainer = preload("res://src/gui/user_input/note_edition/builder_gui/builder_gui_tab.tscn").instantiate()
 		
@@ -103,6 +103,9 @@ func update() -> void:
 			var new_widget: WidgetEdit = widget_edit_scene.instantiate()
 			new_widget.builder = builder
 			new_tab.add_child(new_widget)
+		
+		if not ui.widget_edits:
+			new_tab.add_child(preload("res://src/gui/user_input/note_edition/widget_edits/no_widget_edit.tscn").instantiate())
 		
 		new_tab.name = ui.type_translation_key
 		
