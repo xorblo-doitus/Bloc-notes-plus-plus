@@ -114,3 +114,4 @@ func _finish() -> void:
 
 func _on_type_selector_item_selected(index: int) -> void:
 	builder.type = _TYPE_IDS[index]
+	update()
