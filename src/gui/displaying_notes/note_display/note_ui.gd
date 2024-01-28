@@ -68,10 +68,13 @@ static func get_most_precise(for_type: Object) -> NoteUI:
 	return result
 
 
-func get_heritage() -> Array[NoteUI]:
+func get_heritage(reverse: bool = false) -> Array[NoteUI]:
 	var result: Array[NoteUI] = [self]
 	
 	while result[-1].inherit:
 		result.append(result[-1].inherit)
+	
+	if reverse:
+		result.reverse()
 	
 	return result
