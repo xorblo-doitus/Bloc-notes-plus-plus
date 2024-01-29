@@ -19,6 +19,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 auto_width = true
+place_holder = "VARIABLE_NAME_PLACEHOLDER"
 
 [node name="Equal" type="Label" parent="HBoxContainer" index="2"]
 unique_name_in_owner = true
