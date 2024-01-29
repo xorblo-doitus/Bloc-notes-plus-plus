@@ -2,9 +2,18 @@ class_name ErrorHelper
 extends RefCounted
 
 
+
+enum Level {
+	INFO,
+	WARNING,
+	ERROR,
+}
+
+
 var title: String = ""
 var description: String = ""
 var godot_builtin_error: Error = FAILED
+var level: Level = Level.ERROR
 
 
 func _init(_title: String = "", _description: String = "", _godot_builtin_error: Error = FAILED) -> void:
@@ -28,6 +37,12 @@ func set_description(new: String) -> ErrorHelper:
 ## Chainable
 func set_godot_builtin_error(new: Error) -> ErrorHelper:
 	godot_builtin_error = new
+	return self
+
+
+## Chainable
+func set_level(new: Level) -> ErrorHelper:
+	level = new
 	return self
 
 
