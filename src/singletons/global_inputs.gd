@@ -15,5 +15,7 @@ func _process(_delta) -> void:
 			get_window().mode = Window.MODE_WINDOWED
 	
 	if Input.is_action_just_pressed(&"always_on_top"):
-		get_window().always_on_top = not get_window().always_on_top
+		var new: bool = not get_window().always_on_top
+		get_window().always_on_top = new
+		get_tree().set_group(&"window", &"always_on_top", new)
 		print("set always_on_top to ", get_window().always_on_top)

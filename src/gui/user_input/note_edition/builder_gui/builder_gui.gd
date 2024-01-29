@@ -76,6 +76,10 @@ func _ready() -> void:
 	
 	for ui: NoteUI in NoteUI.all.values():
 		type_selector.add_item(ui.type_translation_key)
+	
+	if get_tree().root.always_on_top:
+		always_on_top = true
+		move_to_foreground()
 
 
 #func _on_visibility_changed() -> void:

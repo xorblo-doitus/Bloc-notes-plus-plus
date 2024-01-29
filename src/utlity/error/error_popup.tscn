@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/utlity/error/error_popup.gd" id="1_fy4eu"]
 
-[node name="AcceptDialog" type="AcceptDialog"]
+[node name="AcceptDialog" type="AcceptDialog" groups=["window"]]
 title = "ERROR_UNKNOWN"
 initial_position = 2
 size = Vector2i(384, 128)
