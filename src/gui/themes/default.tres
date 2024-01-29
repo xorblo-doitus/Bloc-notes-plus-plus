@@ -1,4 +1,11 @@
-[gd_resource type="Theme" format=3 uid="uid://cpb3qocd5avyd"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpb3qocd5avyd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jem7v"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [resource]
 Button/constants/icon_max_width = 16
@@ -7,3 +14,4 @@ ButtonMargin/constants/margin_bottom = 4
 ButtonMargin/constants/margin_left = 4
 ButtonMargin/constants/margin_right = 4
 ButtonMargin/constants/margin_top = 4
+TabContainer/styles/panel = SubResource("StyleBoxFlat_jem7v")
