@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1phmaf2vcv7y"]
+
+[ext_resource type="PackedScene" uid="uid://egpu0f2w06qp" path="res://src/gui/user_input/note_edition/widget_edits/widget_edit.tscn" id="1_5ky8l"]
+[ext_resource type="Script" path="res://src/gui/user_input/note_edition/widget_edits/variable_name_edit.gd" id="2_7d5tg"]
+[ext_resource type="PackedScene" uid="uid://cjib1m7k2wa58" path="res://src/gui/error_button.tscn" id="3_qrdj3"]
+[ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/rich_text_edit.tscn" id="4_w357q"]
+
+[node name="VariableNameEdit" instance=ExtResource("1_5ky8l")]
+script = ExtResource("2_7d5tg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer" index="0"]
+layout_mode = 2
+text = "EDIT_VARIABLE_NAME"
+
+[node name="ErrorButton" parent="HBoxContainer" index="1" instance=ExtResource("3_qrdj3")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VariableNameInput" parent="HBoxContainer" index="2" instance=ExtResource("4_w357q")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+place_holder = "VARIABLE_NAME_PLACEHOLER"
+
+[connection signal="text_changed" from="HBoxContainer/VariableNameInput" to="." method="_on_variable_name_input_text_changed"]

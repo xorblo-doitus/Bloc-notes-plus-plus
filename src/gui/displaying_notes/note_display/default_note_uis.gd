@@ -23,6 +23,8 @@ static func create_defaults() -> void:
 		"VARIABLE"
 	).set_display_widgets([
 		preload("res://src/gui/displaying_notes/note_display/widgets/variable_name.tscn"),
+	]).set_widget_edits([
+		preload("res://src/gui/user_input/note_edition/widget_edits/variable_name_edit.tscn"),
 	]).build()
 	
 	NoteUI.new().set_type(Task).auto_inherit().set_type_translation_key(

@@ -21,6 +21,20 @@ func set_done(new: bool) -> Task:
 	return self
 
 
+## Return true if the name is valid
+static func check_name(_name: String) -> ErrorHelper:
+	if not _name.is_valid_identifier():
+		return ErrorHelper.new().set_title(
+			TranslationServer.tr("ERROR_INVALID_IDENTIFIER")
+		).set_description(
+			TranslationServer.tr("ERROR_INVALID_IDENTIFIER_DESC").format({
+				"identifier": _name,
+			})
+		)
+	
+	return null
+
+
 func _is_equal(other: Variant) -> bool:
 	return (
 		super(other)

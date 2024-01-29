@@ -10,12 +10,6 @@ func _connect_to(_builder: Builder) -> void:
 	_builder.attribute_changed.connect(_on_attribute_updated)
 
 
-## Virtual method. Remember to call super() somewhere.
-## Keys are attributes' names and values are their values.
-func get_attributes_and_values() -> Dictionary:
-	return {}
-
-
 func _on_attribute_updated(attribute: String, new_value: Variant) -> void:
 	match attribute:
 		"title":

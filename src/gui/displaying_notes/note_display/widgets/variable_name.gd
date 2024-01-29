@@ -30,17 +30,7 @@ func _on_name_text_changed(new: String, _old: String) -> void:
 	check_name(new)
 
 
+
 ## Return true if the name is valid
-func check_name(_name: String) -> bool:
-	if not _name.is_valid_identifier():
-		error_button.error = ErrorHelper.new().set_title(
-			tr("ERROR_INVALID_IDENTIFIER")
-		).set_description(
-			tr("ERROR_INVALID_IDENTIFIER_DESC").format({
-				"identifier": _name,
-			})
-		)
-		return false
-	
-	error_button.error = null
-	return true
+func check_name(_name: String) -> void:
+	error_button.error = Task.check_name(_name)
