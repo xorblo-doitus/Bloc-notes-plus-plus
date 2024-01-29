@@ -36,7 +36,7 @@ func check_name(_name: String) -> bool:
 		error_button.error = ErrorHelper.new().set_title(
 			"ERROR_INVALID_IDENTIFIER"
 		).set_description(
-			"ERROR_INVALID_VARIABLE_NAME"
+			"ERROR_INVALID_IDENTIFIER_DESC"
 		)
 		return false
 	
