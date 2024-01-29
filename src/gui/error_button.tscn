@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjib1m7k2wa58"]
+
+[ext_resource type="Texture2D" uid="uid://bxqqwrohqshop" path="res://src/assets/images/icons/error.png" id="1_e5wnx"]
+[ext_resource type="Script" path="res://src/gui/error_button.gd" id="2_rtt6s"]
+
+[node name="ErrorButton" type="TextureButton"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(16, 16)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_e5wnx")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("2_rtt6s")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
