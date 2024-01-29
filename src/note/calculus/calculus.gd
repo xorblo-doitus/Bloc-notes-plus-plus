@@ -62,8 +62,9 @@ static func ints_to_floats(expression: String) -> String:
 	
 	return expression
 
-
+## Stores an error representing the current error in the calculation.
 var error: ErrorHelper
+
 ## [b]READONLY[/b]: The value of the current
 var value: Variant:
 	set(_new):
