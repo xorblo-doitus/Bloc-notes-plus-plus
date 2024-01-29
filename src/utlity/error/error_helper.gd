@@ -9,8 +9,9 @@ enum Level {
 	ERROR,
 }
 
-
+## [b]Note:[/b] Please enter the translated text, not the translation key.
 var title: String = ""
+## [b]Note:[/b] Please enter the translated text, not the translation key.
 var description: String = ""
 var godot_builtin_error: Error = FAILED
 var level: Level = Level.ERROR

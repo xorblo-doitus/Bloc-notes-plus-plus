@@ -34,9 +34,11 @@ func _on_name_text_changed(new: String, _old: String) -> void:
 func check_name(_name: String) -> bool:
 	if not _name.is_valid_identifier():
 		error_button.error = ErrorHelper.new().set_title(
-			"ERROR_INVALID_IDENTIFIER"
+			tr("ERROR_INVALID_IDENTIFIER")
 		).set_description(
-			"ERROR_INVALID_IDENTIFIER_DESC"
+			tr("ERROR_INVALID_IDENTIFIER_DESC").format({
+				"identifier": _name,
+			})
 		)
 		return false
 	
