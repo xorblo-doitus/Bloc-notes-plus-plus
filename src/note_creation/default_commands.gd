@@ -31,8 +31,8 @@ static func store_callback(argument: Array[String], context: Dictionary):
 	context["_current_builder"].type = Variable
 	context["_current_builder"].set_attribute("name", argument[0])
 	
-static func task_callback(argument: Array[String], context: Dictionary):
+static func task_callback(_argument: Array[String], context: Dictionary):
 	context["_current_builder"].type = Task
 
-static func calc_callback(argument: Array[String], context: Dictionary):
+static func calc_callback(_argument: Array[String], context: Dictionary):
 	context["_current_builder"].type = Calculus
