@@ -59,6 +59,8 @@ func display(note: Note) -> void:
 				display_widgets.add_child(widget)
 				if widget.before:
 					display_widgets.move_child(widget, 1)
+				else:
+					display_widgets.move_child(widget, -2)
 				
 				widget.note = _displaying
 	
