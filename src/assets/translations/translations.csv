@@ -12,6 +12,8 @@ ERROR_INVALID_IDENTIFIER_DESC,"The name ""{identifier}"" is malformed. Variable'
 PARSED_TEXT_WAS,Parsed text was:,Le texte analyser était :
 ERROR_WITHOUT_DESCRIPTION,Error without description.,L’erreur n’a pas de description.
 ERROR_STRING,Error n°{godot_builtin_error} ({error_as_text}),Erreur n°{godot_builtin_error} ({error_as_text})
+OK,OK,OK
+CANCEL,Cancel,Annuler
 NOTE,Note,Note
 CALCULUS,Calculus,Calcul
 VARIABLE,Variable,Variable
