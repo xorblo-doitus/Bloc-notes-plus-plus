@@ -24,3 +24,9 @@ static func create_defaults() -> void:
 	).set_display_widgets([
 		preload("res://src/gui/displaying_notes/note_display/widgets/variable_name.tscn"),
 	]).build()
+	
+	NoteUI.new().set_type(Task).auto_inherit().set_type_translation_key(
+		"TASK"
+	).set_display_widgets([
+		preload("res://src/gui/displaying_notes/note_display/widgets/task_done.tscn"),
+	]).build()

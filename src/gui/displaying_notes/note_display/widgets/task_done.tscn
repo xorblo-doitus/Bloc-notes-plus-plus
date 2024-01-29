@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://2pqeghw80w1v"]
+
+[ext_resource type="PackedScene" uid="uid://dufp1y5c7fj8" path="res://src/gui/displaying_notes/note_display/widgets/display_widget.tscn" id="1_g3fkh"]
+[ext_resource type="Script" path="res://src/gui/displaying_notes/note_display/widgets/task_done.gd" id="2_r3gmy"]
+[ext_resource type="Texture2D" uid="uid://c456shd2gp87u" path="res://src/assets/images/icons/checked.png" id="3_be7ob"]
+[ext_resource type="Texture2D" uid="uid://bhx4nlnc3d5ei" path="res://src/assets/images/icons/checkbox_background.png" id="4_ux0qn"]
+
+[node name="TaskDone" instance=ExtResource("1_g3fkh")]
+script = ExtResource("2_r3gmy")
+before = false
+
+[node name="DoneCheckBox" type="CheckBox" parent="." index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_icons/checked = ExtResource("3_be7ob")
+theme_override_icons/unchecked = ExtResource("4_ux0qn")
