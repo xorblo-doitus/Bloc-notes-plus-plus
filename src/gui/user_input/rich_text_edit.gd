@@ -203,9 +203,10 @@ func _on_code_edit_gui_input(event: InputEvent):
 			if loose_focus_on_validation:
 				code_edit.hide()
 				code_edit.show()
-			else:
-				text = code_edit.text
-				text_set.emit(code_edit.text)
+			
+			text = code_edit.text
+			text_set.emit(code_edit.text)
+			
 			get_viewport().set_input_as_handled()
 		
 		event.shift_pressed = starting_shift_state
@@ -236,7 +237,6 @@ func unsetup_editing() -> void:
 	if text:
 		code_edit.modulate = Color.TRANSPARENT
 	rich_text_label.modulate = Color.WHITE
-	text_set.emit(code_edit.text)
 	
 	#code_edit.text = " "
 	#if text != _last_text:
