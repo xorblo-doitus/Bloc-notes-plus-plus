@@ -13,3 +13,7 @@ func _connect_to(_note: Note) -> void:
 
 func set_done_status(status: bool = note.done) -> void:
 	done_check_box.button_pressed = status
+
+
+func _on_done_check_box_toggled(toggled_on: bool) -> void:
+	note.done = toggled_on
