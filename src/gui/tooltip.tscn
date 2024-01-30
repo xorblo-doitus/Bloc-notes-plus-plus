@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://clrfkgitx17e5"]
+
+[ext_resource type="Script" path="res://src/gui/tooltip.gd" id="1_3e0ra"]
+
+[node name="TooltipPopup" type="RichTextLabel"]
+custom_minimum_size = Vector2(256, 0)
+offset_right = 162.0
+offset_bottom = 100.0
+theme_type_variation = &"TooltipPanel"
+fit_content = true
+script = ExtResource("1_3e0ra")

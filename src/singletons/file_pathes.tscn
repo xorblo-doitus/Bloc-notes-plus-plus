@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3uqdtij4c3a7"]
+[gd_scene load_steps=4 format=3 uid="uid://c3uqdtij4c3a7"]
 
 [ext_resource type="PackedScene" uid="uid://rlfmcccv762a" path="res://src/gui/user_input/note_edition/builder_gui/builder_gui.tscn" id="1_gpuqi"]
 [ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/rich_text_edit.tscn" id="1_v5m8q"]
+[ext_resource type="PackedScene" uid="uid://clrfkgitx17e5" path="res://src/gui/tooltip.tscn" id="3_s84rm"]
 
 [node name="FilePathes" type="ResourcePreloader"]
-resources = [PackedStringArray("builder_gui", "rich_text_edit"), [ExtResource("1_gpuqi"), ExtResource("1_v5m8q")]]
+resources = [PackedStringArray("builder_gui", "rich_text_edit", "tooltip"), [ExtResource("1_gpuqi"), ExtResource("1_v5m8q"), ExtResource("3_s84rm")]]

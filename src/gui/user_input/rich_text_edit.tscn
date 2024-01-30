@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://elxiakmjubkb"]
+[gd_scene load_steps=3 format=3 uid="uid://elxiakmjubkb"]
 
 [ext_resource type="Script" path="res://src/gui/user_input/rich_text_edit.gd" id="1_2m102"]
+
+[sub_resource type="GDScript" id="GDScript_vr7mj"]
+script/source = "extends CodeEdit
+
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	return Tooltip.instantiate(for_text)
+"
 
 [node name="EditableRichTextLabel" type="MarginContainer"]
 clip_contents = true
@@ -34,6 +42,7 @@ caret_blink = true
 highlight_all_occurrences = true
 auto_brace_completion_enabled = true
 auto_brace_completion_highlight_matching = true
+script = SubResource("GDScript_vr7mj")
 
 [connection signal="focus_entered" from="CodeEdit" to="." method="_on_code_edit_focus_entered"]
 [connection signal="focus_exited" from="CodeEdit" to="." method="_on_code_edit_focus_exited"]
