@@ -161,11 +161,12 @@ func update_width() -> void:
 		# good character to test auto_width : 𒀱
 		_line.clear()
 		var sizer = get_current_sizer()
-		_line.add_string(sizer.text + "_", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
+		var sizer_text: String = sizer.placeholder_text if sizer is CodeEdit and sizer.text == "" else  sizer.text
+		_line.add_string(sizer_text + "_", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
 		
 		var true_length: float = ceil(_line.get_line_width())
 		_line.clear()
-		_line.add_string(sizer.text + "___", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
+		_line.add_string(sizer_text + "___", sizer.get_theme_font("font"), sizer.get_theme_font_size("font_size"))
 		
 		custom_minimum_size.x = min(true_length, INF if max_width == -1 else max_width)
 		set_deferred("custom_minimum_size", custom_minimum_size)
@@ -245,7 +246,7 @@ func unsetup_editing() -> void:
 
 
 func get_current_sizer():
-	if editing:
+	if editing or text == "":
 		return code_edit
 	
 	return rich_text_label
