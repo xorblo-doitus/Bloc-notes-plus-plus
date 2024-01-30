@@ -79,7 +79,15 @@ func _ready() -> void:
 	
 	if get_tree().root.always_on_top:
 		always_on_top = true
+		type_selector.get_popup().always_on_top = true
 		move_to_foreground()
+
+
+func _set(property: StringName, value: Variant) -> bool:
+	match property:
+		&"always_on_top":
+			type_selector.get_popup().always_on_top = value
+	return false
 
 
 #func _on_visibility_changed() -> void:
