@@ -17,6 +17,10 @@ func _ready() -> void:
 	update()
 
 
+func _make_custom_tooltip(for_text: String) -> Object:
+	return Tooltip.instantiate(for_text)
+
+
 func update() -> void:
 	if error:
 		show()
