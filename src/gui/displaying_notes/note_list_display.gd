@@ -2,6 +2,7 @@ class_name NoteListDisplay
 extends PanelContainer
 
 @onready var notes_container: VBoxContainer = %NotesContainer
+@onready var progress_bar: ProgressBar = %ProgressBar
 
 ## The notes displayed.
 ## [br][br][b]READONLY[/b]: Trying to modifying this attribute will only set it's
@@ -60,6 +61,43 @@ func build_note_displays() -> void:
 	
 	_note_displays.append_array(new_displays)
 	_reorder_note_displays()
+	update_completion_percent()
+
+
+var _task_connections: Array[Connection] = []
+
+func update_completion_percent() -> void:
+	if not is_node_ready():
+		ready.connect(update_completion_percent, CONNECT_ONE_SHOT)
+		return
+	
+	Connection.destroy_all(_task_connections)
+	
+	var tasks: int = 0
+	var done: int = 0
+	
+	for note in notes:
+		if note is Task:
+			tasks += 1
+			
+			_task_connections.append(Connection.new(
+				note.done_toggled,
+				update_completion_percent.unbind(1),
+				true
+			))
+			
+			if note.done:
+				done += 1
+			
+	
+	if tasks == 0:
+		progress_bar.hide()
+		return
+	
+	progress_bar.show()
+	
+	progress_bar.max_value = tasks
+	progress_bar.value = done
 
 
 ## Unparent all displays and reparent them in the right order
