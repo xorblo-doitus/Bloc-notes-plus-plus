@@ -33,9 +33,9 @@
      borderlayer="true"
      labelstyle="default"
      inkscape:clip-to-page="false"
-     inkscape:zoom="1.9704153"
-     inkscape:cx="94.396345"
-     inkscape:cy="107.08403"
+     inkscape:zoom="0.98520765"
+     inkscape:cx="-8.1201156"
+     inkscape:cy="212.13802"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
@@ -49,16 +49,16 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <path
-       style="fill:none;stroke:#ffffff;stroke-width:8.46666656;stroke-linecap:round;stroke-dasharray:none;stroke-linejoin:round"
-       d="m 33.866666,55.033335 v -50.8 L 16.364441,21.73556"
-       id="path1" />
     <use
        x="0"
        y="0"
        xlink:href="#path1"
        id="use1"
        transform="matrix(-1,0,0,1,67.733332,0)" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:4.23333;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 33.866666,52.916367 V 2.1163674 L 16.364441,19.618592"
+       id="path1" />
   </g>
   <metadata
      id="metadata1">

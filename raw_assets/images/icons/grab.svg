@@ -33,15 +33,15 @@
      borderlayer="true"
      labelstyle="default"
      inkscape:clip-to-page="false"
-     inkscape:zoom="1.9704153"
-     inkscape:cx="127.38431"
-     inkscape:cy="173.05996"
+     inkscape:zoom="5.5731761"
+     inkscape:cx="114.83578"
+     inkscape:cy="107.12025"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g1"
      showgrid="false" />
   <defs
      id="defs1" />
@@ -57,8 +57,8 @@
          id="g1"
          style="stroke:#ffffff">
         <path
-           style="fill:none;stroke:#ffffff;stroke-width:4.23333;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
-           d="M 35.983331,33.866666 V 13.456417 l 3.698574,3.698574"
+           style="fill:none;stroke:#ffffff;stroke-width:2.11667;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+           d="M 34.857861,32.808334 V 12.398085 l 3.698574,3.698574"
            id="path1"
            sodipodi:nodetypes="ccc" />
         <use
@@ -66,8 +66,9 @@
            y="0"
            xlink:href="#path1"
            id="use1"
-           transform="matrix(-1,0,0,1,67.733332,0)"
-           style="stroke:#ffffff" />
+           transform="matrix(-1,0,0,1,67.66619,3.790028e-8)"
+           style="stroke:#ffffff"
+           inkscape:label="use1" />
       </g>
       <use
          x="0"
@@ -84,6 +85,13 @@
        id="use3"
        transform="rotate(90,33.866666,33.866666)"
        style="stroke:#ffffff" />
+    <rect
+       style="fill:#ffffff;stroke:none;stroke-width:2.11668;stroke-linecap:round;stroke-dasharray:none"
+       id="rect1"
+       width="5.6367807"
+       height="5.6367779"
+       x="31.048275"
+       y="31.048279" />
   </g>
   <metadata
      id="metadata1">
