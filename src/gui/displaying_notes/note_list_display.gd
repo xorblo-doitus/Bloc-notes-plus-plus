@@ -38,7 +38,13 @@ func _init() -> void:
 	note_list.changed.connect(build_note_displays.unbind(2))
 
 
+func _ready() -> void:
+	print("ready")
+	notes_container.add_spacer(false)
+
+
 func _enter_tree() -> void:
+	print("tree")
 	build_note_displays()
 
 

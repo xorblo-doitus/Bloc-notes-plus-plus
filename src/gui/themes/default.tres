@@ -1,4 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpb3qocd5avyd"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cpb3qocd5avyd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d0wj"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqcuf"]
+bg_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jem7v"]
 content_margin_left = 16.0
@@ -14,4 +20,13 @@ ButtonMargin/constants/margin_bottom = 4
 ButtonMargin/constants/margin_left = 4
 ButtonMargin/constants/margin_right = 4
 ButtonMargin/constants/margin_top = 4
+MarginContainer/constants/margin_bottom = 8
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 8
+PositiveProgress/base_type = &"ProgressBar"
+PositiveProgress/colors/font_outline_color = Color(0, 0, 0, 1)
+PositiveProgress/constants/outline_size = 8
+PositiveProgress/styles/background = SubResource("StyleBoxFlat_2d0wj")
+PositiveProgress/styles/fill = SubResource("StyleBoxFlat_jqcuf")
 TabContainer/styles/panel = SubResource("StyleBoxFlat_jem7v")
