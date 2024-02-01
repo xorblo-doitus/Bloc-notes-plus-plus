@@ -10,7 +10,8 @@ static func create_defaults() -> void:
 	NoteUI.new().set_type(Note).set_type_translation_key(
 		"NOTE"
 	).set_widget_edits([
-		preload("res://src/gui/user_input/note_edition/widget_edits/title_widget_edit.tscn")
+		preload("res://src/gui/user_input/note_edition/widget_edits/title_widget_edit.tscn"),
+		preload("res://src/gui/user_input/note_edition/widget_edits/description_edit.tscn"),
 	]).auto_inherit().build()
 	
 	NoteUI.new().set_type(Calculus).set_type_translation_key(
