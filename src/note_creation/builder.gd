@@ -69,7 +69,9 @@ func edit_object(object: Object, use_object_current_config: bool = true) -> void
 				set_attribute(attribute, object.get(attribute))
 
 
-func apply_to_existing(object: Object) -> void:
+## Apply attributes to the passed object.
+## [br]If [param allow_type_change] is true, return a new object with the right too.
+func apply_to_existing(object: Object, allow_type_change: bool = true) -> Object:
 	var unused_attributes: Dictionary = {}
 	
 	for attribute in attributes:
@@ -79,3 +81,8 @@ func apply_to_existing(object: Object) -> void:
 			unused_attributes[attribute] = attributes[attribute]
 	
 	object.set_meta(&"_builder_unused_attributes", unused_attributes)
+	
+	if object.get_script() == type or not allow_type_change:
+		return object
+	
+	return build()
