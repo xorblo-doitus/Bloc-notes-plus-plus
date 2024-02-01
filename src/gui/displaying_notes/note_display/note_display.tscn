@@ -30,7 +30,7 @@ sides = 10
 
 [node name="Title" parent="Widgets" instance=ExtResource("1_dbt0l")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(256, 0)
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4

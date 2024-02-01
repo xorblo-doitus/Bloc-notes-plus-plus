@@ -5,6 +5,9 @@ extends PanelContainer
 ## Emitted when delete button is pressed, etc...
 signal request_remove()
 
+## Emitted when note's type is changed when editing the note.
+signal type_changed(new_note: Note)
+
 
 ## The child index at wich widget with [member Widget.before] = [code]true[/code]
 ## will be inserted.
@@ -42,6 +45,9 @@ func display(note: Note) -> void:
 	if not is_node_ready():
 		ready.connect(display.bind(note), CONNECT_ONE_SHOT)
 		return
+	
+	if _displaying:
+		undisplay()
 	
 	_displaying = note
 	
@@ -125,8 +131,10 @@ func _on_edit_pressed() -> void:
 
 
 func _on_edition_confirmed(gui: BuilderGUI) -> void:
-	gui.builder.apply_to_existing(_displaying)
+	var note_with_new_type: Note = gui.builder.apply_to_existing(_displaying)
 	Connection.destroy_all(_edit_connections)
+	if note_with_new_type != _displaying:
+		type_changed.emit(note_with_new_type)
 
 
 func _on_edition_canceled() -> void:

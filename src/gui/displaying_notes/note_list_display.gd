@@ -141,6 +141,7 @@ func _note_display_setup(note_display: NoteDisplay) -> void:
 		_note_display_setup.call_deferred(note_display)
 		return
 	note_display.request_remove.connect(remove.bind(note_display))
+	note_display.type_changed.connect(replace.bind(note_display))
 	note_display.grip_component.element_dropped.connect(handle_drop.bind(note_display))
 	note_display.grip_component.left.connect(remove.bind(note_display))
 
@@ -158,6 +159,11 @@ func handle_drop(element: Control, side: GripDropArea.Side, on: NoteDisplay) -> 
 
 func remove(note_display: NoteDisplay) -> void:
 	note_list.notes.erase(note_display._displaying)
+
+
+func replace(new_note: Note, note_display: NoteDisplay) -> void:
+	print(_note_displays.find(note_display))
+	note_list.notes[_note_displays.find(note_display)] = new_note
 
 
 func _is_equal(other: Variant) -> bool:
