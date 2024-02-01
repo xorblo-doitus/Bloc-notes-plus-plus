@@ -8,6 +8,7 @@ extends WidgetEdit
 
 func _connect_to(_builder: Builder) -> void:
 	_builder.attribute_changed.connect(_on_attribute_updated)
+	title_input.text = _builder.attributes.get("title", "")
 
 
 func _on_attribute_updated(attribute: String, new_value: Variant) -> void:

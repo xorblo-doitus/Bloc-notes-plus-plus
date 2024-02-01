@@ -7,17 +7,22 @@ extends WidgetEdit
 
 func _connect_to(_builder: Builder) -> void:
 	_builder.attribute_changed.connect(_on_attribute_updated)
+	update_name(_builder.attributes.get("name", ""))
 
 
 func _on_attribute_updated(attribute: String, new_value: Variant) -> void:
 	match attribute:
 		"name":
-			variable_name_input.text = new_value
-			check_name(new_value)
+			update_name(new_value)
 
 
 func _on_variable_name_input_text_changed(new: String, _old: String) -> void:
 	builder.set_attribute("name", new)
+	check_name(new)
+
+
+func update_name(new: String) -> void:
+	variable_name_input.text = new
 	check_name(new)
 
 
