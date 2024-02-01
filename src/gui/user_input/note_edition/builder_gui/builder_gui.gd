@@ -105,6 +105,7 @@ func update() -> void:
 	
 	for tab in tabs.get_children():
 		tabs.remove_child(tab)
+		tab.queue_free()
 	
 	
 	for ui in NoteUI.get_most_precise(builder.type).get_heritage(true):
