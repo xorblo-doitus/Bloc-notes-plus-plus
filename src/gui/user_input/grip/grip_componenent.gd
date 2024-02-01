@@ -85,6 +85,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	set_process_input(false)
+	if not _drop_icon:
+		_drop_icon = DropIcon.instantiate()
 
 
 func _notification(what: int) -> void:
@@ -161,7 +163,7 @@ func update_grip_areas() -> void:
 	_remove_areas()
 	
 	if not found_grip:
-		_drop_icon = null
+		_drop_icon.hide()
 		_current_area = null
 		return
 	
@@ -185,24 +187,25 @@ func _update_drop_icon() -> void:
 			found_area = area
 			break
 	
+	
 	if not found_area:
-		_drop_icon = null
+		_drop_icon.hide()
 		_current_area = null
 		return
 	
-	_current_area = found_area
 	
-	if not _drop_icon:
-		_drop_icon = DropIcon.instantiate()
+	_current_area = found_area
 	
 	_drop_icon.global_position = found_area.target_grip.element_to_move.global_position
 	_drop_icon.size = found_area.target_grip.element_to_move.size
 	_drop_icon.side = found_area.side
+	
+	_drop_icon.show()
 
 
 func _clean_visuals() -> void:
 	_remove_areas()
-	_drop_icon = null
+	_drop_icon.hide()
 	_ghost_element = null
 
 
