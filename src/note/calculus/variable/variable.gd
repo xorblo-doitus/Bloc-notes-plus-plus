@@ -57,6 +57,7 @@ func _notification(what: int) -> void:
 			for i in len(Variable.all_variables):
 				if Variable.all_variables[i].get_ref() == self:
 					Variable.all_variables.remove_at(i)
+					Variable.update_all_values.call_deferred()
 					break
 
 
@@ -84,7 +85,7 @@ func calculate(string_expression: String = title) -> Variant:
 
 static var _updating_values: bool = false
 static var _re_update_values: bool = false
-func update_all_values() -> void:
+static func update_all_values() -> void:
 	if Variable._updating_values:
 		Variable._re_update_values = true
 		return
