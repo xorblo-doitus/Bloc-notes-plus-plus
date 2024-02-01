@@ -66,7 +66,7 @@ func edit_object(object: Object, use_object_current_config: bool = true) -> void
 		
 		for infos in best_infos.get_consecutive_infos():
 			for attribute in infos.attributes_to_edit:
-				attributes[attribute] = object.get(attribute)
+				set_attribute(attribute, object.get(attribute))
 
 
 func apply_to_existing(object: Object) -> void:
