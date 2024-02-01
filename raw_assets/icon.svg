@@ -32,9 +32,9 @@
      borderlayer="true"
      labelstyle="default"
      inkscape:clip-to-page="false"
-     inkscape:zoom="1.393294"
-     inkscape:cx="157.18147"
-     inkscape:cy="151.43968"
+     inkscape:zoom="1.9704153"
+     inkscape:cx="101.24769"
+     inkscape:cy="115.71165"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
@@ -49,13 +49,15 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       d="M 67.733332,28.034464 39.699385,0 H 0 v 67.733332 h 67.733332 z"
+       d="M 67.733332,17.451131 50.282718,0 H 0 v 67.733332 h 67.733332 z"
        style="fill:#ffff00;stroke-width:2.11668;stroke-linecap:round"
-       id="path1" />
+       id="path1"
+       sodipodi:nodetypes="cccccc" />
     <path
-       d="M 39.699385,0 V 28.034464 H 67.733332 Z"
+       d="M 50.282718,0 V 17.451131 H 67.733332 Z"
        style="fill:#808000;stroke-width:2.11668;stroke-linecap:round"
-       id="path3" />
+       id="path3"
+       sodipodi:nodetypes="cccc" />
   </g>
   <metadata
      id="metadata1">
