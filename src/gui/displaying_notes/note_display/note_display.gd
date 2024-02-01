@@ -60,7 +60,7 @@ func display(note: Note) -> void:
 				if widget.before:
 					display_widgets.move_child(widget, 1)
 				else:
-					display_widgets.move_child(widget, -2)
+					display_widgets.move_child(widget, -3)
 				
 				widget.note = _displaying
 	
@@ -92,3 +92,42 @@ func _on_title_text_changed(new: String, _old: String):
 
 func _on_delete_pressed() -> void:
 	request_remove.emit()
+
+
+
+
+# Edition Stuff
+var _edit_connections: Array[Connection] = []
+
+func _on_edit_pressed() -> void:
+	var gui = BuilderGUI.request_edition(true)
+	
+	if gui == null:
+		return
+	
+	gui.builder = Builder.new(_displaying)
+	
+	_edit_connections.append(Connection.new(
+		gui.confirmed,
+		_on_edition_confirmed.bind(gui),
+		true,
+		CONNECT_ONE_SHOT
+	))
+	_edit_connections.append(Connection.new(
+		gui.canceled,
+		_on_edition_canceled,
+		true,
+		CONNECT_ONE_SHOT
+	))
+	
+	get_tree().root.add_child(gui)
+	gui.show()
+
+
+func _on_edition_confirmed(gui: BuilderGUI) -> void:
+	gui.builder.apply_to_existing(_displaying)
+	Connection.destroy_all(_edit_connections)
+
+
+func _on_edition_canceled() -> void:
+	Connection.destroy_all(_edit_connections)
