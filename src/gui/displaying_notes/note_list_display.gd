@@ -39,12 +39,10 @@ func _init() -> void:
 
 
 func _ready() -> void:
-	print("ready")
 	notes_container.add_spacer(false)
 
 
 func _enter_tree() -> void:
-	print("tree")
 	build_note_displays()
 
 
