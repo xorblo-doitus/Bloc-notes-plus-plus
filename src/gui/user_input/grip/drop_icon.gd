@@ -44,7 +44,7 @@ const V_ALIGNS = {
 static var _default_scene: PackedScene:
 	get:
 		if _default_scene == null:
-			_default_scene = load("res://src/gui/user_input/grip/drop_icon.tscn")
+			_default_scene = FilePathes.get_resource(&"drop_icon")
 		return _default_scene
 
 ## Create a new instance by loading default scene for this class.
