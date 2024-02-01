@@ -162,7 +162,6 @@ func remove(note_display: NoteDisplay) -> void:
 
 
 func replace(new_note: Note, note_display: NoteDisplay) -> void:
-	print(_note_displays.find(note_display))
 	note_list.notes[_note_displays.find(note_display)] = new_note
 
 
