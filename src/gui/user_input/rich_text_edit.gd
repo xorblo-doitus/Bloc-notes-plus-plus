@@ -58,6 +58,7 @@ signal text_set(new: String)
 		
 		place_holder = new
 		code_edit.placeholder_text = place_holder
+		update_width()
 
 
 var editing: bool = false:
@@ -103,7 +104,7 @@ func _ready():
 	# code_edit.get_h_scroll_bar().size.x = 0
 	# code_edit.get_v_scroll_bar().size.x = 0
 	
-	#update_width()
+	update_width()
 	
 	#self.text = starting_text
 
@@ -229,6 +230,7 @@ func setup_editing() -> void:
 		code_edit.gutters_draw_line_numbers = true
 	code_edit.modulate = Color.WHITE
 	rich_text_label.modulate = Color.TRANSPARENT
+	update_width()
 	#code_edit.text = text
 	#visible_characters = 0
 
@@ -238,7 +240,7 @@ func unsetup_editing() -> void:
 	if text:
 		code_edit.modulate = Color.TRANSPARENT
 	rich_text_label.modulate = Color.WHITE
-	
+	update_width()
 	#code_edit.text = " "
 	#if text != _last_text:
 		#text_set.emit(text, _last_text)
