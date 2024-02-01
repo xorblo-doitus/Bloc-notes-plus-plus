@@ -3,11 +3,11 @@ extends GutTest
 
 
 func test_varialble_freed() -> void:
-	var start_len: int = len(Variable.all)
+	var start_len: int = len(Variable.all_variables)
 	var _variable: Variable = Variable.new("1+1")
 	
 	assert_eq(
-		len(Variable.all),
+		len(Variable.all_variables),
 		start_len + 1,
 		"Variable is not added to all references."
 	)
@@ -15,7 +15,7 @@ func test_varialble_freed() -> void:
 	_variable = null
 	
 	assert_eq(
-		len(Variable.all),
+		len(Variable.all_variables),
 		start_len,
 		"Variable is not removed from all references when freed."
 	)
