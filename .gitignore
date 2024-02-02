@@ -3,6 +3,7 @@
 
 # Other Godot ignores
 *.translation
+override.cfg
 
 # LireOffice
 *.~lock.*
