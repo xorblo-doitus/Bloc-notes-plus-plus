@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciceafugib0p4"]
+[gd_scene load_steps=6 format=3 uid="uid://ciceafugib0p4"]
 
 [ext_resource type="Script" path="res://src/app/main.gd" id="1_71xkc"]
 [ext_resource type="PackedScene" uid="uid://bbqidfrhlnl3x" path="res://src/gui/displaying_notes/note_list_display.tscn" id="2_670oq"]
 [ext_resource type="PackedScene" uid="uid://elxiakmjubkb" path="res://src/gui/user_input/rich_text_edit.tscn" id="3_3xdaj"]
 [ext_resource type="PackedScene" uid="uid://d2vufis0m7yg5" path="res://src/gui/user_input/note_edition/create_note.tscn" id="4_5y3he"]
+
+[sub_resource type="GDScript" id="GDScript_raho6"]
+script/source = "extends Button
+
+
+
+func _on_pressed() -> void:
+	SettingEditor.show()
+"
 
 [node name="Main" type="Control" node_paths=PackedStringArray("notes_display")]
 layout_mode = 3
@@ -38,6 +47,15 @@ text = "SAVE"
 layout_mode = 2
 text = "SAVE_AS"
 
+[node name="Spacer" type="Control" parent="VBoxContainer/Menus"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Settings" type="Button" parent="VBoxContainer/Menus"]
+layout_mode = 2
+text = "SETTINGS"
+script = SubResource("GDScript_raho6")
+
 [node name="Notes" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -61,5 +79,6 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/Menus/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="VBoxContainer/Menus/Save" to="." method="save_workspace"]
 [connection signal="pressed" from="VBoxContainer/Menus/SaveAs" to="." method="_on_save_as_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menus/Settings" to="VBoxContainer/Menus/Settings" method="_on_pressed"]
 [connection signal="text_set" from="VBoxContainer/Adding/FastInput" to="." method="_on_fast_input_text_set"]
 [connection signal="note_created" from="VBoxContainer/Adding/CreateNote" to="." method="_on_note_created"]
