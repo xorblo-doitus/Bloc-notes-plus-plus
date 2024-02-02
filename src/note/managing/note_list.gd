@@ -12,7 +12,7 @@ signal changed(new: Array[NoteList], old: Array[NoteList])
 
 
 ## Stores references to all [NoteList]s created.
-static var all: Array[NoteList] = []
+static var all: Array[WeakRef] = []
 
 ## The notes of this list, you can edit this.
 var notes: Array[Note] = []
@@ -25,7 +25,7 @@ var _last_notes: Array[Note] = []
 func _init(_notes: Array[Note] = []):
 	if _notes:
 		notes = _notes
-	NoteList.all.push_back(self)
+	NoteList.all.push_back(weakref(self))
 
 
 func _to_string() -> String:

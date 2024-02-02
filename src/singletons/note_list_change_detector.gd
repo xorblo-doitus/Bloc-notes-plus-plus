@@ -9,11 +9,13 @@ extends Node
 
 ## Check every frame each [NoteList] to detect if their content changed
 func _process(_delta):
+	NoteList.all = NoteList.all.filter(ST.is_ref_valid)
+	
 	for i in len(NoteList.all):
-		var note_list: NoteList = NoteList.all[i]
+		var note_list: NoteList = NoteList.all[i].get_ref()
 		
 		if not is_instance_valid(note_list):
-			NoteList.all.remove_at(i)
+			continue
 		
 		if note_list._last_notes != note_list.notes:
 			note_list.changed.emit(note_list.notes, note_list._last_notes)
