@@ -4,6 +4,9 @@ extends Node
 
 
 func _process(_delta) -> void:
+	if SettingEditor.visible:
+		return
+	
 	if Input.is_action_just_pressed(&"fullscreen"):
 		# Get opposite state as current
 		var now_fullscreen = get_window().mode != Window.MODE_FULLSCREEN
