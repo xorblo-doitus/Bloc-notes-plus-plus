@@ -9,7 +9,6 @@ var in_use: bool = false:
 
 
 func _ready() -> void:
-	queue_free()
 	size = 0.5 * DisplayServer.screen_get_size()
 
 
