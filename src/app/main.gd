@@ -23,14 +23,14 @@ func _ready():
 	load_workspace()
 
 
-func _process(_d) -> void:
-	if Time.get_ticks_msec() % 10 == 0:
-		prints(
-			Time.get_ticks_msec(),
-			Variable.all_variables,
-		)
-		for ref in Variable.all_variables:
-			print(ref.get_ref(), " references: ", ref.get_ref().get_reference_count())
+#func _process(_d) -> void:
+	#if Time.get_ticks_msec() % 10 == 0:
+		#prints(
+			#Time.get_ticks_msec(),
+			#Variable.all_variables,
+		#)
+		#for ref in Variable.all_variables:
+			#print(ref.get_ref(), " references: ", ref.get_ref().get_reference_count())
 
 
 var first_load: bool = true
