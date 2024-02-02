@@ -62,4 +62,8 @@ func test_variable_freed() -> void:
 
 
 func after_all() -> void:
-	OS.move_to_trash(ProjectSettings.globalize_path(TESTING_DIR))
+	DirAccess.remove_absolute(TESTING_PATH)
+	DirAccess.remove_absolute(TESTING_DIR)
+	if DirAccess.dir_exists_absolute(TESTING_DIR):
+		fail_test("unable to clean testing directory")
+		assert(false, "unable to clean testing directory")
