@@ -33,4 +33,4 @@ func test_saving() -> void:
 	loaded.free()
 
 func after_all() -> void:
-	DirAccess.remove_absolute(TESTING_DIR)
+	OS.move_to_trash(ProjectSettings.globalize_path(TESTING_DIR))
