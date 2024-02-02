@@ -5,13 +5,15 @@ extends Control
 @export var notes_display: NoteListDisplay
 
 
-var workspace: WorkspaceSave = WorkspaceSave.new():
+var workspace: WorkspaceSave = WorkspaceSave.get_as_default():
 	set(new):
 		if new == null:
 			assert(false, "Trying to assign null to workspace wich is a non nullable attribute.")
 			return
+		
 		_disconnect_from_workspace(workspace)
 		_connect_to_workspace(new)
+		
 		workspace = new
 
 
@@ -83,6 +85,9 @@ func _connect_to_workspace(target: WorkspaceSave) -> WorkspaceSave:
 
 ## Chainable
 func _disconnect_from_workspace(target: WorkspaceSave) -> WorkspaceSave:
+	if target == null:
+		return
+	
 	if not target.note_list.changed.is_connected(_on_note_list_changed):
 		return target
 	
@@ -103,7 +108,7 @@ func _on_note_list_changed(new: Array[Note], _old: Array[Note]) -> void:
 	workspace.note_list.notes = new
 	notes_display.note_list.notes = new
 	
-	print(new)
+	#print(new)
 	
 	_can_change_notes = true
 	#_listening_to_notes_change = true

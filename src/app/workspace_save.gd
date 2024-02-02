@@ -26,6 +26,12 @@ static var DEFAULT_NOTES: NoteList:
 ## The notes in this workspacce.
 ## [br][br][b]READONLY[/b]: Trying to modifying this attribute will only set it's
 ## [member NoteList.notes] to a [i]copy[/i] of the new one's [member NoteList.notes]
-var note_list: NoteList = NoteList.new().mimic(DEFAULT_NOTES):
+var note_list: NoteList = NoteList.new():
 	set(new):
 		note_list.mimic(new)
+
+
+static func get_as_default() -> WorkspaceSave:
+	var new: WorkspaceSave = WorkspaceSave.new()
+	new.note_list.mimic(DEFAULT_NOTES)
+	return new
