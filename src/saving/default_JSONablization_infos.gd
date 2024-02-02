@@ -7,10 +7,10 @@ static func create_defaults():
 		&"title",
 		&"description",
 		&"other_data",
+		&"date",
 	]).build()
 	
 	var _task := JSONablizationInfo.new(Task, &"Task", [
-		&"time_limit",
 		&"done",
 	]).auto_inherit().build()
 	
@@ -28,6 +28,10 @@ static func create_defaults():
 	JSONablizationInfo.new(NoteListDisplay, &"NoteListDisplay", [
 		&"note_list",
 	]).set_instantiating_function(NoteListDisplay.instantiate).build()
+	
+	JSONablizationInfo.new(WorkspaceSave, &"WorkspaceSave", [
+		&"note_list",
+	]).build()
 	
 	
 	print_verbose("Loaded default JSONablizationInfos.")
