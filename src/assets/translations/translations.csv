@@ -19,6 +19,8 @@ PARSED_TEXT_WAS,Parsed text was:,Le texte analyser était :
 ERROR_WITHOUT_DESCRIPTION,Error without description.,L’erreur n’a pas de description.
 ERROR_STRING,Error n°{godot_builtin_error} ({error_as_text}),Erreur n°{godot_builtin_error} ({error_as_text})
 OK,OK,OK
+DONE,Done,Terminer
+VALIDATE,Validate,Valider
 CANCEL,Cancel,Annuler
 SAVE,Save,Sauvegarder
 SAVE_AS,Save as,Sauvegarder sous
@@ -36,6 +38,11 @@ EDIT_VARIABLE_NAME,Variable's name:,Nom de la variable :
 TITLE_PLACEHOLDER,Enter title...,Entrez un titre…
 DESCRIPTION_PLACEHOLDER,Enter description ,Entrez une description…
 VARIABLE_NAME_PLACEHOLDER,Enter variable's name...,Entrez le nom de la variable…
+SETTINGS,Settings,Réglages
+ACTION_FULLSCREEN,Fullscreen,Plein écran
+ACTION_VALIDATE_INPUT,Validate input,Valider la saisie
+ACTION_CANCEL_ONGOING_BEHAVIOR,Cancel ongoing behavior,Interrompre (ex : le glisser-déposer)
+ACTION_ALWAYS_ON_TOP,"Toggle window ""always_on_top""",Basculer le mode 1er plan
 en,English,Anglais
 fr,French,Français
 LOCALIZATION_PROGRESS,100%,100%
