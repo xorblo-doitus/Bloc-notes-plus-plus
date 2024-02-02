@@ -68,6 +68,10 @@ static func objectify_recursively(data: Variant) -> Variant:
 	return data
 
 
+class NOT_IN_SERIALIZED_ATTRIBUTES:
+	pass
+
+
 static func objectify(data: Dictionary) -> Object:
 	var most_specific_info: JSONablizationInfo = JSONablizationInfo.all_from_string[data[&"_type"]]
 	var new_object: Object = most_specific_info.instantiating_function.call()
@@ -75,7 +79,10 @@ static func objectify(data: Dictionary) -> Object:
 	#apply_JSONablizationInfo(new_object, info, data)
 	for info in most_specific_info.get_consecutive_infos():
 		for attribute in info.attributes_to_save:
-			var value: Variant = data[attribute]
+			var value: Variant = data.get(attribute, NOT_IN_SERIALIZED_ATTRIBUTES)
+			
+			if ST.is_equal(value, NOT_IN_SERIALIZED_ATTRIBUTES):
+				continue
 			
 			assert(attribute in new_object, "Can't deserialize an attribute wich is not in an object.")
 			
