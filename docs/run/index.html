@@ -111,6 +111,12 @@ body {
 		</style>
 		<link id='-gd-engine-icon' rel='icon' type='image/png' href='index.icon.png' />
 <link rel='apple-touch-icon' href='index.apple-touch-icon.png'/>
+<script>
+window.coi = {
+	coepCredentialless: parseFloat(/Firefox\/(\d+(?:\.\d+)+)/.exec(navigator.userAgent)[1]) < 119
+}
+console.log(window.coi)
+</script>
 <script src="coi-serviceworker.js"></script>
 	</head>
 	<body>
@@ -137,7 +143,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":2672304,"index.wasm":35410474},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":2683808,"index.wasm":35410474},"focusCanvas":true,"gdextensionLibs":[]};
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
