@@ -84,6 +84,7 @@ func _on_popup_hide() -> void:
 
 func _on_input_display_gui_input(event: InputEvent) -> void:
 	if not event is InputEventMouseMotion and event.is_pressed() and not event.is_echo():
+		set_input_as_handled()
 		_last_event = event.duplicate()
 		_setup_physical(event)
 		if event.is_match(input_display.input_event) and not event is InputEventMouse:
