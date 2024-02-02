@@ -5,6 +5,8 @@ NO_DESCRIPTION,No description.,Pas de description.
 ERROR_PREFIX,Error: ,Erreur : 
 ERROR_LOAD_FAILED,Loading failed,Le chargement a échoué
 ERROR_WORKSPACE_LOAD_FAILED,Workspace loading failed,Le chargement de l’espace de travail a échoué
+ERROR_SAVE_FAILED,Saving failed,La sauvegarde a échoué
+ERROR_WORKSPACE_SAVE_FAILED,Workspace saving failed,La sauvegarde de l’espace de travail a échoué
 ERROR_UNDEFINED_VARIABLE,"The variable ""{variable_name}"" does not exist.",La variable « {variable_name} » n’existe pas.
 ERROR_PARSING_JSON,Failed to parse JSON,JSON malformé
 ERROR_INVALID_IDENTIFIER,Invalid identifier,Identifiant invalide
@@ -18,6 +20,10 @@ ERROR_WITHOUT_DESCRIPTION,Error without description.,L’erreur n’a pas de des
 ERROR_STRING,Error n°{godot_builtin_error} ({error_as_text}),Erreur n°{godot_builtin_error} ({error_as_text})
 OK,OK,OK
 CANCEL,Cancel,Annuler
+SAVE,Save,Sauvegarder
+SAVE_AS,Save as,Sauvegarder sous
+LOAD,Load,Charger
+WORKSPACE_SAVE,Saved workspace,Espace de travail sauvegardé
 NOTE,Note,Note
 CALCULUS,Calculus,Calcul
 VARIABLE,Variable,Variable

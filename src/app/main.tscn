@@ -36,8 +36,7 @@ text = "SAVE"
 
 [node name="SaveAs" type="Button" parent="VBoxContainer/Menus"]
 layout_mode = 2
-text = "SAVE_AS
-"
+text = "SAVE_AS"
 
 [node name="Notes" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
