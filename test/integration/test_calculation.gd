@@ -2,7 +2,7 @@ extends GutTest
 
 
 
-func test_varialble_freed() -> void:
+func test_variable_freed() -> void:
 	var start_len: int = len(Variable.all_variables)
 	var _variable: Variable = Variable.new("1+1")
 	

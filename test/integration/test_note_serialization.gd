@@ -1,6 +1,7 @@
 extends GutTest
 
 
+
 func test_object():
 	var success: bool = true
 	var variable: Variable = Variable.new()
@@ -25,3 +26,31 @@ func test_object():
 	
 	if success:
 		pass_test("Variable serialization work.")
+
+
+func test_variable_freed() -> void:
+	var start_len: int = len(Variable.all_variables)
+	
+	var json = Serializer.serialize(Variable.new("1+1").set_name("test_variable_freed"))
+	
+	assert_eq(
+		len(Variable.all_variables),
+		start_len,
+		"Serializing a variable prevent it from being 100% unreferenced."
+	)
+	
+	var _variable = Serializer.deserialize(json)
+	
+	assert_eq(
+		len(Variable.all_variables),
+		start_len + 1,
+		"Variable is not added to all variables when loaded."
+	)
+	
+	_variable = null
+	
+	assert_eq(
+		len(Variable.all_variables),
+		start_len,
+		"Variable deserialization prevent right reference count."
+	)

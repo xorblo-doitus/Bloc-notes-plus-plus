@@ -32,5 +32,34 @@ func test_saving() -> void:
 	deserialized.free()
 	loaded.free()
 
+
+func test_variable_freed() -> void:
+	var start_len: int = len(Variable.all_variables)
+	
+	Saver.save_object(Variable.new("1+1").set_name("test_variable_freed"), TESTING_PATH)
+	
+	assert_eq(
+		len(Variable.all_variables),
+		start_len,
+		"Serializing a variable prevent it from being 100% unreferenced."
+	)
+	
+	var _variable = Saver.load_object_from_file(TESTING_PATH)
+	
+	assert_eq(
+		len(Variable.all_variables),
+		start_len + 1,
+		"Variable is not added to all variables when loaded."
+	)
+	
+	_variable = null
+	
+	assert_eq(
+		len(Variable.all_variables),
+		start_len,
+		"Variable deserialization prevent right reference count."
+	)
+
+
 func after_all() -> void:
 	OS.move_to_trash(ProjectSettings.globalize_path(TESTING_DIR))
