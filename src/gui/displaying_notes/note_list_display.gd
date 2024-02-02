@@ -49,6 +49,7 @@ func _enter_tree() -> void:
 func build_note_displays() -> void:
 	if not is_inside_tree():
 		return
+	
 	# Unlink displays wich displays a note that don't belong to self
 	for display in _note_displays:
 		if display._displaying and not display._displaying in notes:
