@@ -23,16 +23,32 @@ func _ready():
 	load_workspace()
 
 
-func load_workspace() -> void:
-	var loaded_workspace: Object = Saver.load_object_from_file(
-		EasySettings.get_setting("save/path/latest_workspace")
-	)
+func _process(_d) -> void:
+	if Time.get_ticks_msec() % 10 == 0:
+		prints(
+			Time.get_ticks_msec(),
+			Variable.all_variables,
+		)
+		for ref in Variable.all_variables:
+			print(ref.get_ref(), " references: ", ref.get_ref().get_reference_count())
+
+
+var first_load: bool = true
+func load_workspace(path: String = "") -> void:
+	if path:
+		EasySettings.set_setting("save/path/latest_workspace", path)
+	else:
+		path = EasySettings.get_setting("save/path/latest_workspace")
+	
+	var loaded_workspace: Object = Saver.load_object_from_file(path)
 	
 	if loaded_workspace is ErrorHelper:
-		if not loaded_workspace.godot_builtin_error == ERR_FILE_NOT_FOUND:
+		if first_load and not loaded_workspace.godot_builtin_error == ERR_FILE_NOT_FOUND:
 			loaded_workspace.set_description(
 				tr(&"ERROR_WORKSPACE_LOAD_FAILED")
 			).popup()
+		
+		first_load = false
 		
 		# Triger setter
 		workspace = workspace
@@ -40,6 +56,22 @@ func load_workspace() -> void:
 		workspace = loaded_workspace
 	
 	_on_note_list_changed(workspace.note_list.notes, [])
+
+
+func save_workspace(path: String = "") -> void:
+	if path:
+		EasySettings.set_setting("save/path/latest_workspace", path)
+	else:
+		path = EasySettings.get_setting("save/path/latest_workspace")
+	
+	var error: ErrorHelper = Saver.save_object(workspace, path)
+	
+	if error:
+		error.set_description(
+			tr(&"ERROR_WORKSPACE_SAVE_FAILED")
+		).popup()
+		
+		return
 
 
 ## Chainable
@@ -71,6 +103,8 @@ func _on_note_list_changed(new: Array[Note], _old: Array[Note]) -> void:
 	workspace.note_list.notes = new
 	notes_display.note_list.notes = new
 	
+	print(new)
+	
 	_can_change_notes = true
 	#_listening_to_notes_change = true
 
@@ -101,3 +135,32 @@ func _on_fast_input_text_set(new: String) -> void:
 		_on_note_created(Parser.new().execute(new)["_current_builder"].build())
 		fast_input.text = ""
 		#fast_input._grab_focus.call_deferred()
+
+
+func _on_load_pressed() -> void:
+	if not GlobalFileDialog.request_dialog():
+		return
+	
+	GlobalFileDialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	GlobalFileDialog.filters = [
+		"*.json, *.txt ; " + tr(&"WORKSPACE_SAVE"),
+	]
+	GlobalFileDialog.connect_while_in_use(
+		Connection.new(GlobalFileDialog.file_selected, load_workspace)
+	)
+	GlobalFileDialog.show()
+
+
+func _on_save_as_pressed() -> void:
+	if not GlobalFileDialog.request_dialog():
+		return
+	
+	GlobalFileDialog.file_mode = FileDialog.FILE_MODE_SAVE_FILE
+	GlobalFileDialog.filters = [
+		"*.json, *.txt ; " + tr(&"WORKSPACE_SAVE"),
+	]
+	GlobalFileDialog.current_path = EasySettings.get_setting("save/path/latest_workspace")
+	GlobalFileDialog.connect_while_in_use(
+		Connection.new(GlobalFileDialog.file_selected, save_workspace)
+	)
+	GlobalFileDialog.show()

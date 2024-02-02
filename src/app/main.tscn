@@ -23,6 +23,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Menus" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Load" type="Button" parent="VBoxContainer/Menus"]
+layout_mode = 2
+text = "LOAD"
+
+[node name="Save" type="Button" parent="VBoxContainer/Menus"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="SaveAs" type="Button" parent="VBoxContainer/Menus"]
+layout_mode = 2
+text = "SAVE_AS
+"
+
 [node name="Notes" type="ScrollContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -43,5 +59,8 @@ place_holder = "FAST_INPUT_PLACEHOLDER"
 [node name="CreateNote" parent="VBoxContainer/Adding" instance=ExtResource("4_5y3he")]
 layout_mode = 2
 
+[connection signal="pressed" from="VBoxContainer/Menus/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menus/Save" to="." method="save_workspace"]
+[connection signal="pressed" from="VBoxContainer/Menus/SaveAs" to="." method="_on_save_as_pressed"]
 [connection signal="text_set" from="VBoxContainer/Adding/FastInput" to="." method="_on_fast_input_text_set"]
 [connection signal="note_created" from="VBoxContainer/Adding/CreateNote" to="." method="_on_note_created"]
