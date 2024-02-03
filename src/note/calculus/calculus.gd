@@ -3,13 +3,17 @@ extends Note
 
 
 ## A note able to do calculations.
-##
+## 
+## Calculation is made with the title of the Note.
 ## When we speak about "variables" in this page, it's a dictionary with variable's
 ## names as keys and their values as values
 
 
 ## Emited when [member value] is changed.
 signal value_changed(new: Variant, old: Variant)
+
+## Emitted when [member error] is changed.
+signal error_changed(new: ErrorHelper)
 
 
 ## An array storing references to all alive Calculus
@@ -63,9 +67,14 @@ static func ints_to_floats(expression: String) -> String:
 	return expression
 
 ## Stores an error representing the current error in the calculation.
-var error: ErrorHelper
+var error: ErrorHelper:
+	set(new):
+		if error == new:
+			return
+		error = new
+		error_changed.emit(new)
 
-## [b]READONLY[/b]: The value of the current
+## [b]READONLY[/b]: The result of the current calculation.
 var value: Variant:
 	set(_new):
 		var calculated: Variant = calculate()
