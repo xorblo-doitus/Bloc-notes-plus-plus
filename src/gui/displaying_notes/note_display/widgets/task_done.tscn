@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://2pqeghw80w1v"]
+[gd_scene load_steps=6 format=3 uid="uid://2pqeghw80w1v"]
 
 [ext_resource type="PackedScene" uid="uid://dufp1y5c7fj8" path="res://src/gui/displaying_notes/note_display/widgets/display_widget.tscn" id="1_g3fkh"]
 [ext_resource type="Script" path="res://src/gui/displaying_notes/note_display/widgets/task_done.gd" id="2_r3gmy"]
 [ext_resource type="Texture2D" uid="uid://c456shd2gp87u" path="res://src/assets/images/icons/checked.png" id="3_be7ob"]
 [ext_resource type="Texture2D" uid="uid://bhx4nlnc3d5ei" path="res://src/assets/images/icons/checkbox_background.png" id="4_ux0qn"]
+
+[sub_resource type="GDScript" id="GDScript_oidju"]
+script/source = "extends CheckBox
+
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	return Tooltip.instantiate(for_text)
+"
 
 [node name="TaskDone" instance=ExtResource("1_g3fkh")]
 script = ExtResource("2_r3gmy")
@@ -12,8 +20,10 @@ before = false
 [node name="DoneCheckBox" type="CheckBox" parent="." index="0"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "DONE_CHECKBOX_TOOLTIP"
 theme_override_icons/checked = ExtResource("3_be7ob")
 theme_override_icons/unchecked = ExtResource("4_ux0qn")
 expand_icon = true
+script = SubResource("GDScript_oidju")
 
 [connection signal="toggled" from="DoneCheckBox" to="." method="_on_done_check_box_toggled"]

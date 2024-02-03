@@ -5,6 +5,7 @@ NO_DESCRIPTION,No description.,Pas de description.
 GRAB_TOOLTIP,Move,Déplacer
 EDIT_TOOLTIP,Edit,Modifier
 DELETE_TOOLTIP,Delete,Supprimer
+DONE_CHECKBOX_TOOLTIP,Mark task as done,Marquer la tâche comme achevée
 TASK_PROGRESS_TOOLTIP,Tasks progress (How many percents of tasks where marked as done),Progression des tâches (pourcentage des notes de type tâche cochées comme accomplies)
 ERROR_PREFIX,Error: ,Erreur : 
 ERROR_LOAD_FAILED,Loading failed,Le chargement a échoué
