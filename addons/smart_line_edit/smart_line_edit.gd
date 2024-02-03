@@ -383,13 +383,12 @@ func set_line_edit_text(new_text: String) -> void:
 ## and [signal value_changed]. Still triggers [signal status_changed].
 func set_valid_text_without_update(new_valid_text: String) -> void:
 	last_valid_text = new_valid_text
-	match status:
-		Status.OK, Status.CORRECTED:
-			line_edit.text = new_valid_text
+	line_edit.text = new_valid_text
 	
-			if status == Status.CORRECTED:
-				status = Status.OK
-				status_changed.emit(status, Status.CORRECTED)
+	match status:
+		Status.CORRECTED, Status.WRONG:
+			status = Status.OK
+			status_changed.emit(status, Status.CORRECTED)
 
 
 func open_file_dialog() -> void:
