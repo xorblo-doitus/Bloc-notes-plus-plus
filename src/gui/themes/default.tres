@@ -1,10 +1,12 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cpb3qocd5avyd"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cpb3qocd5avyd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d0wj"]
 bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqcuf"]
 bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svdy7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jem7v"]
 content_margin_left = 16.0
@@ -29,4 +31,6 @@ PositiveProgress/colors/font_outline_color = Color(0, 0, 0, 1)
 PositiveProgress/constants/outline_size = 8
 PositiveProgress/styles/background = SubResource("StyleBoxFlat_2d0wj")
 PositiveProgress/styles/fill = SubResource("StyleBoxFlat_jqcuf")
+RichTextEditCode/base_type = &"CodeEdit"
+RichTextEditCode/styles/focus = SubResource("StyleBoxEmpty_svdy7")
 TabContainer/styles/panel = SubResource("StyleBoxFlat_jem7v")
