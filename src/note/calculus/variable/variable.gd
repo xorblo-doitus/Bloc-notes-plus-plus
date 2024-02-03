@@ -85,6 +85,7 @@ func calculate(string_expression: String = title) -> Variant:
 
 static var _updating_values: bool = false
 static var _re_update_values: bool = false
+## Update the value of all [Calculus]es.
 static func update_all_values() -> void:
 	if Variable._updating_values:
 		Variable._re_update_values = true

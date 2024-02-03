@@ -29,6 +29,7 @@ static var other_variables: Array[Dictionary] = []
 ## Callables returning dictionary of variables.
 static var variable_getters: Array[Callable] = []
 
+## A regex able to find integers in expressions
 static var INT_REGEX: RegEx:
 	get:
 		if not INT_REGEX:
@@ -53,6 +54,9 @@ static func get_all_variables() -> Dictionary:
 	return result
 
 
+## Turns integers into floating point nubers in strings expression.
+## This is usefull because integer division can feel as errors for non initiated people.
+## (3 / 2 = 1 but 3.0 / 2.0 = 1.5)
 static func ints_to_floats(expression: String) -> String:
 	var matches: Array[RegExMatch] = INT_REGEX.search_all(expression)
 	matches.reverse()
@@ -65,6 +69,7 @@ static func ints_to_floats(expression: String) -> String:
 		)
 	
 	return expression
+
 
 ## Stores an error representing the current error in the calculation.
 var error: ErrorHelper:
@@ -153,6 +158,7 @@ class ErrorRegexes:
 	static var undefined_variable := create_regex(r"Invalid named index '(?<variable_name>.*)'")
 
 
+## Turns godot's error text into user readable error text. (Because they are not devs)
 func translate_error_text(error_text: String) -> String:
 	var regex_match: RegExMatch = ErrorRegexes.undefined_variable.search(error_text)
 	if regex_match != null:

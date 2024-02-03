@@ -30,6 +30,8 @@ var description: String = "":
 
 ## A date to wich this note is related (ex: time limit for a task, day it was created, etc...).
 ## 0 meaning there is no date associated.
+## @experimental
+## [br][b](NOT IMPLEMENTED)[/b]
 var date: int = 0
 
 
@@ -41,10 +43,6 @@ var other_data: Dictionary = {}
 func _init(_title: String = "", _description: = ""):
 	title = _title
 	description = _description
-
-
-#var _connected_displays: Array[NoteDisplay] = []
-
 
 
 func _to_string():
