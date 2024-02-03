@@ -164,7 +164,12 @@ func _on_save_as_pressed() -> void:
 	GlobalFileDialog.filters = [
 		"*.json, *.txt ; " + tr(&"WORKSPACE_SAVE"),
 	]
-	GlobalFileDialog.current_path = EasySettings.get_setting("save/path/latest_workspace")
+	
+	GlobalFileDialog.current_dir = EasySettings.get_setting("save/path/workspaces")
+	GlobalFileDialog.current_file = EasySettings.get_setting(
+		"save/path/workspaces"
+	).path_join("unnamed_workspace.json")
+	
 	GlobalFileDialog.connect_while_in_use(
 		Connection.new(GlobalFileDialog.file_selected, save_workspace)
 	)
