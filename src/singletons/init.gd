@@ -4,6 +4,9 @@ extends Node
 func _ready():
 	randomize()
 	
+	if not DirAccess.dir_exists_absolute(EasySettings.get_setting("save/path/workspaces")):
+		DirAccess.make_dir_recursive_absolute(EasySettings.get_setting("save/path/workspaces"))
+	
 	# Static initialisations
 	if ([
 		Serializer,

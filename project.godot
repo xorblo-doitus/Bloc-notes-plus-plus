@@ -92,5 +92,5 @@ textures/vram_compression/import_etc2_astc=true
 
 [save]
 
-path/workspaces="user://save/workspaces"
+path/workspaces="user://save/workspaces/"
 path/latest_workspace="user://save/workspace/main.json"
