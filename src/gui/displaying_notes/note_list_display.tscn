@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbqidfrhlnl3x"]
+[gd_scene load_steps=3 format=3 uid="uid://bbqidfrhlnl3x"]
 
 [ext_resource type="Script" path="res://src/gui/displaying_notes/note_list_display.gd" id="1_rlmku"]
+
+[sub_resource type="GDScript" id="GDScript_y54ja"]
+script/source = "extends ProgressBar
+
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	return Tooltip.instantiate(for_text)
+"
 
 [node name="NoteListDisplay" type="PanelContainer"]
 anchors_preset = 15
@@ -18,5 +26,7 @@ layout_mode = 2
 [node name="ProgressBar" type="ProgressBar" parent="NotesContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "TASK_PROGRESS_TOOLTIP"
 theme_type_variation = &"PositiveProgress"
 value = 50.0
+script = SubResource("GDScript_y54ja")
