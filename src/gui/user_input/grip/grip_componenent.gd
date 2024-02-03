@@ -15,6 +15,8 @@ signal left()
 
 ## The element this grip let move.
 @export var element_to_move: Control
+## Optional. If set, will remove the tooltip on drag wich otherwise would float aimlessly.
+@export var button: Control
 ## If true, right-clicking while dragging will cancel the dragging
 @export var right_click_to_cancel: bool = true
 @export var drag_group: StringName = &"default"
@@ -105,6 +107,8 @@ func _input(event: InputEvent) -> void:
 func start_dragging() -> void:
 	if _dragging:
 		return
+	
+	_clear_tooltip()
 	
 	if element_to_move == null:
 		push_warning("No element to drag.")
@@ -212,3 +216,12 @@ func _clean_visuals() -> void:
 func _remove_areas() -> void:
 	while _areas:
 		_areas.pop_back().free()
+
+
+func _clear_tooltip() -> void:
+	if not is_instance_valid(button):
+		return
+	
+	for child in button.get_children(true):
+		if &"theme_type_variation" in child and child.theme_type_variation == &"TooltipPanel":
+			child.hide()

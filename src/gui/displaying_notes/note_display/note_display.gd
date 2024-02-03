@@ -25,6 +25,7 @@ var _displaying: Note
 @onready var title: RichTextEdit = %Title
 @onready var grip_component: GripComponent = %GripComponent
 @onready var display_widgets: HBoxContainer = %Widgets
+@onready var grab: Button = %Grab
 
 
 ## A reference to the default packed scene associated with this class
@@ -139,3 +140,4 @@ func _on_edition_confirmed(gui: BuilderGUI) -> void:
 
 func _on_edition_canceled() -> void:
 	Connection.destroy_all(_edit_connections)
+
