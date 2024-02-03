@@ -20,31 +20,41 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 992.0
 offset_bottom = 351.0
+current_tab = 1
 
-[node name="PATHES" parent="TabContainer" instance=ExtResource("2_wahvk")]
+[node name="SETTING_CATEGORY_PATHES" parent="TabContainer" instance=ExtResource("2_wahvk")]
+visible = false
 layout_mode = 2
 
-[node name="WORKSPACE" parent="TabContainer/PATHES/MarginContainer/Layout/ScrollContainer/SettingList" index="0" instance=ExtResource("3_3oxkm")]
+[node name="WORKSPACE" parent="TabContainer/SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList" index="0" instance=ExtResource("3_3oxkm")]
 layout_mode = 2
+setting_name = "DEFAULT_WORKSPACE_FOLDER"
 
-[node name="Label" parent="TabContainer/PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE" index="0"]
-text = "WORKSPACE"
+[node name="Label" parent="TabContainer/SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE" index="0"]
+text = "DEFAULT_WORKSPACE_FOLDER"
 
-[node name="SmartLineEdit" parent="TabContainer/PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE" instance=ExtResource("4_8v1cx")]
+[node name="SmartLineEdit" parent="TabContainer/SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE" instance=ExtResource("4_8v1cx")]
 layout_mode = 2
 type = 0
 must_exist = false
+last_valid_text = "res://"
 
-[node name="ESLSmartLineEdit" parent="TabContainer/PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE/SmartLineEdit" node_paths=PackedStringArray("smart_line_edit") instance=ExtResource("5_yjfe7")]
+[node name="ESLSmartLineEdit" parent="TabContainer/SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE/SmartLineEdit" node_paths=PackedStringArray("smart_line_edit") instance=ExtResource("5_yjfe7")]
 smart_line_edit = NodePath("..")
 setting = "save/path/workspaces"
 sync = 0
 
 [node name="SETTING_CATEGORY_KEYBINDS" parent="TabContainer" instance=ExtResource("3_cu2pf")]
-visible = false
 layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/SETTING_CATEGORY_KEYBINDS/MarginContainer/Layout" index="1"]
+layout_mode = 2
+bbcode_enabled = true
+text = "INSTANT_SAVE_WARNING"
+fit_content = true
 
 [connection signal="confirmed" from="." to="." method="_on_confirmed"]
 
-[editable path="TabContainer/PATHES"]
-[editable path="TabContainer/PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE"]
+[editable path="TabContainer/SETTING_CATEGORY_PATHES"]
+[editable path="TabContainer/SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE"]
+[editable path="TabContainer/SETTING_CATEGORY_KEYBINDS"]
