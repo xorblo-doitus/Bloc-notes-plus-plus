@@ -39,6 +39,9 @@ TITLE_PLACEHOLDER,Enter title...,Entrez un titre…
 DESCRIPTION_PLACEHOLDER,Enter description ,Entrez une description…
 VARIABLE_NAME_PLACEHOLDER,Enter variable's name...,Entrez le nom de la variable…
 SETTINGS,Settings,Réglages
+SETTING_CATEGORY_PATHES,Pathes,Chemins
+DEFAULT_WORKSPACE_FOLDER,Default workspace save folder,Dossier de sauvegarde par défaut
+INSTANT_SAVE_WARNING,[color=orange]Warning: controls are instantly saved. You can’t undo a keybind modification.[/color],[color=orange]Attention : les contrôles sont sauvegardés instantanément. Les changements de raccourci ne peuvent donc pas être annulés.[/color]
 ACTION_FULLSCREEN,Fullscreen,Plein écran
 ACTION_VALIDATE_INPUT,Validate input,Valider la saisie
 ACTION_CANCEL_ONGOING_BEHAVIOR,Cancel ongoing behavior,Interrompre (ex : le glisser-déposer)
