@@ -78,6 +78,7 @@ always_on_top={
 [internationalization]
 
 locale/translations=PackedStringArray("res://src/assets/translations/translations.en.translation", "res://src/assets/translations/translations.fr.translation", "res://addons/complete_settings/translations/complete_settings.en.translation", "res://addons/complete_settings/translations/complete_settings.fr.translation", "res://addons/keybind_remap/translations/keybind_remap.en.translation", "res://addons/keybind_remap/translations/keybind_remap.fr.translation")
+locale/current_locale="fr"
 
 [notes]
 

@@ -15,6 +15,9 @@ func _ready():
 	
 	BuilderGUI._fetch_types()
 	
+	
+	TranslationServer.set_locale.call_deferred(EasySettings.get_setting("internationalization/locale/current_locale"))
+	
 	#get_tree().node_added.connect(check_node)
 #
 #

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq4c6sujnyblh"]
+
+[ext_resource type="Script" path="res://src/gui/settings/language.gd" id="1_iu2e1"]
+
+[node name="LanguageChooser" type="OptionButton"]
+item_count = 2
+popup/item_0/text = "Français"
+popup/item_0/id = 0
+popup/item_1/text = "English"
+popup/item_1/id = 1
+script = ExtResource("1_iu2e1")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

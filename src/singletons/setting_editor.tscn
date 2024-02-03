@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpewdfofh2kit"]
+[gd_scene load_steps=8 format=3 uid="uid://dpewdfofh2kit"]
 
 [ext_resource type="Script" path="res://src/singletons/setting_editor.gd" id="1_cj0l8"]
 [ext_resource type="PackedScene" uid="uid://dmayp4du8pkmc" path="res://addons/complete_settings/scenes/categories/template/template_category.tscn" id="2_wahvk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cacfv61munwfy" path="res://addons/complete_settings/scenes/categories/keybinds/keybinds_category.tscn" id="3_cu2pf"]
 [ext_resource type="PackedScene" uid="uid://s6mk8i1l4u0t" path="res://addons/smart_line_edit/smart_line_edit.tscn" id="4_8v1cx"]
 [ext_resource type="PackedScene" uid="uid://dqknaj47jgbnl" path="res://addons/easy_settings/listeners/addon_compat/smart_line_edit/esl_smart_line_edit.tscn" id="5_yjfe7"]
+[ext_resource type="PackedScene" uid="uid://bq4c6sujnyblh" path="res://src/gui/settings/language.tscn" id="6_h813l"]
 
 [node name="SettingEditor" type="ConfirmationDialog"]
 title = "SETTINGS"
@@ -20,10 +21,8 @@ offset_left = 8.0
 offset_top = 8.0
 offset_right = 992.0
 offset_bottom = 351.0
-current_tab = 1
 
 [node name="SETTING_CATEGORY_PATHES" parent="TabContainer" instance=ExtResource("2_wahvk")]
-visible = false
 layout_mode = 2
 
 [node name="WORKSPACE" parent="TabContainer/SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList" index="0" instance=ExtResource("3_3oxkm")]
@@ -44,10 +43,30 @@ smart_line_edit = NodePath("..")
 setting = "save/path/workspaces"
 sync = 0
 
+[node name="SETTING_CATEGORY_UI" parent="TabContainer" node_paths=PackedStringArray("setting_list", "collapse_all_button", "expand_all_button", "search_bar") instance=ExtResource("2_wahvk")]
+visible = false
+layout_mode = 2
+setting_list = NodePath("../SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList")
+collapse_all_button = NodePath("../SETTING_CATEGORY_PATHES/MarginContainer/Layout/TopBar/CollapseAll")
+expand_all_button = NodePath("../SETTING_CATEGORY_PATHES/MarginContainer/Layout/TopBar/ExpandAll")
+search_bar = NodePath("../SETTING_CATEGORY_PATHES/MarginContainer/Layout/TopBar/SearchBar")
+
+[node name="WORKSPACE" parent="TabContainer/SETTING_CATEGORY_UI/MarginContainer/Layout/ScrollContainer/SettingList" index="0" instance=ExtResource("3_3oxkm")]
+layout_mode = 2
+setting_name = "LANGUAGE"
+
+[node name="Label" parent="TabContainer/SETTING_CATEGORY_UI/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE" index="0"]
+text = "LANGUAGE"
+
+[node name="OptionButton" parent="TabContainer/SETTING_CATEGORY_UI/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE" instance=ExtResource("6_h813l")]
+layout_mode = 2
+
 [node name="SETTING_CATEGORY_KEYBINDS" parent="TabContainer" instance=ExtResource("3_cu2pf")]
+visible = false
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/SETTING_CATEGORY_KEYBINDS/MarginContainer/Layout" index="1"]
+visible = false
 layout_mode = 2
 bbcode_enabled = true
 text = "INSTANT_SAVE_WARNING"
@@ -57,4 +76,6 @@ fit_content = true
 
 [editable path="TabContainer/SETTING_CATEGORY_PATHES"]
 [editable path="TabContainer/SETTING_CATEGORY_PATHES/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE"]
+[editable path="TabContainer/SETTING_CATEGORY_UI"]
+[editable path="TabContainer/SETTING_CATEGORY_UI/MarginContainer/Layout/ScrollContainer/SettingList/WORKSPACE"]
 [editable path="TabContainer/SETTING_CATEGORY_KEYBINDS"]
