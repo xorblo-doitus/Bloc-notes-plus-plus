@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://rlfmcccv762a"]
+[gd_scene load_steps=3 format=3 uid="uid://rlfmcccv762a"]
 
 [ext_resource type="Script" path="res://src/gui/user_input/note_edition/builder_gui/builder_gui.gd" id="1_3f32s"]
+
+[sub_resource type="GDScript" id="GDScript_6igse"]
+script/source = "extends OptionButton
+
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	return Tooltip.instantiate(for_text)
+"
 
 [node name="BuilderGUI" type="ConfirmationDialog" groups=["window"]]
 title = "EDIT"
@@ -20,6 +28,8 @@ offset_bottom = 97.0
 [node name="TypeSelector" type="OptionButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "TYPE_SELECTOR_TOOLTIP"
+script = SubResource("GDScript_6igse")
 
 [node name="Tabs" type="TabContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
