@@ -7,6 +7,7 @@ EDIT_TOOLTIP,Edit,Modifier
 DELETE_TOOLTIP,Delete,Supprimer
 DONE_CHECKBOX_TOOLTIP,Mark task as done,Marquer la tâche comme achevée
 TASK_PROGRESS_TOOLTIP,Tasks progress (How many percents of tasks where marked as done),Progression des tâches (pourcentage des notes de type tâche cochées comme accomplies)
+CREATE_NOTE_TOOLTIP,Create a new note,Créer une nouvelle note
 ERROR_PREFIX,Error: ,Erreur : 
 ERROR_LOAD_FAILED,Loading failed,Le chargement a échoué
 ERROR_WORKSPACE_LOAD_FAILED,Workspace loading failed,Le chargement de l’espace de travail a échoué

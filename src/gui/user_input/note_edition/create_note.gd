@@ -6,6 +6,11 @@ signal note_created(note: Note)
 
 var _connections: Dictionary = {}
 
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	return Tooltip.instantiate(for_text)
+
+
 func _on_pressed() -> void:
 	var gui = BuilderGUI.request_edition(true)
 	

@@ -75,6 +75,7 @@ place_holder = "FAST_INPUT_PLACEHOLDER"
 
 [node name="CreateNote" parent="VBoxContainer/Adding" instance=ExtResource("4_5y3he")]
 layout_mode = 2
+tooltip_text = "CREATE_NOTE_TOOLTIP"
 
 [connection signal="pressed" from="VBoxContainer/Menus/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="VBoxContainer/Menus/Save" to="." method="save_workspace"]
