@@ -19,9 +19,12 @@ signal left()
 @export var button: Control
 ## If true, right-clicking while dragging will cancel the dragging
 @export var right_click_to_cancel: bool = true
+## Things can only be drag and dropped within the same group
 @export var drag_group: StringName = &"default"
-@export var drop_enabled: bool = true
 @export_group("dropping")
+## Allow or not things to be dropped on this component's [member element_to_move]
+@export var drop_enabled: bool = true
+## Defines the percentage of height and width that the center drop zone will take.
 @export_range(0, 1, 10**-3, "suffix:%") var center_ratio: float = 0.5
 ## A Bitmask of enabled sides to drop dragged elements.
 @export_flags("Center", "Up", "Right", "Down", "Left") var sides: int = 0b1111_1
@@ -29,6 +32,7 @@ signal left()
 ## If true, [member offset] will be automatically defined so that starting dragging
 ## does not teleport the GUI to the mouse. Else [member offset] is left unchanged.
 @export var auto_offset: bool = true
+## How much the ghost element created while dragging is offsetted of the mouse.
 @export var offset: Vector2 = Vector2.ZERO
 
 

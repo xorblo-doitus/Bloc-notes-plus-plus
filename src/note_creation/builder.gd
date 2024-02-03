@@ -46,6 +46,7 @@ func set_attribute(attribute: String, new_value: Variant) -> void:
 	attribute_changed.emit(attribute, new_value)
 
 
+## Create a new instance of type [member type] according to [member attributes].
 func build() -> Object:
 	var infos: BuildingInfo = BuildingInfo.get_most_precise(type)
 	var new: Object = infos.instantiating_function.call() if infos.type == type else type.new()
@@ -55,6 +56,7 @@ func build() -> Object:
 	return new
 
 
+## Allow modifying an already existing object.
 func edit_object(object: Object, use_object_current_config: bool = true) -> void:
 	type = object.get_script()
 	

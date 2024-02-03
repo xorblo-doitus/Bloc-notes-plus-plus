@@ -2,6 +2,9 @@ class_name Connection
 extends RefCounted
 
 
+## A utility class to help connecting methods to signals through code.
+
+
 ## The signal to wich the callback is connected
 var connected_to: Signal
 ## The callable that is called by the signal emission.
@@ -29,6 +32,7 @@ func destroy() -> void:
 	connected_to.disconnect(callback)
 
 
+## Call [method destroy] on all elements of the array and clear the array.
 static func destroy_all(connections: Array[Connection]) -> void:
 	while connections:
 		connections.pop_back().destroy()

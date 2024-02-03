@@ -2,6 +2,9 @@ class_name BuilderGUI
 extends ConfirmationDialog
 
 
+## A singleton to build objects.
+
+
 signal finished()
 
 
@@ -62,11 +65,6 @@ var builder: Builder:
 
 @onready var type_selector: OptionButton = %TypeSelector
 @onready var tabs: TabContainer = %Tabs
-
-
-#func _init() -> void:
-	#transient = true
-	#exclusive = true
 
 
 func _ready() -> void:

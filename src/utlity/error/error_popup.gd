@@ -2,6 +2,9 @@
 extends AcceptDialog
 
 
+## A utility class to display errors to the user.
+
+
 func _init() -> void:
 	hide()
 
@@ -12,6 +15,7 @@ func _ready() -> void:
 		move_to_foreground()
 
 
+## Set window's title with the given elements seperated by " - "
 func set_title_elements(elements: Array[String] = []) -> void:
 	# Add the software title so the user know that the error come from us.
 	elements.push_front(

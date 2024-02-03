@@ -1,6 +1,9 @@
 extends ConfirmationDialog
 
 
+## A singleton to let the user edit [ProjectSettings]
+
+
 func _ready() -> void:
 	hide()
 	size = 0.7 * DisplayServer.screen_get_size()

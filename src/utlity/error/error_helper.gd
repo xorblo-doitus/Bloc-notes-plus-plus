@@ -2,6 +2,8 @@ class_name ErrorHelper
 extends RefCounted
 
 
+## A utility class to handle errors
+
 
 enum Level {
 	INFO,

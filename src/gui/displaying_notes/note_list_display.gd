@@ -1,6 +1,10 @@
 class_name NoteListDisplay
 extends PanelContainer
 
+
+## A GUI able to display a [NoteList]
+
+
 @onready var notes_container: VBoxContainer = %NotesContainer
 @onready var progress_bar: ProgressBar = %ProgressBar
 

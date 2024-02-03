@@ -35,7 +35,10 @@ func _ready():
 			#print(ref.get_ref(), " references: ", ref.get_ref().get_reference_count())
 
 
+## On first load, if no save file is found, the default will be used.
 var first_load: bool = true
+
+
 func load_workspace(path: String = "") -> void:
 	if path:
 		EasySettings.set_setting("save/path/latest_workspace", path)
@@ -111,24 +114,7 @@ func _on_note_list_changed(new: Array[Note], _old: Array[Note]) -> void:
 	#print(new)
 	
 	_can_change_notes = true
-	#_listening_to_notes_change = true
 
-#func _on_workspace_changed() -> void:
-	#if _listening_to_notes_change:
-		#_listening_to_notes_change = false
-		#
-	#notes_display.note_list = workspace.note_list
-	#
-	#_listening_to_notes_change = true
-#
-#
-#func _on_note_list_display_changed() -> void:
-	#if _listening_to_notes_change:
-		#_listening_to_notes_change = false
-		#
-	#notes_display.note_list = workspace.note_list
-	#
-	#_listening_to_notes_change = true
 
 
 func _on_note_created(note: Note) -> void:

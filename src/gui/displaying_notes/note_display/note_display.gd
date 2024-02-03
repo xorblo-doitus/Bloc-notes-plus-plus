@@ -2,6 +2,9 @@ class_name NoteDisplay
 extends PanelContainer
 
 
+## A GUI able to display a [Note].
+
+
 ## Emitted when delete button is pressed, etc...
 signal request_remove()
 
