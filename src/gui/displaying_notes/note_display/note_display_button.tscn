@@ -1,9 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7yar8fvf8ne2"]
 
-[ext_resource type="Texture2D" uid="uid://btk271e0heuq2" path="res://icon.svg" id="1_fr31j"]
+[ext_resource type="Texture2D" uid="uid://ctppfgka4tnnb" path="res://src/assets/icon.png" id="1_b8vdm"]
 
-[node name="NoteDisplayButton" type="TextureButton"]
-custom_minimum_size = Vector2(32, 32)
-texture_normal = ExtResource("1_fr31j")
-ignore_texture_size = true
-stretch_mode = 5
+[node name="NoteDisplayButton" type="Button"]
+icon = ExtResource("1_b8vdm")

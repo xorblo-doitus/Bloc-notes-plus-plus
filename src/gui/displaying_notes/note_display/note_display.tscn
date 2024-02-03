@@ -20,7 +20,9 @@ layout_mode = 2
 
 [node name="Grip" parent="Widgets" instance=ExtResource("2_od70a")]
 layout_mode = 2
-texture_normal = ExtResource("2_vo56a")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("2_vo56a")
 
 [node name="GripComponent" parent="Widgets/Grip" node_paths=PackedStringArray("element_to_move") instance=ExtResource("4_e0p82")]
 unique_name_in_owner = true
@@ -38,11 +40,14 @@ place_holder = "TITLE_PLACE_HOLDER"
 
 [node name="Edit" type="Button" parent="Widgets"]
 layout_mode = 2
+size_flags_vertical = 4
 icon = ExtResource("6_foat4")
 
 [node name="Delete" parent="Widgets" instance=ExtResource("2_od70a")]
 layout_mode = 2
-texture_normal = ExtResource("4_btt4o")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("4_btt4o")
 
 [connection signal="button_down" from="Widgets/Grip" to="Widgets/Grip/GripComponent" method="start_dragging"]
 [connection signal="button_up" from="Widgets/Grip" to="Widgets/Grip/GripComponent" method="finish_dragging"]
