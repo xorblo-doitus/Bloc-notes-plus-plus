@@ -22,6 +22,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "GRAB_TOOLTIP"
 icon = ExtResource("2_vo56a")
 
 [node name="GripComponent" parent="Widgets/Grip" node_paths=PackedStringArray("element_to_move") instance=ExtResource("4_e0p82")]
@@ -42,12 +43,14 @@ place_holder = "TITLE_PLACE_HOLDER"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "EDIT_TOOLTIP"
 icon = ExtResource("6_foat4")
 
 [node name="Delete" parent="Widgets" instance=ExtResource("2_od70a")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "DELETE_TOOLTIP"
 icon = ExtResource("4_btt4o")
 
 [connection signal="button_down" from="Widgets/Grip" to="Widgets/Grip/GripComponent" method="start_dragging"]

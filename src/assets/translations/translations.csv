@@ -2,6 +2,9 @@ keys,en,fr
 EXEMPLE_NOTE_TITLE,Exemple note's title.,Exemple d’un titre de note.
 EXEMPLE_NOTE_DESCRIPTION,Exemple note's description.,Exemple d’une description de note.
 NO_DESCRIPTION,No description.,Pas de description.
+GRAB_TOOLTIP,Move,Déplacer
+EDIT_TOOLTIP,Edit,Modifier
+DELETE_TOOLTIP,Delete,Supprimer
 TASK_PROGRESS_TOOLTIP,Tasks progress (How many percents of tasks where marked as done),Progression des tâches (pourcentage des notes de type tâche cochées comme accomplies)
 ERROR_PREFIX,Error: ,Erreur : 
 ERROR_LOAD_FAILED,Loading failed,Le chargement a échoué
