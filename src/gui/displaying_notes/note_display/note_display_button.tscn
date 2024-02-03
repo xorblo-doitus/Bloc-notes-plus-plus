@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7yar8fvf8ne2"]
+[gd_scene load_steps=3 format=3 uid="uid://c7yar8fvf8ne2"]
 
 [ext_resource type="Texture2D" uid="uid://ctppfgka4tnnb" path="res://src/assets/icon.png" id="1_b8vdm"]
+[ext_resource type="Script" path="res://src/gui/displaying_notes/note_display/note_display_button.gd" id="2_ldgw8"]
 
 [node name="NoteDisplayButton" type="Button"]
 icon = ExtResource("1_b8vdm")
+script = ExtResource("2_ldgw8")
